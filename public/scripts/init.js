@@ -60,4 +60,4 @@
 		});
 	}
 
-})(root("IssueTracker.Init"));
+})(root("Logs.Init"));

@@ -1,0 +1,20 @@
+.gradient (@top, @bottom) { background:linear-gradient(to bottom, @top, @bottom); }
+.vertical-centre (@height) { height:@height; line-height:@height; display:inline-block; vertical-align:middle; }
+.secondary-gradient { .gradient(@secondary-background-colour-top, @secondary-background-colour-bottom); }
+.shadow { box-shadow:0 2px 8px rgba(100, 100, 100, 0.4); }
+.dark-shadow { box-shadow:0 2px 8px rgba(0, 0, 0, 0.5); }
+.border { border:solid 1px @border-colour; }
+.dark-background { background:url(../images/body-background.png); }
+.border-radius(@radius: 2px) { border-radius:@radius; }
+.border-radius-top(@radius) { border-top-left-radius:@radius; border-top-right-radius:@radius; }
+.border-radius-bottom(@radius) { border-bottom-left-radius:@radius; border-bottom-right-radius:@radius; }
+.border-box { box-sizing:border-box; -moz-box-sizing:border-box; }
+.ellipsis { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.hidden { display:none !important; }
+.hover { background:@hover-colour; }
+.select { background:darken(@hover-colour, 10%) !important; }
+.tile { padding:@spacing; .shadow; .border-radius; background:@tile-background-colour; .border-box; color:@primary-font-colour; }
+.deleted { opacity:0.6; }
+
+.condensed-font { font-family:'roboto-condensed' !important; font-weight:normal; letter-spacing:-1px; }
+.regular-font { font-family:'Helvetica', 'Arial', 'sans-serif' !important; }
