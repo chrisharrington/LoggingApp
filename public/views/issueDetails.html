@@ -1,0 +1,135 @@
+﻿<script type="text/javascript">
+	var root = window.IssueTracker || (window.IssueTracker = {});
+	root.selectedIssue = IssueTracker.Utilities.createPropertyObservables({{{issue}}});
+</script>
+
+<div class="container notop details-header">
+	<div class="breadcrumbs">
+		<a class="clickable" data-bind="attr: { href: '#/issues' }">
+			<i class="fa fa-home"></i>
+			<span data-bind="text: IssueTracker.projectName"></span>
+		</a>
+		<i class="fa fa-angle-right"></i>
+		<a>
+			<span data-bind="text: 'Issue #' + IssueTracker.selectedIssue.number()"></span>
+		</a>
+	</div>
+
+	<div class="issue-buttons">
+		<img id="transition-loader" class="hidden" src="/images/ajax-loader.gif" alt="" data-bind="css: { hidden: !IssueTracker.Transitioner.transitioning() }" />
+		<div class="transitions" data-bind="visible: IssueTracker.selectedIssue.transitions().length > 0, foreach: IssueTracker.selectedIssue.transitions">
+            <button class="icon" data-bind="attr: { 'data-status-id': toId, disabled: IssueTracker.Transitioner.transitioning }">
+                <span data-bind="text: name"></span>
+                <i class="fa fa-angle-right"></i>
+            </button>
+		</div>
+		<div class="always">
+			<button class="round" data-bind="tooltip: 'Save Changes', click: update, visible: IssueTracker.isAuthorized('edit-issue'), css: { loading: saving }">
+				<i class="fa fa-check"></i>
+			</button>
+			<button class="round" data-bind="tooltip: 'Attach File', click: Files.upload, css: { loading: Files.uploading }">
+				<i class="fa fa-paperclip"></i>
+			</button>
+			<button class="round" data-bind="tooltip: { text: 'Restore Issue', alignment: 'right' }, click: Delete.restore, visible: IssueTracker.isAuthorized('delete-issue') && IssueTracker.selectedIssue.isDeleted(), css: { loading: Delete.loading }">
+				<i class="fa fa-trash-o"></i>
+			</button>
+			<button class="round" data-bind="tooltip: { text: 'Delete Issue', alignment: 'right' }, click: Delete.remove, visible: IssueTracker.isAuthorized('delete-issue') && !IssueTracker.selectedIssue.isDeleted()">
+				<i class="fa fa-trash-o"></i>
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="header">
+	<div class="description">
+		<input id="description" class="nofocus" type="text" class="description no-focus" data-bind="enable: IssueTracker.isAuthorized('edit-issue'), value: IssueTracker.selectedIssue.description" />
+		<i class="fa fa-pencil" data-bind="visible: IssueTracker.isAuthorized('edit-issue'), click: selectDescription, tooltip: { text: 'Edit Description', alignment: 'right' }"></i>
+	</div>
+	<div class="details">
+		<textarea id="details" class="nofocus" placeholder="Details..." class="no-focus" data-bind="enable: IssueTracker.isAuthorized('edit-issue'), value: IssueTracker.selectedIssue.details"></textarea>
+		<i class="fa fa-pencil" data-bind="visible: IssueTracker.isAuthorized('edit-issue'), click: selectDetails, tooltip: { text: 'Edit Details', alignment: 'right' }"></i>
+	</div>
+</div>
+
+<div class="content">
+	<div class="comments">
+		<div>
+			<div class="new">
+				<div>
+					<div class="info-container">
+						<div class="user">
+							<img class="user-profile-image" data-bind="attr: { src: IssueTracker.Utilities.getUserProfileImageLocation(null, 36) }" alt="" />
+							<div>
+								<span class="name" data-bind="text: IssueTracker.signedInUser().name"></span>
+								<br />
+								<span class="ago">Now</span>
+							</div>
+						</div>
+					</div>
+					<div class="text-container">
+						<div class="text">
+							<textarea placeholder="Comment..." data-bind="value: Comments.text"></textarea>
+						</div>
+						<i class="fa fa-check save" data-bind="click: Comments.add, tooltip: { text: 'Add Comment' }"></i>
+					</div>
+				</div>
+			</div>
+			<!-- ko foreach: { data: Comments.comments, afterAdd: Comments.slideDown } -->
+			<div class="existing">
+				<div>
+					<div class="info-container">
+						<div class="user">
+							<img class="user-profile-image" data-bind="attr: { src: IssueTracker.Utilities.getUserProfileImageLocation(null, 36) }" alt="" />
+							<div>
+								<span class="name" data-bind="text: user"></span>
+								<br />
+								<span class="ago" data-bind="timeago: date"></span>
+							</div>
+						</div>
+					</div>
+					<div class="text-container">
+						<div class="text" data-bind="text: text"></div>
+						<i class="fa fa-times remove" data-bind="tooltip: 'Remove Comment', css: { authorized: IssueTracker.signedInUser().id() == userId }, click: $root.Comments.remove"></i>
+					</div>
+				</div>
+			</div>
+			<!-- /ko -->
+		</div>
+	</div>
+
+	<div class="sidebar">
+		<div class="issue-properties" data-bind="template: { name: 'issue-properties-template', data: IssueProperties }"></div>
+		<div class="attached-files existing" data-bind="template: { name: 'attached-files-template', foreach: Files.files }">
+	</div>
+</div>
+
+<script type="text/html" id="confirm-delete">
+	<div class="confirm-delete form">
+		<h1>Delete this issue?</h1>
+		<span>Deleting an issue is 100% reversible; we only mark it as deleted. In the event you delete this issue by mistake or need to restore it later, no problem; you can search for the issue and undelete it that way. Are you sure you want to continue?</span>
+		<div class="button-container">
+			<button class="round" data-bind="click: IssueTracker.IssueDetails.Delete.cancel">
+				<i class="fa fa-times"></i>
+			</button>
+			<button class="round" data-bind="click: IssueTracker.IssueDetails.Delete.confirm, css: { loading: loading }">
+				<i class="fa fa-check"></i>
+			</button>
+		</div>
+	</div>
+</script>
+
+<script type="text/html" id="confirm-delete-comment-template">
+    <div class="confirm-delete form">
+        <h1>Delete this comment?</h1>
+        <span class="warning"><b>WARNING:</b> This action is irreversible.</span>
+        <span>Once deleted, the comment will be removed from our databases. Are you sure you want to continue?</span>
+        <div class="button-container">
+			<button class="round" id="cancel-delete-comment" data-bind="click: cancel">
+				<i class="fa fa-times"></i>
+			</button>
+            <button class="round" id="confirm-delete-comment" data-bind="css: { loading: loading }, click: confirm">
+				<i class="fa fa-check"></i>
+            </button>
+        </div>
+    </div>
+</script>

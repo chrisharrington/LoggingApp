@@ -1,0 +1,43 @@
+﻿<script type="text/javascript">
+    $(function() {
+        var root = IssueTracker.CreateIssue;
+        root.issueId = "{{issueId}}";
+    })
+</script>
+
+<section id="header">
+    <div class="breadcrumbs">
+        <a class="clickable" data-bind="attr: { href: '#/issues' }">
+            <i class="fa fa-home"></i>
+            <span data-bind="text: IssueTracker.projectName"></span>
+        </a>
+        <i class="fa fa-angle-right"></i>
+        <a>
+            <span>New Issue</span>
+        </a>
+    </div>
+
+    <div class="buttons">
+		<button class="round" data-bind="click: Upload.browse, tooltip: 'Attach File'">
+			<i class="fa fa-paperclip"></i>
+		</button>
+        <button class="round" id="save" data-bind="click: save, css: { loading: loading }, tooltip: 'Create Issue'">
+            <i class="fa fa-check"></i>
+        </button>
+        <button class="round" id="discard" data-bind="click: discard, tooltip: { text: 'Discard Issue', alignment: 'right' }">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+</section>
+
+<div class="text-container">
+	<input class="tile container" type="text" placeholder="Issue description..." data-bind="value: createModel.description" />
+	<textarea class="tile container" placeholder="Details..." data-bind="value: createModel.details"></textarea>
+</div>
+
+<div class="sidebar">
+	<div class="issue-properties" data-bind="template: { name: 'issue-properties-template', data: IssueProperties }"></div>
+	<div class="attached-files" data-bind="template: { name: 'attached-files-template', foreach: Upload.attachedFiles }">
+</div>
+
+<input type="file" />

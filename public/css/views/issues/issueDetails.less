@@ -1,0 +1,88 @@
+﻿.issue-details-container {
+	div.issue-buttons { float:right;
+		>* { float:left; }
+		>img { margin-top:4px; margin-right:@spacing; }
+		>div.transitions { margin-right:@spacing; border-right:solid 1px @border-colour-semi-dark; padding-right:@spacing; }
+		>div {
+			>div { float:left; }
+			button { float:left; margin-left:@small-spacing; }
+		}
+		>div.always>button:first-child { margin-left:0; }
+	}
+
+	div.container { float:left; width:100%; margin-top:@spacing; }
+	div.container.notop { margin-top:0; }
+	div.container.table { display:table; }
+
+	div.header { float:left; width:100%; .tile; padding:0; margin-top:@spacing;
+		@description-height:64px;
+		@details-height:48px;
+		>div { float:left; width:100%;
+			@icon-width:14px;
+
+			>input, >textarea { float:left; width:100%; padding:@spacing; border:none; padding-right:@icon-width+@spacing*2; background:@tile-background-colour; }
+			>input { height:@description-height; text-transform:uppercase; cursor:pointer; font-weight:bold; .condensed-font; color:@header-font-colour; font-size:1.875em; }
+			>textarea { height:@details-height; cursor:pointer; color:black; border-top:solid 1px @border-colour; }
+			>i { float:left; width:@icon-width; position:relative; margin-left:(@icon-width+@spacing*2)*-1; padding:0 @spacing; font-size:1.125em; color:@primary-font-colour-lightest; cursor:pointer; display:none !important; }
+			>i:hover { color:@primary-font-colour; }
+		}
+		>div.description>i { .vertical-centre(@description-height); }
+		>div.details>i { .vertical-centre(@details-height); }
+		>div:hover>i { display:inline-block !important; }
+	}
+
+	@comments-height:100px;
+	div.content { float:left; width:100%; margin-top:@spacing; .border-box;
+		@sidebar-width:350px;
+		>div.sidebar { float:left; width:@sidebar-width; margin-left:@sidebar-width*-1; position:relative;
+			>div.issue-properties { float:left; width:100%; }
+			>div.attached-files { float:left; width:100%; margin-top:@spacing; }
+		}
+		>div.comments { float:left; width:100%; padding-right:@sidebar-width+@spacing; position:relative; .border-box;
+			>div { float:left; width:100%; .shadow;
+				>div { float:left; width:100%; border-top:solid 1px @border-colour;
+					>div { float:left; width:100%; .tile; padding:0; box-shadow:none;
+						@info-container-width:275px;
+						@text-container-height:46px;
+						>div.info-container { float:left; width:@info-container-width; margin-right:@info-container-width*-1; .border-box;
+							>div.user { float:left; padding:@spacing;
+								@image-size:36px;
+								>img { float:left; width:@image-size; height:@image-size; margin-right:((@spacing)-6px); }
+								>div { float:left; height:@image-size;
+									>span { float:left; text-align:left; width:100%; }
+									>span.name { font-size:1em; font-weight:bold; margin-top:1px; }
+									>span.ago { font-size:0.85em; font-style:italic; color:@primary-font-colour-light; margin-top:2px; }
+								}
+							}
+						}
+						>div.text-container { float:left; width:100%; position:relative; padding-left:@info-container-width; .border-box; min-height:@text-container-height;
+						  	@icon-width:20px;
+							>div.text { float:left; width:100%; padding:@spacing; .border-box; position:relative; padding-right:@icon-width+(@spacing*2);
+								>textarea { float:left; width:100%; }
+							}
+						  	>i { float:left; font-size:1.375em; padding:@spacing; .vertical-centre(50px); width:@icon-width; text-align:center; margin-left:(@icon-width+@spacing*2)*-1; position:relative; color:@primary-font-colour-light; cursor:pointer; }
+						  	>i.remove { .vertical-centre(36px); display:none; }
+						  	>i:hover { color:@primary-font-colour; }
+						}
+					}
+				}
+				>div:first-child { border-top:none; }
+
+			  	>div.existing:hover {
+					i.authorized.remove { display:inline-block; }
+				}
+			}
+		}
+	}
+}
+
+.issue-details-container.disabled {
+	#description { cursor:default; }
+	#details { cursor:default; }
+	div.choices {
+		div.selectable { cursor:default !important; }
+		div.selectable:hover { background:transparent !important; }
+	}
+}
+
+.confirm-delete { float:left; width:500px; }
