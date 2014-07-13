@@ -1,28 +1,40 @@
 var Logger = window.Logger || {};
 
+window.__previousRoute = "";
+
 Logger.Page = function(params) {
 	this._validateParams(params);
+	this._animationSpeed = 500;
 
 	var me = this;
-	params.root.route = params.route;
-	params.root.navigate = function(routeParameters) { me.navigate(params.route[0], routeParameters || {}); };
-	this.load = params.root.load;
-	this.unload = params.root.unload;
-	this.init = params.root.init;
-	this.preload = params.root.preload;
-
 	if (!(params.route instanceof Array))
 		params.route = [params.route];
 
 	$.each(params.route, function() {
 		Path.map(this).to(function () {
-			if (!me._isAuthorized(params))
-				Logger.Welcome.redirect();
+			var root = params.root;
+
+			me.init = root.init;
+			me.load = root.load;
+			me.unload = root.unload;
+			me.route = params.route;
+			me.navigate = function(routeParameters) { me.navigate(params.route[0], routeParameters || {}); };
+
+			if (me._isLocalStorageEnabled())
+				$("body").removeClass("storage-disabled");
 			else
-				me._setView(params, this.params);
+				$("body").addClass("storage-disabled");
+			me._setView(params, this.params);
 		}).enter(function() {
-			if (params.root.enter)
-				params.root.enter();
+			if (params.root.beforeLoad)
+				params.root.beforeLoad();
+		}).exit(function () {
+			window.__previousRoute = params.route;
+			var unload = params.root().unload;
+			setTimeout(function() {
+				if (unload)
+					unload();
+			}, me._animationSpeed);
 		});
 	});
 
@@ -37,54 +49,56 @@ Logger.Page.prototype.navigate = function (route, params) {
 	route = route ? route : this.route;
 	for (var name in params)
 		route = route.replace(":" + name, params[name]);
-	window.location.hash = route;
-};
-
-Logger.Page.prototype._isAuthorized = function (params) {
-	if (params.isAnonymous)
-		return true;
-	return Logger.signedInUser() != null;
+	appNav.changeHash(route);
 };
 
 Logger.Page.prototype._setView = function (params, routeArguments) {
-	this._resetErrorPanels();
-
 	var me = this;
+	$.get(this._getUrlFromParams(params, routeArguments)).then(function(html) {
+		window.scrollTo(0, 0);
+
+		var sections = $("section.content-container, section.off-screen-content-container");
+		var container = $("section.content-container").attr("class", "content-container").addClass(params.style);
+		var offScreen = $("section.off-screen-content-container").attr("class", "off-screen-content-container").addClass(params.style).empty().html(html);
+
+		var back = window.__isBack;
+		if (back)
+			offScreen.addClass("left");
+		else
+			offScreen.removeClass("left");
+		me._initializePage(offScreen, params, routeArguments);
+		sections.transition({ x: back ? "100%" : "-100%" }, container.html() == "" ? 0 : me._animationSpeed, "ease", function () {
+			sections.removeAttr("style");
+			offScreen.removeClass("off-screen-content-container").addClass("content-container");
+			container.removeClass("content-container").addClass("off-screen-content-container").empty();
+		});
+	});
+};
+
+Logger.Page.prototype._initializePage = function(container, params, routeArguments) {
+	if (this.init && !this._initFired) {
+		this.init(container);
+		this._initFired = true;
+	}
+	if (this.load)
+		this.load(container, {
+			routeArguments: routeArguments,
+			previousRoute: window.__previousRoute,
+			isBack: window.__isBack
+		});
+	$(document).scrollTop();
+
+	history.replaceState({ isBack: true }, "");
+	window.__isBack = false;
+};
+
+Logger.Page.prototype._getUrlFromParams = function(params, routeArguments) {
 	var url = params.view;
 	if (url instanceof Function)
 		url = url();
 	for (var name in routeArguments)
 		url = url.replace(":" + name, routeArguments[name].replace(/-/g, " "));
-
-	if (me.preload)
-		me.preload(routeArguments);
-
-	$.get(url).then(function(html) {
-		if (Logger.currentPage && Logger.currentPage.unload)
-			Logger.currentPage.unload();
-		Logger.currentPage = me;
-
-		var container = $(".content-container")
-			.attr("class", "content-container " + params.style)
-			.empty()
-			.append($("<div></div>").addClass("binding-container").html(html));
-
-		if (me.init && !me._initFired) {
-			me.init(container);
-			me._initFired = true;
-		}
-		if (me.load)
-			me.load(container, routeArguments);
-
-		me._setTitle(params.title);
-		$(document).scrollTop();
-	});
-};
-
-Logger.Page.prototype._loadData = function() {
-	var deferred = new $.Deferred();
-	deferred.resolve({});
-	return deferred.promise();
+	return url;
 };
 
 Logger.Page.prototype._validateParams = function(params) {
@@ -96,20 +110,17 @@ Logger.Page.prototype._validateParams = function(params) {
 		throw new Error("Missing page view.");
 	if (!params.route)
 		throw new Error("Missing page route.");
-	if (!params.style)
-		throw new Error("Missing page style.");
 };
 
-Logger.Page.prototype._setTitle = function(title) {
-	if (!title)
-		title = "Leaf";
-	if (typeof(title) == "function")
-		title = title();
-	document.title = title;
-	Logger.title(title);
-};
-
-Logger.Page.prototype._resetErrorPanels = function() {
-	$("div.error-code").hide();
-	$("section.content-container").show();
+Logger.Page.prototype._isLocalStorageEnabled = function() {
+	return (function() {
+		var uid = new Date,
+			result;
+		try {
+			localStorage.setItem(uid, uid);
+			result = localStorage.getItem(uid) == uid;
+			localStorage.removeItem(uid);
+			return result && localStorage;
+		} catch(e) {}
+	}());
 };

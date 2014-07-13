@@ -18,6 +18,7 @@ exports.styles = function() {
 		"./public/css/variables.less",
 		"./public/css/mixins.less",
 		"./public/css/global.less",
+		"./public/css/navigation.less",
 		"./public/css/fonts.css",
 		"./public/css/animation.less",
 		"./public/css/controls",
