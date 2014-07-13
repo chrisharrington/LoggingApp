@@ -1,6 +1,6 @@
-var IssueTracker = window.IssueTracker || {};
+var Logger = window.Logger || {};
 
-IssueTracker.Page = function(params) {
+Logger.Page = function(params) {
 	this._validateParams(params);
 
 	var me = this;
@@ -17,7 +17,7 @@ IssueTracker.Page = function(params) {
 	$.each(params.route, function() {
 		Path.map(this).to(function () {
 			if (!me._isAuthorized(params))
-				IssueTracker.Welcome.redirect();
+				Logger.Welcome.redirect();
 			else
 				me._setView(params, this.params);
 		}).enter(function() {
@@ -29,24 +29,24 @@ IssueTracker.Page = function(params) {
 	return this;
 };
 
-IssueTracker.Page.build = function(params) {
-	return new IssueTracker.Page(params);
+Logger.Page.build = function(params) {
+	return new Logger.Page(params);
 };
 
-IssueTracker.Page.prototype.navigate = function (route, params) {
+Logger.Page.prototype.navigate = function (route, params) {
 	route = route ? route : this.route;
 	for (var name in params)
 		route = route.replace(":" + name, params[name]);
 	window.location.hash = route;
 };
 
-IssueTracker.Page.prototype._isAuthorized = function (params) {
+Logger.Page.prototype._isAuthorized = function (params) {
 	if (params.isAnonymous)
 		return true;
-	return IssueTracker.signedInUser() != null;
+	return Logger.signedInUser() != null;
 };
 
-IssueTracker.Page.prototype._setView = function (params, routeArguments) {
+Logger.Page.prototype._setView = function (params, routeArguments) {
 	this._resetErrorPanels();
 
 	var me = this;
@@ -60,9 +60,9 @@ IssueTracker.Page.prototype._setView = function (params, routeArguments) {
 		me.preload(routeArguments);
 
 	$.get(url).then(function(html) {
-		if (IssueTracker.currentPage && IssueTracker.currentPage.unload)
-			IssueTracker.currentPage.unload();
-		IssueTracker.currentPage = me;
+		if (Logger.currentPage && Logger.currentPage.unload)
+			Logger.currentPage.unload();
+		Logger.currentPage = me;
 
 		var container = $(".content-container")
 			.attr("class", "content-container " + params.style)
@@ -76,20 +76,18 @@ IssueTracker.Page.prototype._setView = function (params, routeArguments) {
 		if (me.load)
 			me.load(container, routeArguments);
 
-		ko.applyBindings(params.root, container.find(">div.binding-container")[0]);
-
 		me._setTitle(params.title);
 		$(document).scrollTop();
 	});
 };
 
-IssueTracker.Page.prototype._loadData = function() {
+Logger.Page.prototype._loadData = function() {
 	var deferred = new $.Deferred();
 	deferred.resolve({});
 	return deferred.promise();
 };
 
-IssueTracker.Page.prototype._validateParams = function(params) {
+Logger.Page.prototype._validateParams = function(params) {
 	if (!params)
 		throw new Error("Missing page parameters.");
 	if (!params.root)
@@ -102,16 +100,16 @@ IssueTracker.Page.prototype._validateParams = function(params) {
 		throw new Error("Missing page style.");
 };
 
-IssueTracker.Page.prototype._setTitle = function(title) {
+Logger.Page.prototype._setTitle = function(title) {
 	if (!title)
 		title = "Leaf";
 	if (typeof(title) == "function")
 		title = title();
 	document.title = title;
-	IssueTracker.title(title);
+	Logger.title(title);
 };
 
-IssueTracker.Page.prototype._resetErrorPanels = function() {
+Logger.Page.prototype._resetErrorPanels = function() {
 	$("div.error-code").hide();
 	$("section.content-container").show();
 };

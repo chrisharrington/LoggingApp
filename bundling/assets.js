@@ -4,12 +4,10 @@ exports.scripts = function() {
 		"./public/scripts/global.js",
 		"./public/scripts/page.js",
 		"./public/scripts/utilities.js",
-		"./public/scripts/binders",
 		"./public/scripts/controls",
 		"./public/scripts/extensions",
 		"./public/scripts/helpers",
 		"./public/scripts/settings",
-		"./public/scripts/userSettings",
 		"./public/scripts/views",
 		"./public/scripts/init.js"
 	];

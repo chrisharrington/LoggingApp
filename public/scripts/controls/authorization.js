@@ -6,16 +6,16 @@
 		if (!_permissions)
 			_buildPermissionsDictionary();
 
-		return IssueTracker.signedInUser().permissions().exists(function(x) {
+		return Logger.signedInUser().permissions().exists(function(x) {
 			return x.permissionId == _permissions[tag].id();
 		});
 	};
 
 	function _buildPermissionsDictionary() {
 		_permissions = {};
-		$.each(IssueTracker.permissions(), function(i, permission) {
+		$.each(Logger.permissions(), function(i, permission) {
 			_permissions[permission.tag()] = permission;
 		});
 	}
 
-})(root("IssueTracker"));
+})(root("Logger"));

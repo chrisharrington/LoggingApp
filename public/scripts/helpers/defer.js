@@ -5,4 +5,4 @@
 		setTimeout(func, timeout);
 	};
 
-})(root("IssueTracker.Defer"));
+})(root("Logger.Defer"));

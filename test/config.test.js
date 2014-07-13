@@ -10,7 +10,7 @@ describe("config", function() {
 			sut = require("../config");
 		});
 
-		it("should return 'IssueTrackerApp' with 'databaseUser'", function() {
+		it("should return 'LoggerApp' with 'databaseUser'", function() {
 			assert.equal(sut("databaseUser"), "leaf-app");
 		});
 
@@ -34,8 +34,8 @@ describe("config", function() {
 			assert.equal(sut("storageName"), "leafissuetracker");
 		});
 
-		it("should return 'LeafIssueTracker' with 'sendgridUsername'", function() {
-			assert.equal(sut("sendgridUsername"), "LeafIssueTracker");
+		it("should return 'LeafLogger' with 'sendgridUsername'", function() {
+			assert.equal(sut("sendgridUsername"), "LeafLogger");
 		});
 
 		it("should return 'no-reply@leafissuetracker.com' with 'fromAddress'", function() {

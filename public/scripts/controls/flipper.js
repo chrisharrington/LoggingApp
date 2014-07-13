@@ -1,7 +1,7 @@
 
-namespace("IssueTracker.Controls");
+namespace("Logger.Controls");
 
-IssueTracker.Controls.Flipper = function (selector, userAgent) {
+Logger.Controls.Flipper = function (selector, userAgent) {
 	if (!userAgent)
 		userAgent = navigator.userAgent;
 	if (!selector)
@@ -11,11 +11,11 @@ IssueTracker.Controls.Flipper = function (selector, userAgent) {
 	this._isIE = userAgent.match(/msie/i) || ((/Trident\/7\./).test(userAgent));
 };
 
-IssueTracker.Controls.Flipper.create = function(view, userAgent) {
-	return new IssueTracker.Controls.Flipper(view, userAgent);
+Logger.Controls.Flipper.create = function(view, userAgent) {
+	return new Logger.Controls.Flipper(view, userAgent);
 };
 
-IssueTracker.Controls.Flipper.prototype.toggle = function(show) {
+Logger.Controls.Flipper.prototype.toggle = function(show) {
 	if (this._isIE)
 		this._toggleForIE(show);
 	else if (typeof show == "undefined")
@@ -26,7 +26,7 @@ IssueTracker.Controls.Flipper.prototype.toggle = function(show) {
 		$(this._selector).removeClass("flipped");
 };
 
-IssueTracker.Controls.Flipper.prototype._toggleForIE = function (show) {
+Logger.Controls.Flipper.prototype._toggleForIE = function (show) {
 	var view = $(this._selector);
 	view.removeClass("transition");
 	var front = view.find(".front");
@@ -44,7 +44,7 @@ IssueTracker.Controls.Flipper.prototype._toggleForIE = function (show) {
 		this._switch(back, front);
 };
 
-IssueTracker.Controls.Flipper.prototype._switch = function(first, second) {
+Logger.Controls.Flipper.prototype._switch = function(first, second) {
 	first.removeClass("shown").fadeOut(200);
 	second.addClass("shown").fadeIn(200);
 };

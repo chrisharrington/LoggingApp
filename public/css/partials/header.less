@@ -1,10 +1,10 @@
-﻿header { float:left; width:100%; height:@header-height; border-bottom:solid 2px @border-colour; background:@header-background;
+﻿header { float:left; width:100%; height:@header-height; border-bottom:solid 2px @border-colour; background:@header-background; color:@header-font-colour;
+  	* { color:inherit; }
   	>* { .vertical-centre(@header-height) !important; }
-	a { font-size:1.375em; padding:0 @spacing; cursor:pointer; color:@primary-font-colour-light; width:19px; text-align:center; }
-  	a:hover { color:@primary-font-colour; }
+	a { font-size:1.375em; padding:0 @spacing; cursor:pointer; width:19px; text-align:center; }
 
   	.fa-bars { float:left; }
   	.fa-ellipsis-v { float:right; }
 
-  	h2 { float:left; color:@primary-font-colour-light; }
+  	h2 { float:left; font-weight:bold; }
 }

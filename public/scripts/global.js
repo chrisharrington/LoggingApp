@@ -2,8 +2,8 @@
 $.ajaxSetup({ cache: false });
 
 function namespace(space) {
-	var root = window.IssueTracker || (window.IssueTracker = {});
-	$(space.replace("IssueTracker.", "").split(".")).each(function(i, part) {
+	var root = window.Logger || (window.Logger = {});
+	$(space.replace("Logger.", "").split(".")).each(function(i, part) {
 		root[part] = root[part] || {};
 		root = root[part];
 	});

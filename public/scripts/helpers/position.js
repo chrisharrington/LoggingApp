@@ -9,4 +9,4 @@
 		return element.offset().left <= $(window).width() / 2;
 	};
 
-})(root("IssueTracker.Position"));
+})(root("Logger.Position"));

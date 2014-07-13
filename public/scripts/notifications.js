@@ -20,7 +20,7 @@
     }, root, { deferEvaluation: true });
 
     root.init = function(container) {
-		_menu = IssueTracker.SlideMenu.build(container);
+		_menu = Logger.SlideMenu.build(container);
         _container = container;
 		//_loadNotifications();
 
@@ -39,18 +39,18 @@
 
 	root.navigateToIssue = function(issueNumber, notificationId) {
 		_markAsViewed([notificationId]);
-        IssueTracker.IssueDetails.navigate({ number: issueNumber });
+        Logger.IssueDetails.navigate({ number: issueNumber });
     };
 
 	function _loadNotifications() {
 		root.loading(true);
         $.ajax({
-            url: IssueTracker.virtualDirectory + "notifications",
+            url: Logger.virtualDirectory + "notifications",
             global: false
         }).done(function(notifications) {
 			root.notifications.removeAll();
 			for (var i = 0; i < notifications.length; i++)
-				root.notifications.push(IssueTracker.Utilities.createPropertyObservables(notifications[i]));
+				root.notifications.push(Logger.Utilities.createPropertyObservables(notifications[i]));
             _setIconHeights();
 		}).always(function() {
 			root.loading(false);
@@ -74,13 +74,13 @@
     }
 
 	function _markAsViewed(notificationIds) {
-		return $.post(IssueTracker.virtualDirectory + "notifications/mark-as-viewed", { notificationIds: notificationIds.join(",") }).done(function() {
+		return $.post(Logger.virtualDirectory + "notifications/mark-as-viewed", { notificationIds: notificationIds.join(",") }).done(function() {
 			$(root.notifications()).each(function() {
 				this.isViewed(true);
 			});
 		}).fail(function() {
-			IssueTracker.Feedback.error("An error occurred while setting your notifications to read. Please try again later.");
+			Logger.Feedback.error("An error occurred while setting your notifications to read. Please try again later.");
 		});
 	}
 
-})(root("IssueTracker.Notifications"));
+})(root("Logger.Notifications"));

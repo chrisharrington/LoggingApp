@@ -4,4 +4,4 @@
 		$.getScript(window.location.href.indexOf("leafissuetracker.com") > -1 ? url : local);
 	};
 
-})(root("IssueTracker.Loader"));
+})(root("Logger.Loader"));

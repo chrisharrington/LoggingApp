@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="{{{styleLocation}}}" type="text/css" />
 </head>
 	<body>
@@ -13,5 +13,24 @@
 		</header>
 
 		<section class="content-container"></section>
+
+		<script type="text/javascript" src="/scripts/thirdParty/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/path.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/highcharts.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/json2.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/jquery.transit.min.js"></script> <!-- forked for height: auto animation support from here: https://github.com/NV/jquery.transit -->
+		<script type="text/javascript" src="/scripts/thirdParty/md5.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/nanobar.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/jquery.timeago.min.js"></script>
+		{{{renderedScripts}}}
+
+		<script type="text/javascript">
+			$(function () {
+				var root = window.Logger || (window.Logger = {});
+				root.virtualDirectory = "/";
+
+				Logger.Init.init();
+			});
+		</script>
 	</body>
 </html>

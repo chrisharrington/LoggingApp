@@ -35,7 +35,7 @@
 		return deferred.promise();
 	};
 
-})(root("IssueTracker.Uploader"));
+})(root("Logger.Uploader"));
 
 function UploaderFile(file, progress, destination, uploaded, name, id) {
 	this.id = ko.observable();

@@ -1,6 +1,6 @@
-var IssueTracker = window.IssueTracker || {};
+var Logger = window.Logger || {};
 
-IssueTracker.SlideMenu = function(container) {
+Logger.SlideMenu = function(container) {
 	this.HEADER_HEIGHT = 60;
 	this.ANIMATION_SPEED = 350;
 
@@ -13,11 +13,11 @@ IssueTracker.SlideMenu = function(container) {
 	});
 };
 
-IssueTracker.SlideMenu.build = function(container) {
-	return new IssueTracker.SlideMenu(container);
+Logger.SlideMenu.build = function(container) {
+	return new Logger.SlideMenu(container);
 };
 
-IssueTracker.SlideMenu.prototype.show = function() {
+Logger.SlideMenu.prototype.show = function() {
 	var me = this;
 	if (me._container.is(":visible"))
 		return;
@@ -31,7 +31,7 @@ IssueTracker.SlideMenu.prototype.show = function() {
 	}, 5);
 };
 
-IssueTracker.SlideMenu.prototype.hide = function() {
+Logger.SlideMenu.prototype.hide = function() {
 	var me = this;
 	this._container.transition({ y: 0 }, this.ANIMATION_SPEED, "ease", function() {
 		me._container.hide();

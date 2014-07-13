@@ -2,7 +2,7 @@
 (function(root) {
 
 	$(function() {
-		IssueTracker.Page.build({
+		Logger.Page.build({
 			root: root,
 			view: "logs",
 			route: "#/logs",

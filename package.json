@@ -8,13 +8,13 @@
         "encrypt": "encrypt secureConfig.json secureConfig.json.cast5",
         "decrypt": "decrypt secureConfig.json.cast5 secureConfig.json"
     },
-    "version": "0.0.14",
+    "version": "0.0.18",
     "engines": {
         "node": "0.10.x"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/chrisharrington/IssueTracker.git"
+        "url": "https://github.com/chrisharrington/Logger.git"
     },
     "dependencies": {
         "azure": "^0.8.1",

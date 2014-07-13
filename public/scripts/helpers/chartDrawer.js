@@ -114,4 +114,4 @@
 		}
 	}
 
-})(root("IssueTracker.ChartDrawer"));
+})(root("Logger.ChartDrawer"));

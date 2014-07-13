@@ -13,13 +13,13 @@
 		_validateParams(params);
 
 		var html = _getHtml(params.templateId);
-		IssueTracker.dialog(html);
+		Logger.dialog(html);
 
 		_container = params.containerSelector ? $(params.containerSelector) : $("div.dialog");
 		_overlay = params.overlaySelector ? $(params.overlaySelector) : $("div.overlay");
 
 		ko.cleanNode(_container.find(">div")[0]);
-		ko.applyBindings(params.data ? params.data : IssueTracker, _container.find(">div")[0]);
+		ko.applyBindings(params.data ? params.data : Logger, _container.find(">div")[0]);
 
 		_setPositionAndShow(_container);
 		_overlay.show();
@@ -33,7 +33,7 @@
 
 		_container.hide();
 		_overlay.hide();
-		IssueTracker.dialog("");
+		Logger.dialog("");
 	};
 	
 	function _validateParams(params) {
@@ -57,4 +57,4 @@
 		container.show().css({ "left": $(window).outerWidth() / 2 - container.outerWidth() / 2, "top": $(window).outerHeight() / 5 });
 	}
 
-})(root("IssueTracker.Dialog"));
+})(root("Logger.Dialog"));

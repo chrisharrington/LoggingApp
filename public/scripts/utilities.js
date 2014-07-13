@@ -51,15 +51,15 @@
 	};
 
 	root.getUserProfileImageLocation = function(userId, size) {
-		if (!userId && !IssueTracker.signedInUser())
+		if (!userId && !Logger.signedInUser())
 			return;
 		if (!userId)
-			userId = IssueTracker.signedInUser().id();
+			userId = Logger.signedInUser().id();
 		if (typeof (userId) === "Function")
 			userId = userId();
 
 		var email;
-		$.each(IssueTracker.users(), function(i, user) {
+		$.each(Logger.users(), function(i, user) {
 			if (user.id() == userId)
 				email = user.emailAddress();
 		});
@@ -68,11 +68,11 @@
 
 	root.getPriorityColour = function(priorityId) {
 		var colour;
-		$.each(IssueTracker.priorities(), function(i, priority) {
+		$.each(Logger.priorities(), function(i, priority) {
 			if (priority.id() == priorityId)
 				colour = priority.colour();
 		});
 		return colour;
 	};
 
-})(root("IssueTracker.Utilities"));
+})(root("Logger.Utilities"));

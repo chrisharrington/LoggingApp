@@ -45,4 +45,4 @@
 		});
 	}
 
-})(root("IssueTracker.Feedback"));
+})(root("Logger.Feedback"));
