@@ -20,17 +20,13 @@ Logger.Page = function(params) {
 			me.route = params.route;
 			me.navigate = function(routeParameters) { me.navigate(params.route[0], routeParameters || {}); };
 
-			if (me._isLocalStorageEnabled())
-				$("body").removeClass("storage-disabled");
-			else
-				$("body").addClass("storage-disabled");
 			me._setView(params, this.params);
 		}).enter(function() {
 			if (params.root.beforeLoad)
 				params.root.beforeLoad();
 		}).exit(function () {
 			window.__previousRoute = params.route;
-			var unload = params.root().unload;
+			var unload = params.root.unload;
 			setTimeout(function() {
 				if (unload)
 					unload();
@@ -58,19 +54,21 @@ Logger.Page.prototype._setView = function (params, routeArguments) {
 		window.scrollTo(0, 0);
 
 		var sections = $("section.content-container, section.off-screen-content-container");
-		var container = $("section.content-container").attr("class", "content-container").addClass(params.style);
+		var container = $("section.content-container");
 		var offScreen = $("section.off-screen-content-container").attr("class", "off-screen-content-container").addClass(params.style).empty().html(html);
 
-		var back = window.__isBack;
+		var back = window.__isBack && !me._isForward(window.location.hash);
 		if (back)
 			offScreen.addClass("left");
 		else
 			offScreen.removeClass("left");
-		me._initializePage(offScreen, params, routeArguments);
-		sections.transition({ x: back ? "100%" : "-100%" }, container.html() == "" ? 0 : me._animationSpeed, "ease", function () {
+
+		me._addToHistory(window.location.hash);
+		sections.transition({ x: back ? "100%" : "-100%" }, !window.__previousRoute ? 0 : me._animationSpeed, "ease", function () {
 			sections.removeAttr("style");
 			offScreen.removeClass("off-screen-content-container").addClass("content-container");
 			container.removeClass("content-container").addClass("off-screen-content-container").empty();
+			me._initializePage(offScreen, params, routeArguments);
 		});
 	});
 };
@@ -112,15 +110,22 @@ Logger.Page.prototype._validateParams = function(params) {
 		throw new Error("Missing page route.");
 };
 
-Logger.Page.prototype._isLocalStorageEnabled = function() {
-	return (function() {
-		var uid = new Date,
-			result;
-		try {
-			localStorage.setItem(uid, uid);
-			result = localStorage.getItem(uid) == uid;
-			localStorage.removeItem(uid);
-			return result && localStorage;
-		} catch(e) {}
-	}());
+Logger.Page.prototype._addToHistory = function(route) {
+	var histories = JSON.parse(window.sessionStorage.getItem("history"));
+	if (!histories)
+		histories = [];
+	if (histories.length > 20)
+		histories.shift();
+	histories.push(route);
+	window.sessionStorage.setItem("history", JSON.stringify(histories));
 };
+
+Logger.Page.prototype._isForward = function(route) {
+	var histories = JSON.parse(window.sessionStorage.getItem("history"));
+	return histories[histories.length-2] === route && histories[histories.length-1] === histories[histories.length-3];
+};
+
+$(window).on("popstate", function(e) {
+	if (e.originalEvent.state && e.originalEvent.state.isBack)
+		window.__isBack = true;
+});

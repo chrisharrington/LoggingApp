@@ -7,19 +7,27 @@
 </head>
 	<body>
 		<header>
-			<a class="fa fa-bars"></a>
-			<a class="fa fa-ellipsis-v"></a>
+			<a class="fa fa-bars" id="menu-trigger"></a>
+			<a class="fa fa-plus" href="#/new-log"></a>
+			<a class="fa fa-tasks" href="#/logs"></a>
 			<h2 class="title">Logs</h2>
 		</header>
 
 		<section class="content-container"></section>
 		<section class="off-screen-content-container"></section>
 
+		<section class="menu">
+			<a href="#/new-log">
+				<i class="fa fa-plus"></i>
+				<span>New Log</span>
+			</a>
+		</section>
+
 		<script type="text/javascript" src="/scripts/thirdParty/jquery.min.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/path.min.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/highcharts.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/json2.min.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/jquery.transit.min.js"></script> <!-- forked for height: auto animation support from here: https://github.com/NV/jquery.transit -->
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/md5.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/nanobar.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/jquery.timeago.min.js"></script>

@@ -5,9 +5,9 @@
 
 	root.init = function () {
 		_setupHighcharts();
-		//_setupNanobar();
 		_setupPath();
 
+		Logger.SlideMenu.build($("section.menu"), $("#menu-trigger"));
 		document.cookie = "timezoneOffset=" + new Date().getTimezoneOffset();
 
 		$(document).on("keyup", function(e) {

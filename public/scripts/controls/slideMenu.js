@@ -1,8 +1,8 @@
 var Logger = window.Logger || {};
 
-Logger.SlideMenu = function(container) {
-	this.HEADER_HEIGHT = 60;
+Logger.SlideMenu = function(container, trigger) {
 	this.ANIMATION_SPEED = 350;
+	this.MENU_WIDTH	= 250;
 
 	this._container = container;
 
@@ -11,10 +11,14 @@ Logger.SlideMenu = function(container) {
 		if (me._container.is(":visible"))
 			me.hide();
 	});
+
+	trigger.on("click", function() {
+		me.show();
+	});
 };
 
-Logger.SlideMenu.build = function(container) {
-	return new Logger.SlideMenu(container);
+Logger.SlideMenu.build = function(container, trigger) {
+	return new Logger.SlideMenu(container, trigger);
 };
 
 Logger.SlideMenu.prototype.show = function() {
@@ -23,17 +27,13 @@ Logger.SlideMenu.prototype.show = function() {
 		return;
 
 	setTimeout(function() {
-		var contentContainer = $(".content-container");
-		me._container.show().css({
-			top: "-" + (me._container.outerHeight() - me.HEADER_HEIGHT + 10) + "px",
-			left: (contentContainer.outerWidth() + contentContainer.position().left - me._container.outerWidth()) + "px"
-		}).transition({ y: me._container.outerHeight() + 10 }, me.ANIMATION_SPEED, "ease");
+		me._container.show().transition({ x: me.MENU_WIDTH }, me.ANIMATION_SPEED, "ease");
 	}, 5);
 };
 
 Logger.SlideMenu.prototype.hide = function() {
 	var me = this;
-	this._container.transition({ y: 0 }, this.ANIMATION_SPEED, "ease", function() {
+	this._container.transition({ x: this.MENU_WIDTH*-1 }, this.ANIMATION_SPEED, "ease", function() {
 		me._container.hide();
 	});
 };
