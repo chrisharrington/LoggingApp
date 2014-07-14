@@ -6,7 +6,15 @@ h1 { font-size:1.5em; }
 h2 { font-size:1.375em; }
 
 button { text-align:center; .condensed-font; text-transform:uppercase; font-weight:bold; color:white; background:@header-background; border:none; padding:@spacing 0; font-size:1em; .border-radius; cursor:pointer; }
-input, select { border:solid 1px @border-colour; padding:@spacing; font-size:0.875em; .border-radius; .regular-font; }
+button.link { background:transparent; color:@primary-font-colour; text-decoration:underline; }
+input, div.select { margin:0; border:solid 1px @border-colour; padding:@spacing; font-size:0.875em; .border-radius; .regular-font; background:white !important; }
+
+div.select { height:@input-height; padding:0 @spacing;
+  	@icon-width:25px;
+ 	>* { float:left; height:100%; }
+  	>select { float:left; background:inherit; width:100%; position:relative; .border-box; padding-right:@icon-width; -webkit-appearance:none; border:none; font-size:0.875em; }
+  	>i { float:left; margin-left:@icon-width*-1; position:relative; width:@icon-width; .vertical-centre(@input-height); text-align:right; font-size:1.125em; }
+}
 
 i.icon-button { text-align:center; background:@header-background; color:@header-font-colour; cursor:pointer; .border-radius; padding:0 @spacing; .vertical-centre(40px); }
 

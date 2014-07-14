@@ -1,11 +1,11 @@
 .new-log-container {
-	div.tile.new { float:left; width:100%;
-	  	>* { float:left; width:100%; .border-box; margin-top:@small-spacing; }
-	  	>*:first-child { margin-top:0; }
+	>* { float:left; width:100%; margin-top:@spacing !important; .border-box; }
+  	>*:first-child { margin-top:0; }
 
-	  	>div.icon-button-container { width:25%; padding-left:@spacing;
-			>i { float:left; width:100%; .border-box; border:solid 1px @border-colour; color:@header-background; .border-radius; text-align:center; .vertical-centre(40px); cursor:pointer; }
-		}
-	  	>div.icon-button-container.first { padding-left:0; }
+  	>div.select { height:@input-height+2; }
+
+  	>div.entries {
+		>span.empty { float:left; width:100%; font-style:italic; color:@primary-font-colour-light; text-align:center; font-size:0.875em; padding:@spacing 0; }
+	  	>button { float:left; width:100%; margin-top:@spacing; }
 	}
 }

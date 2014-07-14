@@ -1,17 +1,18 @@
-<div class="tile new">
-	<input type="text" placeholder="Name..." />
-	<input type="text" placeholder="Collection..." />
-	<div class="icon-button-container first">
-		<i class="fa fa-tags"></i>
-	</div>
-	<div class="icon-button-container">
-		<i class="fa fa-tachometer"></i>
-	</div>
-	<div class="icon-button-container">
-		<i class="fa fa-camera"></i>
-	</div>
-	<div class="icon-button-container">
-		<i class="fa fa-video-camera"></i>
-	</div>
-	<button>Add Log</button>
+<input type="text" class="tile" placeholder="Name..." />
+<div class="select shadow">
+	<select>
+		<option>(no collection)</option>
+	</select>
+	<i class="fa fa-angle-down"></i>
 </div>
+<div class="measurements entries tile">
+	<span class="empty">No measurements added</span>
+	<button class="link">Add Measurement</button>
+</div>
+
+<div class="tags entries tile">
+	<span class="empty">No tags added</span>
+	<button class="link">Add Tag</button>
+</div>
+
+<button>Save Log</button>

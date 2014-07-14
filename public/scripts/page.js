@@ -57,7 +57,7 @@ Logger.Page.prototype._setView = function (params, routeArguments) {
 		var container = $("section.content-container");
 		var offScreen = $("section.off-screen-content-container").attr("class", "off-screen-content-container").addClass(params.style).empty().html(html);
 
-		var back = window.__isBack && !me._isForward(window.location.hash);
+		var back = window.__isBack && me._isBack(window.location.hash);
 		if (back)
 			offScreen.addClass("left");
 		else
@@ -120,9 +120,13 @@ Logger.Page.prototype._addToHistory = function(route) {
 	window.sessionStorage.setItem("history", JSON.stringify(histories));
 };
 
-Logger.Page.prototype._isForward = function(route) {
+Logger.Page.prototype._isBack = function(route) {
 	var histories = JSON.parse(window.sessionStorage.getItem("history"));
-	return histories[histories.length-2] === route && histories[histories.length-1] === histories[histories.length-3];
+	var isBack = histories[histories.length-2] === route;
+	if (isBack)
+		histories.pop();
+	window.sessionStorage.setItem("history", JSON.stringify(histories));
+	return isBack;
 };
 
 $(window).on("popstate", function(e) {
