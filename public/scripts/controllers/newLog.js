@@ -1,4 +1,4 @@
-Logger.app.controller("new-log-controller", ["$scope", function($scope) {
+Logger.app.controller("new-log", ["$scope", function($scope) {
 	$scope.measurements = [
 		{ name: "distance", value: "2 km" }
 	];
