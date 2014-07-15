@@ -23,7 +23,7 @@ Logger.app.controller("logs", ["$scope", function($scope) {
 			],
 			tags: [],
 			location: {
-				url: "//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x250&markers=Cardel Place, Calgary"
+				url: "//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x200&markers=Cardel Place, Calgary"
 			}
 		}
 	];
