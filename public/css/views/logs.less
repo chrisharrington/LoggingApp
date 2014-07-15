@@ -1,0 +1,22 @@
+div.logs-container {
+	>div { float:left; width:100%; margin-top:@spacing; padding:@spacing 0;
+	  	@log-header-height:29px;
+	  	>* { padding:0 @spacing; .border-box; }
+		>h2 { float:left; }
+	  	>div.icons { float:right; width:auto; margin-top:0;
+			>i { float:left; .vertical-centre(@log-header-height); color:@icon-font-colour; margin-left:@spacing; }
+		  	>i:first-child { margin-left:0; }
+		}
+		>div.pictures, >div.map { float:left; width:100%; padding:0; margin-top:@spacing;
+			>img { float:left; width:100%; }
+		}
+	  	>div.recordings { float:left; width:100%; margin-top:@spacing; font-size:0.875em;
+			>div { float:left; width:100%; border-top:solid 1px @border-colour; padding:@small-spacing; .border-box;
+			  >span.name { float:left; color:@primary-font-colour-light; text-transform:lowercase; }
+			  >span.value { float:right; font-weight:bold; }
+			}
+		  	>div:first-child { border-top:none; }
+		}
+	}
+  	>div:first-child { margin-top:0; }
+}

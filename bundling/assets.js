@@ -8,7 +8,7 @@ exports.scripts = function() {
 		"./public/scripts/extensions",
 		"./public/scripts/helpers",
 		"./public/scripts/settings",
-		"./public/scripts/views",
+		"./public/scripts/controllers",
 		"./public/scripts/init.js"
 	];
 };

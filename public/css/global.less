@@ -18,4 +18,6 @@ div.select { height:@input-height; padding:0 @spacing;
 
 i.icon-button { text-align:center; background:@header-background; color:@header-font-colour; cursor:pointer; .border-radius; padding:0 @spacing; .vertical-centre(40px); }
 
-section.content-container, section.off-screen-content-container { padding:@spacing; .border-box; }
+section.content-container { padding:@spacing; .border-box;
+	>div { float:left; width:100%; }
+}
