@@ -54,7 +54,7 @@ Logger.Page.prototype._setView = function (params, routeArguments) {
 		window.scrollTo(0, 0);
 
 		var sections = $("section.content-container, section.off-screen-content-container");
-		var container = $("section.content-container");
+		var container = $("section.content-container").attr("ng-controller", params.controller);
 		var offScreen = $("section.off-screen-content-container").attr("class", "off-screen-content-container").addClass(params.style).empty().html(html);
 
 		var back = window.__isBack && me._isBack(window.location.hash);

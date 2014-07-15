@@ -1,18 +1,36 @@
-<input type="text" class="tile" placeholder="Name..." />
-<div class="select shadow">
-	<select>
-		<option>(no collection)</option>
-	</select>
-	<i class="fa fa-angle-down"></i>
-</div>
-<div class="measurements entries tile">
-	<span class="empty">No measurements added</span>
-	<button class="link">Add Measurement</button>
-</div>
+<div class="new-log-container">
+	<input type="text" class="tile" placeholder="[[measurements.length]]" />
+	<div class="select shadow">
+		<select class="placeholder">
+			<option>Collection...</option>
+		</select>
+		<i class="fa fa-angle-down"></i>
+	</div>
+	<div class="measurements entries tile">
+		<span class="empty">No measurements added</span>
+		<div ng-repeat="measurement in measurements">
+			<div>
+				<span class="name">[[measurement.name]]</span>
+				<span class="value">[[measurement.value]]</span>
+			</div>
+		</div>
+		<button class="link">Add Measurement</button>
+	</div>
 
-<div class="tags entries tile">
-	<span class="empty">No tags added</span>
-	<button class="link">Add Tag</button>
-</div>
+	<div class="tags entries tile">
+		<span class="empty">No tags added</span>
+		<div>
+			<div>
+				<span class="name">Sunny</span>
+				<i class="fa fa-times"></i>
+			</div>
+			<div>
+				<span class="name">Easy</span>
+				<i class="fa fa-times"></i>
+			</div>
+		</div>
+		<button class="link">Add Tag</button>
+	</div>
 
-<button>Save Log</button>
+	<button>Save Log</button>
+</div>

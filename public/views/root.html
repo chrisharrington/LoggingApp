@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="logger">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="{{{styleLocation}}}" type="text/css" />
+	<title>Logger</title>
 </head>
 	<body>
-		<header>
+		<header ng-controller="header">
 			<a class="fa fa-bars" id="menu-trigger"></a>
 			<a class="fa fa-plus" href="#/new-log"></a>
 			<a class="fa fa-tasks" href="#/logs"></a>
-			<h2 class="title">Logs</h2>
+			<h2 class="title">[[test]]</h2>
 		</header>
 
-		<section class="content-container"></section>
-		<section class="off-screen-content-container"></section>
+		<section class="content-container" ng-view></section>
 
 		<section class="menu">
 			<a href="#/new-log">
@@ -23,23 +23,16 @@
 			</a>
 		</section>
 
-		<script type="text/javascript" src="/scripts/thirdParty/jquery.min.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/path.min.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/highcharts.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/json2.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
+		<script type="text/javascript" src="//code.angularjs.org/1.2.19/angular-route.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/path.js/0.8.4/path.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/md5.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/nanobar.js"></script>
-		<script type="text/javascript" src="/scripts/thirdParty/jquery.timeago.min.js"></script>
-		{{{renderedScripts}}}
-
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/nanobar/0.2.1/nanobar.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.0/jquery.timeago.min.js"></script>
 		<script type="text/javascript">
-			$(function () {
-				var root = window.Logger || (window.Logger = {});
-				root.virtualDirectory = "/";
 
-				Logger.Init.init();
-			});
 		</script>
+		{{{renderedScripts}}}
 	</body>
 </html>

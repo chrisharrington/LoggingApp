@@ -1,5 +1,6 @@
 exports.scripts = function() {
 	return [
+		"./public/scripts/init.js",
 		"./public/scripts/thirdParty/jquery.autogrow-textarea.js",
 		"./public/scripts/global.js",
 		"./public/scripts/page.js",
@@ -8,8 +9,7 @@ exports.scripts = function() {
 		"./public/scripts/extensions",
 		"./public/scripts/helpers",
 		"./public/scripts/settings",
-		"./public/scripts/views",
-		"./public/scripts/init.js"
+		"./public/scripts/controllers"
 	];
 };
 
