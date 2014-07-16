@@ -2,17 +2,13 @@ Logger.app.directive("ngSlideshow", function ($compile) {
 	return {
 		restrict: "A",
 		templateUrl: "templates/slideshow.html",
-		compile: function(scope, element, attributes) {
-			var pictures = scope.$eval(attributes.ngSlideshow);
-			if (!pictures || pictures.length == 0)
-				return;
-
-			scope.pictures = pictures;
-
-			//return $compile(element);
+		scope: {
+			pictures: "=ngSlideshow"
 		},
-		link: function(scope, element, attributes) {
-			debugger;
+		link: {
+			post: function(scope, element, attributes) {
+				var length = $(element).find("img").length;
+			}
 		}
 	};
 });

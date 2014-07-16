@@ -1,20 +1,15 @@
 <div class="new-log-container">
 	<input type="text" class="tile" placeholder="Name..." />
-	<div class="select shadow">
-		<select class="placeholder">
-			<option>Collection...</option>
-		</select>
-		<i class="fa fa-angle-down"></i>
-	</div>
+	<dropdown class="shadow" placeholder="Collection..." options="collections.list"></dropdown>
 	<div class="measurements entries tile">
 		<span class="empty">No measurements added</span>
-		<div ng-repeat="measurement in measurements">
+		<div ng-repeat="measurement in measurements.list">
 			<div>
 				<span class="name">[[measurement.name]]</span>
 				<span class="value">[[measurement.value]]</span>
 			</div>
 		</div>
-		<button class="link">Add Measurement</button>
+		<button class="link" ng-click="measurements.show()">Add Measurement</button>
 	</div>
 
 	<div class="tags entries tile">
@@ -33,4 +28,11 @@
 	</div>
 
 	<button>Save Log</button>
+
+	<modal class="add-measurement" header="Add Measurement" close="measurements.hide" show="measurements.visible">
+		<input type="text" placeholder="Name..." />
+		<input type="number" placeholder="Quantity..." />
+		<input type="text" placeholder="Units..." />
+		<button>Save</button>
+	</modal>
 </div>

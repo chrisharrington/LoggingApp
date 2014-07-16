@@ -1,0 +1,9 @@
+<div class="dropdown" ng-click="show()">
+	<input type="text" readonly placeholder="[[placeholder]]" />
+	<i class="fa fa-angle-down"></i>
+	<div ng-show="visible">
+		<div>
+			<div ng-repeat="option in options">[[option.name]]</div>
+		</div>
+	</div>
+</div>
