@@ -17,23 +17,29 @@ var Promise = require("bluebird");
 var MAX_AGE = 2592000000;
 
 module.exports = function() {
+//	var app = express.call(this);
+//	_configureApplication(app);
+//	return connection.open().then(function () {
+//		var inits = [];
+//		for (var name in caches)
+//			inits.push(caches[name].init());
+//		inits.push(controllers.init(app));
+//		inits.push(mapper.init());
+//		return Promise.all(inits);
+//	}).then(function () {
+//		versiony.from("package.json").patch().to("package.json");
+//		app.listen(config.call(this, "serverPort"));
+//		console.log("Server listening on port " + config.call(this, "serverPort") + " in " + app.get("env") + " mode.");
+//	}).catch(function (e) {
+//		console.log("Server failed to start.");
+//		console.log(e.stack);
+//	});
+
 	var app = express.call(this);
 	_configureApplication(app);
-	return connection.open().then(function () {
-		var inits = [];
-		for (var name in caches)
-			inits.push(caches[name].init());
-		inits.push(controllers.init(app));
-		inits.push(mapper.init());
-		return Promise.all(inits);
-	}).then(function () {
-		versiony.from("package.json").patch().to("package.json");
-		app.listen(config.call(this, "serverPort"));
-		console.log("Server listening on port " + config.call(this, "serverPort") + " in " + app.get("env") + " mode.");
-	}).catch(function (e) {
-		console.log("Server failed to start.");
-		console.log(e.stack);
-	});
+	app.listen(config.call(this, "serverPort"));
+	controllers.init(app);
+	console.log("Server listening on port " + config.call(this, "serverPort") + " in " + app.get("env") + " mode.");
 };
 
 function _configureApplication(app) {
