@@ -1,9 +1,9 @@
-<div class="dropdown" ng-click="show()">
-	<input type="text" readonly placeholder="[[placeholder]]" />
+<div class="dropdown" ng-click="show($event)" dropdown-id="[[id]]">
+	<input type="text" readonly placeholder="[[placeholder]]" value="[[selected]]" id="[[selectedId]]" />
 	<i class="fa fa-angle-down"></i>
 	<div ng-show="visible">
-		<div>
-			<div ng-repeat="option in options">[[option.name]]</div>
+		<div style="width: [[containerWidth]]px" option>
+			<div ng-repeat="option in options" ng-click="select(option)" id="[[option.id]]">[[option.name]]</div>
 		</div>
 	</div>
 </div>

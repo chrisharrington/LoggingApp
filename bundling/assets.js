@@ -9,6 +9,7 @@ exports.scripts = function() {
 		"./public/scripts/extensions",
 		"./public/scripts/helpers",
 		"./public/scripts/settings",
+		"./public/scripts/services",
 		"./public/scripts/directives",
 		"./public/scripts/controllers"
 	];

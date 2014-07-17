@@ -1,9 +1,9 @@
 Logger.app.controller("new-log", ["$scope", function($scope) {
 	$scope.collections = {
 		list: [
-			{ name: "Exercise" },
-			{ name: "Milestones" },
-			{ name: "Maintenance" }
+			{ id: 1, name: "Exercise" },
+			{ id: 2, name: "Milestones" },
+			{ id: 3, name: "Maintenance" }
 		]
 	};
 
