@@ -3,13 +3,14 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 		restrict: "E",
 		templateUrl: "templates/dropdown.html",
 		scope: {
-			options: "=options"
+			options: "=options",
+			placeholder: "@placeholder"
 		},
 		compile: function(e) {
 			return function(scope, element, attributes) {
 				var first = true;
 
-				scope.placeholder = attributes.placeholder;
+				//scope.placeholder = attributes.placeholder;
 				scope.visible = false;
 
 				scope.show = function(event) {

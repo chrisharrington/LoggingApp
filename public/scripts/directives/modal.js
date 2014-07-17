@@ -12,12 +12,6 @@ Logger.app.directive("modal", function() {
 
 				scope.$watch(attributes.show, function(value) {
 					scope.show = value;
-					var divs = $(element).find(">div.modal, >div.modal-overlay");
-					if (value) {
-						divs.addClass("shown");
-					} else {
-						divs.removeClass("shown");
-					}
 				});
 			}
 		}
