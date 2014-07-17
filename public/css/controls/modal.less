@@ -1,10 +1,10 @@
 ﻿@animation-speed:250ms;
 
-.modal { position:absolute; .tile; padding:0; width:@dialog-width; z-index:@dialog-z-index+1; left:50%; margin-left:@dialog-width/-2; top:((@header-height)-10); transform:scale(0, 0); .transition(transform ease @animation-speed);
+.modal { position:absolute; .tile; padding:0; width:@dialog-width; z-index:@dialog-z-index+1; left:50%; margin-left:@dialog-width/-2; top:((@header-height)-10); transform:scale(0, 0);
 	>h2 { float:left; padding:@spacing 0 0 @spacing; }
 	>i { float:right; padding:@spacing; color:@primary-font-colour-light; cursor:pointer; }
 	>div { float:left; width:100%; padding:@spacing; .border-box; }
 }
-.modal.shown { transform:scale(1, 1); }
-.modal-overlay { .transition(opacity ease @animation-speed); position:fixed; z-index:@dialog-z-index; background:white; opacity:0; }
-.modal-overlay.shown { opacity:0.7; top:0; right:0; bottom:0; left:0; }
+.modal.shown { transform:scale(1, 1); .transition(transform ease @animation-speed); }
+.modal-overlay { .transition(opacity ease @animation-speed); position:fixed; background:black; z-index:@dialog-z-index; opacity:0; }
+.modal-overlay.shown { opacity:0.4; top:0; right:0; bottom:0; left:0; }
