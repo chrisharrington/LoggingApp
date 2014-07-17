@@ -1,23 +1,14 @@
 @inner-button-size:20px;
 
-button.round { width:@button-size; height:@button-size; .border-radius; text-align:center; outline:none; padding:0 !important; box-sizing:content-box !important;
-	i, img { font-size:@inner-button-size; margin:auto; .vertical-centre(@button-size); }
-	img { height:@inner-button-size; width:@inner-button-size; display:none; }
-}
-button.round.small { width:@button-size-small; height:@button-size-small;
-	i, img { font-size:20px; .vertical-centre(@button-size-small); }
-}
-button.round:hover { .gradient(lighten(@secondary-background-colour-top, 5%), lighten(@secondary-background-colour-bottom, 5%)); }
-button.round:active { .gradient(lighten(@secondary-background-colour-top, 10%), lighten(@secondary-background-colour-bottom, 10%)); }
-button.round.loading { background:#777; cursor:default;
+button.loading { cursor:default; text-indent:-9999px;
 	>i { display:none; }
 	>img { display:block; margin-top:-1px; -webkit-animation:spin 1250ms linear infinite; -moz-animation:spin 1250ms linear infinite; animation:spin 1250ms linear infinite; }
 }
 
 @spinner-spacing:6px;
 @inner-spinner-spacing:12px;
-button.round.loading::before, button.round.loading::after { float:left; content:""; display:block; .border-box; .loading-borders; }
-button.round.loading::before { width:((@button-size)-@spinner-spacing*2); height:((@button-size)-@spinner-spacing*2); margin:@spinner-spacing; .spin-clockwise; }
-button.round.loading::after { display:none; width:((@button-size)-@inner-spinner-spacing*2); height:((@button-size)-@inner-spinner-spacing*2); margin:@inner-spinner-spacing; .spin-clockwise; margin-top:@button-size*-1+@inner-spinner-spacing; }
+button.loading::before, button.loading::after { margin:auto; content:""; display:block; .border-box; .loading-borders; }
+button.loading::before { width:((@button-size)-@spinner-spacing*2); height:((@button-size)-@spinner-spacing*2); margin:@spinner-spacing; .spin-clockwise; }
+button.loading::after { display:none; width:((@button-size)-@inner-spinner-spacing*2); height:((@button-size)-@inner-spinner-spacing*2); margin:@inner-spinner-spacing; .spin-clockwise; margin-top:@button-size*-1+@inner-spinner-spacing; }
 
 .loading-borders { border-left:3px solid rgba(255, 255, 255, 0.35); border-right:3px solid rgba(255, 255, 255, 0.35); border-bottom:3px solid rgba(255, 255, 255, 0.35); border-top:3px solid rgba(255, 255, 255, 0.85); border-radius:100%; }
