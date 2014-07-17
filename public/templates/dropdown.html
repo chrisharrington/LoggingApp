@@ -3,6 +3,7 @@
 	<i class="fa fa-angle-down"></i>
 	<div ng-show="visible">
 		<div style="width: [[containerWidth]]px" option>
+			<div id="0" ng-click="select({ id: 0 })" ng-show="emptyAllowed">(none)</div>
 			<div ng-repeat="option in options" ng-click="select(option)" id="[[option.id]]">[[option.name]]</div>
 		</div>
 	</div>

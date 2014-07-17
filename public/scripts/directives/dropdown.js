@@ -10,7 +10,7 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 			return function(scope, element, attributes) {
 				var first = true;
 
-				//scope.placeholder = attributes.placeholder;
+				scope.emptyAllowed = attributes.emptyAllowed === "";
 				scope.visible = false;
 
 				scope.show = function(event) {
