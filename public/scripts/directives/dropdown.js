@@ -11,15 +11,14 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 				var first = true;
 
 				scope.emptyAllowed = attributes.emptyAllowed === "";
-				scope.visible = false;
 
 				scope.show = function(event) {
 					if ($(event.target).parents("[option]").length == 0)
-						scope.visible = true;
+						scope.containerHeight = scope.options.length*40 + (scope.emptyAllowed ? 40 : 0);
 				};
 
 				scope.hide = function() {
-					scope.visible = false;
+					scope.containerHeight = 0;
 				};
 
 				scope.select = function(option) {
@@ -42,7 +41,7 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 					$(document).on("click", function (event) {
 						scope.$apply(function() {
 							if ($(event.target).parents("[dropdown-id='" + scope.id + "']").length == 0)
-								scope.visible = false;
+								scope.hide();
 						});
 					});
 					first = false;
