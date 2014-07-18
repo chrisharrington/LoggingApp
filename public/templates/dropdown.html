@@ -2,7 +2,7 @@
 	<input type="text" readonly placeholder="[[placeholder]]" value="[[selected]]" id="[[selectedId]]" />
 	<i class="fa fa-angle-down"></i>
 	<div>
-		<div style="width: [[containerWidth]]px; max-height: [[containerHeight]]px" option class="shadow">
+		<div style="width: [[containerWidth]]px; height: [[containerHeight]]px;" option class="options-container shadow">
 			<div id="0" ng-click="select({ id: 0 })" ng-show="emptyAllowed">(none)</div>
 			<div ng-repeat="option in options" ng-click="select(option)" id="[[option.id]]">[[option.name]]</div>
 		</div>

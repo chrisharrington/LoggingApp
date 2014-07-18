@@ -9,18 +9,21 @@ Logger.app.controller("new-log", ["$scope", function($scope) {
 
 	$scope.measurements = {
 		visible: false,
-		show: function() { $scope.measurements.visible = true; },
-		hide: function() { $scope.measurements.visible = false; },
-		add: function() {
-			_validateMeasurement();
-		},
-		list: [
-			{ name: "distance", value: "2 km" }
-		]
-	};
+		new: {},
+		list: [{ name: "distance", value: "2 km" }],
 
-	function _validateMeasurement() {
-		var blah = $scope;
-		debugger;
-	}
+		show: function() {
+			$scope.measurements.visible = true;
+		},
+
+		hide: function(form) {
+			$scope.measurements.visible = false;
+			//$scope.measurements.new = {};
+		},
+
+		add: function(model) {
+			if (model.$invalid)
+				return;
+		}
+	};
 }]);

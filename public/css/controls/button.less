@@ -2,3 +2,4 @@ button { height:@button-height; line-height:@button-height; padding:0; text-alig
 button.link { background:transparent; color:@primary-font-colour; text-decoration:underline; font-size:0.875em; }
 button.loading { font-size:0; background:#909090; cursor:default; }
 button.loading::before { margin:auto; margin-top:10px; .spinner; }
+button[disabled] { background:#909090; }

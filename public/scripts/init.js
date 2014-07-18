@@ -9,3 +9,5 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.when("/new-log", { templateUrl: "/new-log", controller: "new-log" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
+
+Logger.ANIMATION_SPEED = 25000;

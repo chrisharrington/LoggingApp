@@ -30,11 +30,11 @@
 	<button>Save Log</button>
 
 	<modal class="add-measurement" header="Add Measurement" close="measurements.hide" show="measurements.visible">
-		<form name="add-measurement">
-			<input type="text" placeholder="Name..." name="name" ng-model="text" />
-			<input type="number" placeholder="Quantity..." />
-			<input type="text" placeholder="Units..." />
-			<button ng-click="measurements.add">Save</button>
+		<form name="addMeasurement">
+			<input class="input" placeholder="* Name..." name="name" ng-model="measurements.new.name" required />
+			<input type="number" placeholder="* Quantity..." name="quantity" ng-model="measurements.new.quantity" required />
+			<input type="text" placeholder="Units..." ng-model="measurements.new.units" />
+			<button ng-click="measurements.add(addMeasurement)" ng-disabled="addMeasurement.$invalid">Save</button>
 		</form>
 	</modal>
 </div>
