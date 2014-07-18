@@ -27,12 +27,14 @@
 		<button class="link">Add Tag</button>
 	</div>
 
-	<button class="loading">Save Log</button>
+	<button>Save Log</button>
 
 	<modal class="add-measurement" header="Add Measurement" close="measurements.hide" show="measurements.visible">
-		<input type="text" placeholder="Name..." />
-		<input type="number" placeholder="Quantity..." />
-		<input type="text" placeholder="Units..." />
-		<button>Save</button>
+		<form name="add-measurement">
+			<input type="text" placeholder="Name..." name="name" ng-model="text" />
+			<input type="number" placeholder="Quantity..." />
+			<input type="text" placeholder="Units..." />
+			<button ng-click="measurements.add">Save</button>
+		</form>
 	</modal>
 </div>

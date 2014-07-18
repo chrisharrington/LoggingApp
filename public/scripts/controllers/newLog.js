@@ -11,8 +11,16 @@ Logger.app.controller("new-log", ["$scope", function($scope) {
 		visible: false,
 		show: function() { $scope.measurements.visible = true; },
 		hide: function() { $scope.measurements.visible = false; },
+		add: function() {
+			_validateMeasurement();
+		},
 		list: [
 			{ name: "distance", value: "2 km" }
 		]
 	};
+
+	function _validateMeasurement() {
+		var blah = $scope;
+		debugger;
+	}
 }]);

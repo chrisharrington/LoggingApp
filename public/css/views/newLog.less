@@ -4,15 +4,14 @@
 
 	>input { border:none; }
 
-  	>div.entries {
+  	>div.entries { padding:0;
 		>span.empty { display:none; float:left; width:100%; font-style:italic; color:@primary-font-colour-light; text-align:center; font-size:0.875em; padding:@spacing 0 0 0; }
 	  	>button { float:left; width:100%; }
 		>div { float:left; width:100%;
-			>div { float:left; width:100%; height:@input-height; padding:0 @spacing; .border-box; font-size:0.875em; border-top:solid 1px @border-colour;
+			>div { float:left; width:100%; height:@input-height; padding:0 @spacing; .border-box; font-size:0.875em; border-bottom:solid 1px @border-colour;
 				>* { .vertical-centre(@input-height); }
 				>span.name { float:left; color:@primary-font-colour-light; text-transform:lowercase; }
 			}
-			>div:first-child { border-top:none; }
 		}
 	}
 

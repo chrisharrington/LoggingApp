@@ -9,13 +9,15 @@
 .border-radius-top(@radius) { border-top-left-radius:@radius; border-top-right-radius:@radius; }
 .border-radius-bottom(@radius) { border-bottom-left-radius:@radius; border-bottom-right-radius:@radius; }
 .border-box { box-sizing:border-box; -moz-box-sizing:border-box; }
-.ellipsis { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ellipsis { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }c
 .hidden { display:none !important; }
 .hover { background:@hover-colour; }
 .select { background:darken(@hover-colour, 10%) !important; }
 .tile { padding:@spacing; .shadow; .border-radius; background:@tile-background-colour; .border-box; color:@primary-font-colour; }
 .deleted { opacity:0.6; }
 .transition(@transition) { transition:@transition; -moz-transition:@transition; -webkit-transition:@transition; }
+.spinner { content:""; display:block; .border-box; .loading-borders; width:((@spinner-size)-@spinner-spacing*2); height:((@spinner-size)-@spinner-spacing*2); .spin-clockwise; }
+.loading-borders { border-left:@spinner-width solid @spinner-highlight-colour; border-right:@spinner-width solid @spinner-colour; border-bottom:@spinner-width solid @spinner-colour; border-top:@spinner-width solid @spinner-highlight-colour; border-radius:100%; }
 
 .condensed-font { font-family:'roboto-condensed' !important; font-weight:normal; letter-spacing:-1px; }
 .regular-font { font-family:'Open Sans', 'Arial', 'sans-serif' !important; }
