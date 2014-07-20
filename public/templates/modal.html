@@ -1,6 +1,6 @@
 <div class="modal-overlay" ng-class="{ shown: show }"></div>
 <div class="modal [[className]]" ng-class="{ shown: show }">
-	<h2>[[title]]</h2>
-	<i class="fa fa-times" ng-click="close()"></i>
-	<div ng-transclude></div>
+	<h2 ng-show="titleVisible">[[title]]</h2>
+	<i class="fa fa-times" ng-click="close()" ng-show="titleVisible"></i>
+	<div class="transcluded" ng-transclude></div>
 </div>

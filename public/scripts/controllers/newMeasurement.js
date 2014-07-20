@@ -1,16 +1,13 @@
-Logger.app.controller("new-measurement", ["$scope", "selectedLog", function($scope, selectedLog) {
+Logger.app.controller("new-measurement", ["$scope", "$rootScope", function($scope, $rootScope) {
 	$scope.name = "";
 	$scope.quantity = "";
 	$scope.units = "";
 
 	$scope.add = function() {
-		_setDirty("measurementName", "measurementQuantity", "measurementUnits");
+		$rootScope.$emit("measurementAdded", {
+			name: $scope.name,
+			quantity: $scope.quantity,
+			units: $scope.units
+		});
 	};
-
-	function _setDirty(arguments) {
-		for (var i = 0; i < arguments.length; i++) {
-			var name = arguments[i];
-			$scope.form[name].$setViewValue($scope.form[name].$viewValue);
-		}
-	}
 }]);

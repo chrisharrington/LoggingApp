@@ -1,4 +1,4 @@
-Logger.app.controller("new-log", ["$scope", function($scope) {
+Logger.app.controller("new-log", ["$scope", "$rootScope", function($scope, $rootScope) {
 	$scope.collections = {
 		list: [
 			{ id: 1, name: "Exercise" },
@@ -17,4 +17,7 @@ Logger.app.controller("new-log", ["$scope", function($scope) {
 		}
 	};
 
+	$rootScope.$on("measurementAdded", function(event, args) {
+		debugger;
+	});
 }]);

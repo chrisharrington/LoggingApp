@@ -5,8 +5,8 @@ Logger.app.directive("modal", function() {
 		transclude: true,
 		scope: true,
 		link: function(scope, element, attributes) {
-			debugger;
 			scope.title = attributes.header;
+			scope.titleVisible = attributes.header !== undefined && attributes.header !== "";
 			scope.className = attributes.class;
 			scope.show = scope.$eval(attributes.show);
 
