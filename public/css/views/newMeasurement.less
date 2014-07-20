@@ -1,11 +1,13 @@
 .new-measurement-container {
 	>* { float:left; width:100%; margin-top:@spacing;
-		>* { float:left; width:100%; .border-box; margin-top:@small-spacing; }
-		>h3 { margin-top:0; }
-		>span { font-size:0.825em; color:@primary-font-colour-lightest; font-style:italic;
-			>b { color:@primary-font-colour; font-style:normal; }
-		}
+		>h3, >span, >input { float:left; width:100%; .border-box; margin-top:@small-spacing; }
+		>i { float:right; font-weight:bold; color:red; }
+		>h3 { margin-top:0; width:auto; }
+		>span { font-size:0.825em; color:@primary-font-colour-lightest; }
 	}
-	>div { .tile; }
+	>div { .tile; .transition(border-color linear @animation-speed, box-shadow linear @animation-speed); border:solid 1px transparent; padding:(@spacing)-1; }
+	>div.error { border:solid 1px red; .shadow(rgba(255, 0, 0, 0.4));
+
+	}
 	>div:first-child { margin-top:0; }
 }

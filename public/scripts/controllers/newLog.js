@@ -16,4 +16,5 @@ Logger.app.controller("new-log", ["$scope", function($scope) {
 			window.location.hash = "/new-log/measurement";
 		}
 	};
+
 }]);
