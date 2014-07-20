@@ -9,7 +9,7 @@
 				<span class="value">[[measurement.value]]</span>
 			</div>
 		</div>
-		<button class="link" ng-click="measurements.show()">Add Measurement</button>
+		<button class="link" ng-click="measurements.add()">Add Measurement</button>
 	</div>
 
 	<div class="tags entries tile">
@@ -28,13 +28,4 @@
 	</div>
 
 	<button>Save Log</button>
-
-	<modal class="add-measurement" header="Add Measurement" close="measurements.hide" show="measurements.visible">
-		<form name="addMeasurement">
-			<input class="input" placeholder="* Name..." name="name" ng-model="measurements.new.name" required />
-			<input type="number" placeholder="* Quantity..." name="quantity" ng-model="measurements.new.quantity" required />
-			<input type="text" placeholder="Units..." ng-model="measurements.new.units" />
-			<button ng-click="measurements.add(addMeasurement)" ng-disabled="addMeasurement.$invalid">Save</button>
-		</form>
-	</modal>
 </div>

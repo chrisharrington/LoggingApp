@@ -9,5 +9,9 @@ module.exports = function(app) {
 
 	app.get("/new-log", function(request, response) {
 		return base.view("public/views/newLog.html", response);
+	});
+
+	app.get("/new-measurement", function(request, response) {
+		return base.view("public/views/newMeasurement.html", response);
 	})
 };

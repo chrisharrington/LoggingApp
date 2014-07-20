@@ -12,18 +12,8 @@ Logger.app.controller("new-log", ["$scope", function($scope) {
 		new: {},
 		list: [{ name: "distance", value: "2 km" }],
 
-		show: function() {
-			$scope.measurements.visible = true;
-		},
-
-		hide: function(form) {
-			$scope.measurements.visible = false;
-			//$scope.measurements.new = {};
-		},
-
-		add: function(model) {
-			if (model.$invalid)
-				return;
+		add: function() {
+			window.location.hash = "/new-log/measurement";
 		}
 	};
 }]);

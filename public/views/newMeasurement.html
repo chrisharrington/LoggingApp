@@ -1,0 +1,18 @@
+<div class="new-measurement-container">
+	<div>
+		<h3>Name</h3>
+		<span><b>Required.</b> The name describes the measurement. For example, if your logging a run, a good name for a measurement might be "distance", "duration", or "duck sightings", if you're into that.</span>
+		<input type="text" placeholder="Name..." />
+	</div>
+	<div>
+		<h3>Quantity</h3>
+		<span><b>Required.</b> The quantity of the measurement. All measurements should be quantifiable (if what you want to log with this measurement isn't quantifiable, you want to <a href="#/new-log/tag">add a tag</a> instead. In our running metaphor, the quantity would be "5" if you just ran a 5K, and duration would be 10 seconds if you're the Flash.</span>
+		<input type="number" placeholder="Quantity..." />
+	</div>
+	<div>
+		<h3>Units</h3>
+		<span><b>Optional.</b> The units of the measurement. Some measurements don't have a unit, or if they do, it's implicitly implied. For example, if you're tracking what you ate today and for some reason you had eight apples for lunch, adding a measurement with name "apples" and quantity of "8" doesn't need any units. If you're logging that run, though, you should specify whether or not the quantity of "5" is in miles, kilometres or leagues.</span>
+		<input type="text" placeholder="Units..." />
+	</div>
+	<button>Add Measurement</button>
+</div>

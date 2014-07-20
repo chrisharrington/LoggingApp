@@ -1,0 +1,11 @@
+.new-measurement-container {
+	>* { float:left; width:100%; margin-top:@spacing;
+		>* { float:left; width:100%; .border-box; margin-top:@small-spacing; }
+		>h3 { margin-top:0; }
+		>span { font-size:0.825em; color:@primary-font-colour-lightest; font-style:italic;
+			>b { color:@primary-font-colour; font-style:normal; }
+		}
+	}
+	>div { .tile; }
+	>div:first-child { margin-top:0; }
+}
