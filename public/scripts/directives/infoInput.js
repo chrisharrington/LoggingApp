@@ -6,20 +6,24 @@ Logger.app.directive("infoInput", ["$sce", function($sce) {
 			placeholder: "@placeholder",
 			type: "@type",
 			name: "@name",
-			bind: "="
+			ngModel: "="
 		},
-		link: function(scope, element, attributes) {
-			scope.required = "blah";
-			scope.info = $sce.trustAsHtml(attributes.info);
-			scope.showing = false;
+		compile: function (element) {
+			if ($(element).attr("required"))
+				$(element).find("input").prop("required", true);
 
-			scope.showModal = function() {
-				scope.showing = true;
-			};
-
-			scope.hideModal = function() {
+			return function (scope, element, attributes) {
+				scope.info = $sce.trustAsHtml(attributes.info);
 				scope.showing = false;
-			};
+
+				scope.showModal = function () {
+					scope.showing = true;
+				};
+
+				scope.hideModal = function () {
+					scope.showing = false;
+				};
+			}
 		}
 	}
 }]);

@@ -1,4 +1,13 @@
-Logger.app.controller("new-log", ["$scope", "$rootScope", function($scope, $rootScope) {
+Logger.app.controller("new-log", ["$scope", "$rootScope", "measurementRepository", function($scope, $rootScope, measurementRepository) {
+	measurementRepository.log(null).then(function(measurements) {
+		var list = [];
+		for (var i = 0; i < measurements.length; i++) {
+			var measurement = measurements[i];
+			list.push({ name: measurement.name, value: measurement.quantity + (measurement.units ? " " + measurement.units : "") });
+		}
+		$scope.measurements.list = list;
+	});
+
 	$scope.collections = {
 		list: [
 			{ id: 1, name: "Exercise" },
@@ -10,14 +19,12 @@ Logger.app.controller("new-log", ["$scope", "$rootScope", function($scope, $root
 	$scope.measurements = {
 		visible: false,
 		new: {},
-		list: [{ name: "distance", value: "2 km" }],
-
 		add: function() {
 			window.location.hash = "/new-log/measurement";
 		}
 	};
 
 	$rootScope.$on("measurementAdded", function(event, args) {
-		debugger;
+		$scope.measurements.list.push({ name: args.name, value: args.quantity + (args.units ? " " + args.units : "") });
 	});
 }]);

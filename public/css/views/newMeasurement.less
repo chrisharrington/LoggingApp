@@ -6,10 +6,7 @@
 		>span { font-size:0.825em; color:@primary-font-colour-lightest; }
 	}
 	>info-input { .tile; padding:0; border:none; }
+	>info-input:first-child { margin-top:0; }
 
 	>div { .tile; .transition(border-color linear @animation-speed, box-shadow linear @animation-speed); border:solid 1px transparent; padding:(@spacing)-1; }
-	>div.error { border:solid 1px red; .shadow(rgba(255, 0, 0, 0.4));
-
-	}
-	>info-input:first-child { margin-top:0; }
 }

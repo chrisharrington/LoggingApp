@@ -11,4 +11,4 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
-Logger.ANIMATION_SPEED = 25000;
+Logger.ANIMATION_SPEED = 250;

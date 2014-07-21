@@ -9,5 +9,6 @@ Logger.app.controller("new-measurement", ["$scope", "$rootScope", function($scop
 			quantity: $scope.quantity,
 			units: $scope.units
 		});
+		history.back();
 	};
 }]);
