@@ -13,6 +13,10 @@ Logger.app.factory("newLog", ["$rootScope", "once", function($rootScope, once) {
 				$rootScope.$on("measurementAdded", function(event, args) {
 					_measurements.push({ name: args.name, value: args.quantity + (args.units ? " " + args.units : "") });
 				});
+
+				$rootScope.$on("tagAdded", function(event, args) {
+					_tags.push({ name: args.name });
+				});
 			});
 		},
 
@@ -27,6 +31,13 @@ Logger.app.factory("newLog", ["$rootScope", "once", function($rootScope, once) {
 					window.location.hash = "/new-log/measurement";
 				}
 			};
+
+			scope.tags = {
+				list: _tags,
+				add: function() {
+					window.location.hash = "/new-log/tag";
+				}
+			}
 		}
 	};
 }]);

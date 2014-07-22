@@ -2,10 +2,12 @@
 	<dropdown placeholder="Collection..." options="collections.list" empty-allowed></dropdown>
 	<input type="text" class="tile" placeholder="Name..." />
 	<div class="measurements entries tile">
-		<span class="empty">No measurements added</span>
 		<div ng-repeat="measurement in measurements.list">
 			<div>
 				<span class="name">[[measurement.name]]</span>
+				<div class="icon-container">
+					<i class="fa fa-times"></i>
+				</div>
 				<span class="value">[[measurement.value]]</span>
 			</div>
 		</div>
@@ -13,22 +15,15 @@
 	</div>
 
 	<div class="tags entries tile">
-		<span class="empty">No tags added</span>
-		<div>
+		<div ng-repeat="tag in tags.list">
 			<div>
-				<span class="name">Sunny</span>
-				<div class="icon-container">
-					<i class="fa fa-times"></i>
-				</div>
-			</div>
-			<div>
-				<span class="name">Easy</span>
+				<span class="name">[[tag.name]]</span>
 				<div class="icon-container">
 					<i class="fa fa-times"></i>
 				</div>
 			</div>
 		</div>
-		<button class="link">Add Tag</button>
+		<button class="link" ng-click="tags.add()">Add Tag</button>
 	</div>
 
 	<button>Save Log</button>

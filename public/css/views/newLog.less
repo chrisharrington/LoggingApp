@@ -9,22 +9,20 @@
 		>span.empty { display:none; float:left; width:100%; font-style:italic; color:@primary-font-colour-light; text-align:center; font-size:0.875em; padding:@spacing 0 0 0; }
 	  	>button { float:left; width:100%; }
 		>div { float:left; width:100%;
-			>div { float:left; width:100%; height:@input-height; padding:0 @spacing; .border-box; font-size:0.875em; border-bottom:solid 1px @border-colour;
+			>div { float:left; width:100%; height:@input-height; padding:0 0 0 @spacing; .border-box; font-size:0.875em; border-bottom:solid 1px @border-colour;
+				@icon-width:14px;
+				>div.icon-container { float:right; cursor:pointer; padding:0 @spacing;
+					>i { .vertical-centre(@icon-width); border-radius:50%; background:@header-background; color:white; padding:2px; width:@icon-width; height:@icon-width; text-align:center; }
+				}
+				>div.icon-container:active>i { background:lighten(@header-background, 20%); }
 				>* { .vertical-centre(@input-height); }
 				>span.name { float:left; color:@primary-font-colour-light; text-transform:lowercase; }
 			}
 		}
 	}
 
-	>div.entries.measurements>div>div { cursor:pointer;
+	>div.entries.measurements>div>div {
 		>span.value { float:right; font-weight:bold; }
-	}
-
-	>div.entries.tags>div>div { padding-right:0;
-		@icon-width:14px;
-		>div.icon-container { float:right; cursor:pointer; padding:0 @spacing;
-			>i { .vertical-centre(@icon-width); border-radius:50%; background:@header-background; color:white; padding:2px; width:@icon-width; height:@icon-width; text-align:center; }
-		}
 	}
 
 	div.add-measurement {

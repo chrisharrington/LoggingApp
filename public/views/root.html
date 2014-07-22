@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="{{{styleLocation}}}" type="text/css" />
 </head>
-	<body>
+	<body ng-class="{ reverse: isBack }">
 		<header>
 			<a class="fa fa-bars" id="menu-trigger"></a>
 			<a class="fa fa-plus" href="#/new-log"></a>
@@ -13,7 +13,7 @@
 			<h2 class="title">Logs</h2>
 		</header>
 
-		<section class="content-container" ng-view></section>
+		<section class="content-container slide" ng-view></section>
 
 		<section class="menu">
 			<a href="#/new-log">
@@ -24,6 +24,7 @@
 
 		<script type="text/javascript" src="//code.angularjs.org/1.2.20/angular.min.js"></script>
 		<script type="text/javascript" src="//code.angularjs.org/1.2.20/angular-route.min.js"></script>
+		<script type="text/javascript" src="//code.angularjs.org/1.2.20/angular-animate.min.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/jquery.min.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/path.min.js"></script>
 		<script type="text/javascript" src="/scripts/thirdParty/highcharts.js"></script>
@@ -34,7 +35,7 @@
 		<script type="text/javascript" src="/scripts/thirdParty/jquery.timeago.min.js"></script>
 		<script type="text/javascript">
 			window.Logger = {
-				app: angular.module("logger", ["ngRoute"]),
+				app: angular.module("logger", ["ngRoute", "ngAnimate"]),
 				virtualDirectory: "/"
 			};
 		</script>
