@@ -6,9 +6,11 @@ Logger.app.directive("infoInput", ["$sce", function($sce) {
 			placeholder: "@placeholder",
 			type: "@type",
 			name: "@name",
-			ngModel: "="
+			ngModel: "=",
+			tabindex: "@"
 		},
 		compile: function (element) {
+			$(element).removeAttr("tabindex");
 			if ($(element).attr("required"))
 				$(element).find("input").prop("required", true);
 
