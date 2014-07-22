@@ -11,4 +11,8 @@ Logger.app.controller("new-measurement", ["$scope", "$rootScope", function($scop
 		});
 		history.back();
 	};
+
+	$scope.cancel = function() {
+		history.back();
+	};
 }]);

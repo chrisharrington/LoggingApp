@@ -21,7 +21,10 @@
 	}
 
 	>div.entries.tags>div>div { padding-right:0;
-		>i { float:right; padding:0 @spacing; cursor:pointer; }
+		@icon-width:14px;
+		>div.icon-container { float:right; cursor:pointer; padding:0 @spacing;
+			>i { .vertical-centre(@icon-width); border-radius:50%; background:@header-background; color:white; padding:2px; width:@icon-width; height:@icon-width; text-align:center; }
+		}
 	}
 
 	div.add-measurement {

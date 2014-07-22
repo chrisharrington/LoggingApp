@@ -11,14 +11,15 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 				var first = true;
 
 				scope.emptyAllowed = attributes.emptyAllowed === "";
+				scope.visible = false;
 
 				scope.show = function(event) {
-					if ($(event.target).parents("[option]").length == 0)
-						scope.containerHeight = scope.options.length*40 + (scope.emptyAllowed ? 40 : 0);
+					if ($(event.target).parents(".options-container").length == 0)
+						scope.visible = true;
 				};
 
 				scope.hide = function() {
-					scope.containerHeight = 0;
+					scope.visible = false;
 				};
 
 				scope.select = function(option) {
@@ -31,6 +32,7 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 
 				if (first) {
 					scope.id = uuid.create();
+					first = false;
 
 					$(window).on("resize", function() {
 						scope.$apply(function() {
@@ -40,11 +42,13 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 
 					$(document).on("click", function (event) {
 						scope.$apply(function() {
-							if ($(event.target).parents("[dropdown-id='" + scope.id + "']").length == 0)
+							if ($(event.target).parents("[dropdown-id='" + scope.id + "']").length == 0) {
 								scope.hide();
+
+								return false;
+							}
 						});
 					});
-					first = false;
 				}
 
 			}
