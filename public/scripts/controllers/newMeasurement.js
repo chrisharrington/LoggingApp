@@ -1,4 +1,4 @@
-Logger.app.controller("new-measurement", ["$scope", "$rootScope", function($scope, $rootScope) {
+Logger.app.controller("new-measurement", ["$scope", "$rootScope", "$timeout", function($scope, $rootScope, $timeout) {
 	$scope.name = "";
 	$scope.quantity = "";
 	$scope.units = "";
@@ -13,6 +13,11 @@ Logger.app.controller("new-measurement", ["$scope", "$rootScope", function($scop
 	};
 
 	$scope.cancel = function() {
-		history.back();
+		//history.back();
+		$rootScope.$broadcast("newMeasurementLoaded");
 	};
+
+	$timeout(function() {
+		$rootScope.$broadcast("newMeasurementLoaded");
+	}, 100);
 }]);

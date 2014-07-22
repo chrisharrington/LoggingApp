@@ -6,6 +6,7 @@ Logger.app.directive("infoInput", ["$sce", function($sce) {
 			placeholder: "@placeholder",
 			type: "@type",
 			name: "@name",
+			focus: "@focus",
 			ngModel: "=",
 			tabindex: "@"
 		},
