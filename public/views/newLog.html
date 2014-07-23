@@ -1,29 +1,29 @@
+<header>
+	<a class="fa fa-bars" id="menu-trigger"></a>
+	<h3 class="title">New Log</h3>
+</header>
+
 <div class="new-log-container">
-	<dropdown placeholder="Collection..." options="collections.list" empty-allowed></dropdown>
-	<input type="text" class="tile" placeholder="Name..." />
+	<div class="info tile">
+		<dropdown placeholder="Collection..." options="collections.list" empty-allowed></dropdown>
+		<input type="text" placeholder="Name..." />
+	</div>
+
 	<div class="measurements entries tile">
-		<div ng-repeat="measurement in measurements.list">
-			<div>
-				<span class="name">[[measurement.name]]</span>
-				<div class="icon-container">
-					<i class="fa fa-times"></i>
-				</div>
-				<span class="value">[[measurement.value]]</span>
-			</div>
+		<span class="empty" ng-show="measurements.list.length == 0">No measurements</span>
+		<div ng-repeat="measurement in measurements.list" ng-show="measurements.list.length > 0">
+			<span class="name">[[measurement.name]]</span>
+			<span class="value">[[measurement.value]]</span>
 		</div>
 		<button class="link" ng-click="measurements.add()">Add Measurement</button>
 	</div>
 
 	<div class="tags entries tile">
-		<div ng-repeat="tag in tags.list">
-			<div>
-				<span class="name">[[tag.name]]</span>
-				<div class="icon-container">
-					<i class="fa fa-times"></i>
-				</div>
-			</div>
+		<span class="empty" ng-show="tags.list.length == 0">No tags</span>
+		<div class="tags-container" ng-show="tags.list.length > 0">
+			<span class="name" ng-repeat="tag in tags.list">[[tag.name]]</span>
 		</div>
-		<button class="link" ng-click="tags.add()">Add Tag</button>
+		<button class="link" ng-click="tags.add()" ng-class="{ tagsPresent: tags.list.length > 0 }">Add Tag</button>
 	</div>
 
 	<button ng-click="save()">Save Log</button>

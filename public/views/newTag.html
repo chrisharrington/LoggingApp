@@ -1,5 +1,14 @@
-<ng-form name="form" class="new-tag-container">
-	<info-input type="text" tabindex="1" placeholder="Name..." name="name"  ng-model="name" required info="The name describes the tag.<br /><br />For example, if you're logging a run, a good name for a tag might be 'sunny', 'race', or 'pulled hamstring' if you're me."></info-input>
-	<button tabindex="2" ng-click="add()" ng-disabled="form.$invalid">Add Tag</button>
-	<button tabindex="3" ng-click="cancel()">Cancel</button>
-</ng-form>
+<header>
+	<a class="fa fa-bars" id="menu-trigger"></a>
+	<h3 class="title">New Tag</h3>
+</header>
+
+<div class="new-tag-container">
+	<div class="tile">
+		<ng-form name="form">
+			<info-input type="text" focus="newTagLoaded" tabindex="1" placeholder="Name..." name="name"  ng-model="name" required info="The name describes the tag.<br /><br />For example, if you're logging a run, a good name for a tag might be 'sunny', 'race', or 'pulled hamstring' if you're me."></info-input>
+			<button tabindex="2" ng-click="add()" ng-disabled="form.$invalid">Add Tag</button>
+			<button tabindex="3" ng-click="cancel()">Cancel</button>
+		</ng-form>
+	</div>
+</div>

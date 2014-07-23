@@ -1,31 +1,61 @@
 .new-log-container {
-	>* { float:left; width:100%; margin-top:@spacing; .border-box; }
-  	>*:first-child { margin-top:0; }
+	@entry-colour:rgb(248, 235, 174);
 
-	>input { border:none; }
-	>dropdown { .shadow; }
+	>* { float:left; width:100%; margin-top:@spacing; }
 
-  	>div.entries { padding:0;
-		>span.empty { display:none; float:left; width:100%; font-style:italic; color:@primary-font-colour-light; text-align:center; font-size:0.875em; padding:@spacing 0 0 0; }
-	  	>button { float:left; width:100%; }
-		>div { float:left; width:100%;
-			>div { float:left; width:100%; height:@input-height; padding:0 0 0 @spacing; .border-box; font-size:0.875em; border-bottom:solid 1px @border-colour;
-				@icon-width:14px;
-				>div.icon-container { float:right; cursor:pointer; padding:0 @spacing;
-					>i { .vertical-centre(@icon-width); border-radius:50%; background:@header-background; color:white; padding:2px; width:@icon-width; height:@icon-width; text-align:center; }
-				}
-				>div.icon-container:active>i { background:lighten(@header-background, 20%); }
-				>* { .vertical-centre(@input-height); }
-				>span.name { float:left; color:@primary-font-colour-light; text-transform:lowercase; }
-			}
+	>div.info { margin-top:0;
+		>* { float:left; width:100%; .border-box; }
+		>input, >button { margin-top:@spacing; }
+	}
+
+	>div.entries {
+		>* { float:left; width:100%; }
+		>span.empty { font-style:italic; color:@primary-font-colour-light; text-align:center; font-size:0.875em; padding:0 @spacing @spacing @spacing; padding-bottom:0; .border-box; }
+		>button { margin-top:@spacing; }
+	}
+
+	>div.measurements {
+		>div { float:left; width:100%; margin-top:2px; background:@entry-colour; padding:@small-spacing; .border-box; cursor:pointer; font-size:0.875em;
+			>span.name { float:left; }
+			>span.value { float:right; }
 		}
+		>div:hover { background:darken(@entry-colour, 10%); }
 	}
 
-	>div.entries.measurements>div>div {
-		>span.value { float:right; font-weight:bold; }
+	>div.tags {
+		>div { float:left; width:100%;
+			>span { float:left; font-size:0.875em; background:@entry-colour; margin-right:2px; margin-bottom:2px; padding:@small-spacing; }
+		}
+		>button.tagsPresent { margin-top:((@spacing)-2px); }
 	}
 
-	div.add-measurement {
-		form>button, form>input, form>.input { float:left; width:100%; margin-top:@small-spacing; .border-box; }
-	}
+//	>div.entries { padding:0; border-top:solid 1px @border-colour;
+//
+//		>div { float:left; width:100%;
+//			>div { float:left; width:100%; padding:@small-spacing; .border-box; font-size:0.875em; background:rgb(248, 235, 174);
+//				>* { .vertical-centre(@input-height); }
+//			}
+//		}
+//		>div.button-container { padding:@spacing; .border-box;
+//			>button { float:left; width:100%; }
+//		}
+//	}
+//
+//	>div.entries.measurements { padding:@spacing;
+//		>div>div {
+//			>span.name { float:left; color:@primary-font-colour-light; text-transform:lowercase; }
+//			>span.value { float:right; font-weight:bold; }
+//		}
+//		>div.button-container { padding:0; }
+//	}
+//
+//	>div.entries.tags { border-bottom:solid 1px @border-colour;
+//		>span.empty { padding-bottom:@spacing; }
+//		>div.tags-container { padding:@spacing; .border-box; padding-bottom:0;
+//			>span { float:left; padding:@small-spacing; background:rgb(248, 235, 174); color:black; font-size:0.875em; .border-radius; margin-right:@small-spacing; cursor:pointer; margin-bottom:@small-spacing; }
+//		}
+//		>div.button-container { padding-top:0; }
+//	}
+
+	>button { float:left; width:100%; margin-top:@spacing; }
 }

@@ -10,6 +10,13 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 			return function(scope, element, attributes) {
 				var first = true;
 
+				$(element).on("focus", "input", function() {
+					$(element).find(">div").addClass("focus");
+				});
+				$(element).on("blur", "input", function() {
+					$(element).find(">div").removeClass("focus");
+				});
+
 				scope.emptyAllowed = attributes.emptyAllowed === "";
 				scope.visible = false;
 

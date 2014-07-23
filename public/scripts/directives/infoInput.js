@@ -14,6 +14,12 @@ Logger.app.directive("infoInput", ["$sce", function($sce) {
 			$(element).removeAttr("tabindex");
 			if ($(element).attr("required"))
 				$(element).find("input").prop("required", true);
+			$(element).on("focus", "input", function() {
+				$(element).find(">div").addClass("focus");
+			});
+			$(element).on("blur", "input", function() {
+				$(element).find(">div").removeClass("focus");
+			});
 
 			return function (scope, element, attributes) {
 				scope.info = $sce.trustAsHtml(attributes.info);

@@ -1,12 +1,14 @@
 .new-measurement-container, .new-tag-container {
-	>* { float:left; width:100%; margin-top:@spacing;
-		>h3, >span, >input { float:left; width:100%; .border-box; margin-top:@small-spacing; }
-		>i { float:right; font-weight:bold; color:red; }
-		>h3 { margin-top:0; width:auto; }
-		>span { font-size:0.825em; color:@primary-font-colour-lightest; }
+	>div { float:left; width:100%;
+		>ng-form {
+			>* { float:left; width:100%; margin-top:@spacing;
+				>h3, >span, >input { float:left; width:100%; .border-box; margin-top:@small-spacing; }
+				>i { float:right; font-weight:bold; color:red; }
+				>h3 { margin-top:0; width:auto; }
+				>span { font-size:0.825em; color:@primary-font-colour-lightest; }
+			}
+			>info-input { padding:0; }
+			>info-input:first-child { margin-top:0; }
+		}
 	}
-	>info-input { .tile; padding:0; border:none; }
-	>info-input:first-child { margin-top:0; }
-
-	>div { .tile; .transition(border-color linear @animation-speed, box-shadow linear @animation-speed); border:solid 1px transparent; padding:(@spacing)-1; }
 }
