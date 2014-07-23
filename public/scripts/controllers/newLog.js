@@ -3,7 +3,7 @@ Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", ["$rootScope", "once", function($rootScope, once) {
+Logger.app.factory("newLog", ["$rootScope", "once", "feedback", function($rootScope, once, feedback) {
 	var _measurements = [];
 	var _tags = [];
 	var _collections = [
@@ -45,7 +45,7 @@ Logger.app.factory("newLog", ["$rootScope", "once", function($rootScope, once) {
 			};
 
 			scope.save = function() {
-				$rootScope.feedbackText = "The name is required.";
+				feedback.message("boogity");
 			};
 		}
 	};

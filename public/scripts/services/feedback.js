@@ -1,3 +1,15 @@
+Logger.app.factory("feedback", function($rootScope) {
+	return {
+		message: function(message) {
+			$rootScope.feedbackText = message;
+		},
+
+		hide: function() {
+			$rootScope.feedbackText = "";
+		}
+	}
+});
+
 Logger.app.directive("feedback", ["$rootScope", function($rootScope) {
 	$rootScope.feedbackText = "";
 
