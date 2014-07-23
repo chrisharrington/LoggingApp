@@ -1,0 +1,9 @@
+@feedback-height:45px;
+
+div.feedback { .transition(all ease @animation-speed-slow); position:fixed; bottom:(@feedback-height+@spacing)*-1; background:#404040; .shadow; font-size:0.875em; left:@spacing; right:@spacing; padding:0 0 0 @spacing; .border-box; opacity:0;
+	@closed-width:12px;
+	>* { .vertical-centre(@feedback-height); }
+	>span.label { float:left; width:100%; .border-box; padding-right:@closed-width+@spacing; color:white; }
+	>i { float:left; margin-left:(@closed-width+@spacing*2)*-1; padding:0 @spacing; width:@closed-width; color:@primary-font-colour-lightest; text-transform:uppercase; cursor:pointer; text-align:right; }
+}
+div.feedback.visible { bottom:@spacing; opacity:1; }

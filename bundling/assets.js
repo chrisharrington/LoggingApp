@@ -24,6 +24,7 @@ exports.styles = function() {
 		"./public/css/fonts.css",
 		"./public/css/animation.less",
 		"./public/css/controls",
+		"./public/css/directives",
 		"./public/css/partials",
 		"./public/css/views",
 		"./public/css/thirdParty"

@@ -23,7 +23,6 @@ Logger.app.run(function($rootScope) {
 		history.push(window.location.hash);
 
 		$rootScope.isBack = _isBack();
-		console.log($rootScope.isBack);
 	});
 
 	function _isBack() {

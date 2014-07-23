@@ -13,8 +13,7 @@ Logger.app.controller("new-measurement", ["$scope", "$rootScope", "$timeout", fu
 	};
 
 	$scope.cancel = function() {
-		//history.back();
-		$rootScope.$broadcast("newMeasurementLoaded");
+		history.back();
 	};
 
 	$timeout(function() {
