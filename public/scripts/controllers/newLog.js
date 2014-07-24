@@ -33,7 +33,9 @@ Logger.app.factory("newLog", ["$rootScope", "once", "feedback", function($rootSc
 			scope.measurements = {
 				list: _measurements,
 				add: function() {
-					window.location.hash = "/new-log/measurement";
+					window.requestAnimationFrame(function() {
+						window.location.hash = "/new-log/measurement";
+					});
 				}
 			};
 

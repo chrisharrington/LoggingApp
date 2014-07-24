@@ -9,8 +9,10 @@
 			<info-input type="text" focus="newMeasurementLoaded" tabindex="1" placeholder="Name..." name="name"  ng-model="name" required info="The name describes the measurement.<br /><br />For example, if you're logging a run, a good name for a measurement might be 'distance', 'duration', or 'duck sightings', if you're into that."></info-input>
 			<info-input type="number" tabindex="2" placeholder="Quantity..." name="quantity" ng-model="quantity" required info="The quantity of the measurement.<br /><br />All measurements should be quantifiable. If what you want to log with this measurement isn't quantifiable, you want to <a href='#/new-log/tag'>add a tag</a> instead.<br /><br />In our running metaphor, the quantity would be '5' if you just ran a 5K, and duration would be '10' if you finished the race in 10 seconds and you're the Flash."></info-input>
 			<info-input type="text" tabindex="3" placeholder="Units..." name="units" ng-model="units" info="The units of the measurement.<br /><br />Some measurements don't have a unit, or if they do, it's implied. For example, if you're tracking what you ate today and for some reason you had eight apples for lunch, adding a measurement with name 'apples' and quantity of '8' doesn't need any units. If you're logging that run, though, you should specify whether or not the quantity of '5' is in miles, kilometres or leagues."></info-input>
-			<button tabindex="4" ng-click="add()" ng-disabled="form.$invalid">Add Measurement</button>
-			<button tabindex="5" ng-click="cancel()">Cancel</button>
+			<div class="button-container">
+				<button class="link" tabindex="4" ng-click="cancel()"><i class="fa fa-times"></i></button>
+				<button tabindex="5" ng-click="add()"><i class="fa fa-check"></i></button>
+			</div>
 		</ng-form>
 	</div>
 </div>
