@@ -18,12 +18,16 @@ Logger.app.run(function($rootScope) {
 	var history = [];
 
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
+		_handleBack();
+	});
+
+	function _handleBack() {
 		if (history.length > 25)
 			history.shift();
 		history.push(window.location.hash);
 
 		$rootScope.isBack = _isBack();
-	});
+	}
 
 	function _isBack() {
 		if (!history || history.length < 3)

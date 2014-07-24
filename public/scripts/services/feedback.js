@@ -1,4 +1,4 @@
-Logger.app.factory("feedback", function($rootScope) {
+Logger.app.factory("feedback", function($rootScope, $timeout) {
 	return {
 		message: function(message) {
 			$rootScope.feedbackText = message;
@@ -10,7 +10,7 @@ Logger.app.factory("feedback", function($rootScope) {
 	}
 });
 
-Logger.app.directive("feedback", ["$rootScope", function($rootScope) {
+Logger.app.directive("feedback", function($rootScope) {
 	$rootScope.feedbackText = "";
 
 	return {
@@ -24,9 +24,10 @@ Logger.app.directive("feedback", ["$rootScope", function($rootScope) {
 			};
 
 			$rootScope.$watch("feedbackText", function(value) {
-				scope.text = value;
+				if (value != "")
+					scope.text = value;
 				scope.visible = value && value != "";
 			});
 		}
 	};
-}]);
+});
