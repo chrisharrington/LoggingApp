@@ -1,7 +1,12 @@
-<div class="checkbox-container" ng-class="{ checked: checked }" ng-click="toggle()">
+<div class="checkbox-container" ng-class="{ checked: checked }" ng-click="toggle($event)">
 	<div class="square"></div>
 	<div class="check">
 		<i class="fa fa-check"></i>
 	</div>
 	<div class="transclude" ng-transclude></div>
+	<i class="fa fa-question" ng-click="showModal()"></i>
+	<modal show="showing" close="hide">
+		<span ng-bind-html="info"></span>
+		<button type="button" class="link" ng-click="hideModal()">OK</button>
+	</modal>
 </div>

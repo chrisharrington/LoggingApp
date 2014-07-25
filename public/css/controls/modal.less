@@ -4,5 +4,5 @@
 	>div { float:left; width:100%; padding:@spacing; .border-box; }
 }
 .modal.shown { transform:scale(1, 1); .transition(transform ease @animation-speed); }
-.modal-overlay { .transition(opacity ease @animation-speed); position:fixed; background:black; z-index:@dialog-z-index; opacity:0; }
-.modal-overlay.shown { opacity:0.4; top:0; right:0; bottom:0; left:0; }
+.modal-overlay { position:fixed; background:black; z-index:@dialog-z-index; opacity:0; }
+.modal-overlay.shown { opacity:0.4; width:100%; top:0; right:0; bottom:0; left:0; }

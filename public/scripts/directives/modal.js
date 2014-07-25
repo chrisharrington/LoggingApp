@@ -3,20 +3,14 @@ Logger.app.directive("modal", function() {
 		restrict: "E",
 		templateUrl: "templates/modal.html",
 		transclude: true,
-		scope: true,
-		link: function(scope, element, attributes) {
-			scope.title = attributes.header;
-			scope.titleVisible = attributes.header !== undefined && attributes.header !== "";
-			scope.className = attributes.class;
-			scope.show = scope.$eval(attributes.show);
-
-			scope.close = function() {
-				scope.$eval(attributes.close)();
-			};
-
-			scope.$watch(attributes.show, function(value) {
-				scope.show = value;
-			});
+		scope: {
+			title: "@header",
+			className: "@class",
+			show: "=",
+			close: "="
+		},
+		link: function(scope) {
+			scope.titleVisible = scope.title !== undefined && scope.title !== "";
 		}
 	}
 });
