@@ -9,6 +9,7 @@ Logger.app.directive("checkbox", function($sce) {
 		link: function(scope, element, attributes) {
 			scope.info = $sce.trustAsHtml(attributes.info);
 			scope.showing = false;
+			scope.infoVisible = attributes.info && attributes.info != "";
 
 			scope.toggle = function(event) {
 				var target = $(event.target);

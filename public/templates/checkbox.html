@@ -4,7 +4,7 @@
 		<i class="fa fa-check"></i>
 	</div>
 	<div class="transclude" ng-transclude></div>
-	<i class="fa fa-question" ng-click="showModal()"></i>
+	<i class="fa fa-question" ng-click="showModal()" ng-show="infoVisible"></i>
 	<modal show="showing" close="hide">
 		<span ng-bind-html="info"></span>
 		<button type="button" class="link" ng-click="hideModal()">OK</button>

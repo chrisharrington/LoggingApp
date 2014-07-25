@@ -10,23 +10,6 @@
 		<checkbox checked="location" info="We can keep track of where you are when you enter information for this log in the future. If you check this box, we'll have the location logging enabled by default.<br/><br />You can modify your location logging when creating an entry for this log. We just put this here in case you always or never want to have this functionality.<br /><br />If you leave location logging enabled, we'll provide you with information that might be useful to you in the future.">Log location by default?</checkbox>
 	</div>
 
-	<div class="measurements entries tile">
-		<span class="empty" ng-show="measurements.list.length == 0">No measurements</span>
-		<div ng-repeat="measurement in measurements.list" ng-show="measurements.list.length > 0">
-			<span class="name">[[measurement.name]]</span>
-			<span class="value">[[measurement.value]]</span>
-		</div>
-		<button class="link" ng-click="measurements.add()">Add Measurement</button>
-	</div>
-
-	<div class="tags entries tile">
-		<span class="empty" ng-show="tags.list.length == 0">No tags</span>
-		<div class="tags-container" ng-show="tags.list.length > 0">
-			<span class="name" ng-repeat="tag in tags.list">[[tag.name]]</span>
-		</div>
-		<button class="link" ng-click="tags.add()" ng-class="{ tagsPresent: tags.list.length > 0 }">Add Tag</button>
-	</div>
-
 	<button ng-click="saveAndAdd()">Save Log and Add Entry</button>
 	<button ng-click="save()">Save Log</button>
 </div>
