@@ -6,10 +6,10 @@ Logger.app.directive("modal", function() {
 		scope: {
 			title: "@header",
 			className: "@class",
-			show: "=",
-			close: "="
+			close: "=",
+			show: "="
 		},
-		link: function(scope) {
+		link: function(scope, element, attributes) {
 			scope.titleVisible = scope.title !== undefined && scope.title !== "";
 		}
 	}

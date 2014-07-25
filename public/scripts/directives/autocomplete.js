@@ -8,8 +8,7 @@ Logger.app.directive("autocomplete", function() {
 			placeholder: "@",
 			get: "=",
 			value: "=",
-			ngModel: "=",
-			tabindex: "@"
+			tabindex: "@tab"
 		},
 		link: function(scope, element, attributes) {
 			if (first) {

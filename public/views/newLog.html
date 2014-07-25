@@ -6,12 +6,12 @@
 <div class="new-log-container">
 	<div class="info tile">
 		<form name="form">
-			<autocomplete tabindex="1" placeholder="Collection..." get="getCollections" name="collection" ng-model="collection"></autocomplete>
-			<text tabindex="2" type="text" placeholder="Name..." name="name" ng-model="name"></text>
+			<autocomplete tab="1" placeholder="Collection..." get="getCollections"></autocomplete>
+			<text tab="2" type="text" focus="onNameError" value="name" placeholder="Name..." ng-class="{ error: nameError }"></text>
 			<checkbox checked="location" info="We can keep track of where you are when you enter information for this log in the future. If you check this box, we'll have the location logging enabled by default.<br/><br />You can modify your location logging when creating an entry for this log. We just put this here in case you always or never want to have this functionality.<br /><br />If you leave location logging enabled, we'll provide you with information that might be useful to you in the future.">Log location by default?</checkbox>
 		</form>
 	</div>
 
-	<button id="save-and-add" ng-click="saveAndAdd()">Save Log and Add Entry</button>
-	<button id="save" ng-click="save()">Save Log</button>
+	<button tabindex="3" id="save-and-add" ng-click="saveAndAdd()">Save Log and Add Entry</button>
+	<button tabindex="4" id="save" ng-click="save()">Save Log</button>
 </div>

@@ -6,9 +6,11 @@ Logger.app.directive("text", function() {
 			type: "@",
 			placeholder: "@",
 			name: "@",
-			ngModel: "="
+			tab: "@tabindex",
+			focus: "@",
+			value: "&"
 		},
-		compile: function(element, attributes) {
+		compile: function(element) {
 			$(element).on("focus", "input", function() {
 				$(element).addClass("focus");
 			});

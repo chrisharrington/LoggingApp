@@ -1,7 +1,10 @@
 Logger.app.factory("feedback", function($rootScope, $timeout) {
 	return {
 		message: function(message) {
-			$rootScope.feedbackText = message;
+			if (!message)
+				this.hide();
+			else
+				$rootScope.feedbackText = message;
 		},
 
 		hide: function() {

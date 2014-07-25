@@ -3,12 +3,12 @@ Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", function($rootScope, once, feedback, collections) {
+Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collections) {
 	var _measurements = [];
 	var _tags = [];
 
 	return {
-		init: function(scope) {
+		init: function() {
 			once("new-log-page", function() {
 				$rootScope.$on("measurementAdded", function(event, args) {
 					_measurements.push({ name: args.name, value: args.quantity + (args.units ? " " + args.units : "") });
@@ -24,6 +24,7 @@ Logger.app.factory("newLog", function($rootScope, once, feedback, collections) {
 			scope.name = "";
 			scope.collection = {};
 			scope.location = true;
+			scope.nameError = false;
 
 			scope.getCollections = collections.contains;
 
@@ -49,6 +50,16 @@ Logger.app.factory("newLog", function($rootScope, once, feedback, collections) {
 
 				feedback.message("boogity");
 			};
+
+			scope.$on("onNameError", function(event, message) {
+				feedback.message(message);
+				scope.nameError = true;
+			});
+
+			function _validate() {
+				if (!scope.name || scope.name == "")
+					return !scope.$broadcast("onNameError", "The name is required.");
+			}
 		}
 	};
 });

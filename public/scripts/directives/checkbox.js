@@ -19,8 +19,8 @@ Logger.app.directive("checkbox", function($sce) {
 				scope.checked = !scope.checked;
 			};
 
-			scope.showModal = function () {
-				scope.showing = true;
+			scope.showModal = function (event) {
+				scope.showing = event ? $(event.target).offset() : true;
 			};
 
 			scope.hideModal = function () {

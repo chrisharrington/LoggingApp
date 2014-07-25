@@ -1,5 +1,5 @@
 <div class="autocomplete" ng-click="show($event)" dropdown-id="[[id]]">
-	<text type="text" tabindex="[[tabindex]]" placeholder="[[placeholder]]" selectedId="ngModel.id" name="[[name]]" ng-model="ngModel.name"></text>
+	<text type="text" tabindex="[[tabindex]]" placeholder="[[placeholder]]" selectedId="ngModel.id"></text>
 	<div>
 		<div style="width: [[containerWidth]]px;" option class="options-container shadow" ng-class="{ visible: visible }">
 			<div ng-repeat="result in results track by $index" ng-click="select(result)" id="[[result.id]]">[[result.name]]</div>
