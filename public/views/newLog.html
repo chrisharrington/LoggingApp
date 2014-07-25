@@ -5,8 +5,9 @@
 
 <div class="new-log-container">
 	<div class="info tile">
-		<dropdown placeholder="Collection..." options="collections.list" empty-allowed></dropdown>
-		<input type="text" placeholder="Name..." />
+		<dropdown placeholder="Collection..." options="collections.list" empty-allowed name="collection" ng-model="collection"></dropdown>
+		<input type="text" placeholder="Name..." name="name" ng-model="name" />
+		<checkbox name="location" ng-model="location"></checkbox>
 	</div>
 
 	<div class="measurements entries tile">

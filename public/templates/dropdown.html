@@ -1,5 +1,5 @@
 <div class="dropdown" ng-click="show($event)" dropdown-id="[[id]]">
-	<input type="text" readonly placeholder="[[placeholder]]" value="[[selected]]" id="[[selectedId]]" />
+	<input type="text" readonly placeholder="[[placeholder]]" value="[[selected]]" id="[[selectedId]]" name="[[name]]" ng-model="ngModel.name"  />
 	<i class="fa fa-angle-down"></i>
 	<div>
 		<div style="width: [[containerWidth]]px;" option class="options-container shadow" ng-class="{ visible: visible }">

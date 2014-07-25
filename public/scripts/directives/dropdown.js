@@ -4,7 +4,9 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 		templateUrl: "templates/dropdown.html",
 		scope: {
 			options: "=options",
-			placeholder: "@placeholder"
+			placeholder: "@placeholder",
+			name: "@name",
+			ngModel: "="
 		},
 		compile: function(e) {
 			return function(scope, element, attributes) {
@@ -17,8 +19,13 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 					$(element).find(">div").removeClass("focus");
 				});
 
+				if (!scope.ngModel || scope.ngModel == "")
+					scope.ngModel = { name: "", id: "" };
+
 				scope.emptyAllowed = attributes.emptyAllowed === "";
 				scope.visible = false;
+				scope.selected = "";
+				scope.selectedId = undefined;
 
 				scope.show = function(event) {
 					if ($(event.target).parents(".options-container").length == 0)
@@ -31,8 +38,7 @@ Logger.app.directive("dropdown", ["uuid", function(uuid) {
 
 				scope.select = function(option) {
 					scope.hide();
-					scope.selected = option.name;
-					scope.selectedId = option.id;
+					scope.ngModel = { name: option.name, id: option.id };
 				};
 
 				scope.containerWidth = $(element).width();
