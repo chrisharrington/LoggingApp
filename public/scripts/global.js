@@ -29,6 +29,12 @@ function inspect(o, isConsole) {
 		alert(string);
 }
 
+function scope(selector) {
+	var scope = angular.element($(selector)[0]).scope();
+	console.log(scope);
+	return scope;
+}
+
 function ResolvedDeferred(data) {
 	var deferred = new $.Deferred();
 	deferred.resolve(data);

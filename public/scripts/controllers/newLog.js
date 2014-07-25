@@ -3,14 +3,9 @@ Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", ["$rootScope", "once", "feedback", function($rootScope, once, feedback) {
+Logger.app.factory("newLog", function($rootScope, once, feedback, collections) {
 	var _measurements = [];
 	var _tags = [];
-	var _collections = [
-		{ id: 1, name: "Exercise" },
-		{ id: 2, name: "Milestones" },
-		{ id: 3, name: "Maintenance" }
-	];
 
 	return {
 		init: function(scope) {
@@ -27,12 +22,10 @@ Logger.app.factory("newLog", ["$rootScope", "once", "feedback", function($rootSc
 
 		load: function(scope) {
 			scope.name = "";
-			scope.collection = "";
+			scope.collection = {};
 			scope.location = true;
 
-			scope.collections = {
-				list: _collections
-			};
+			scope.getCollections = collections.contains;
 
 			scope.measurements = {
 				list: _measurements,
@@ -51,8 +44,11 @@ Logger.app.factory("newLog", ["$rootScope", "once", "feedback", function($rootSc
 			};
 
 			scope.save = function() {
+				if (!_validate())
+					return;
+
 				feedback.message("boogity");
 			};
 		}
 	};
-}]);
+});

@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"name": "Maintenance"
+	},
+	{
+		"id": 2,
+		"name": "Chores"
+	},
+	{
+		"id": 3,
+		"name": "Milestones"
+	},
+	{
+		"id": 4,
+		"name": "Hanging Out"
+	},
+	{
+		"id": 5,
+		"name": "Monthly Expenditures"
+	},
+	{
+		"id": 6,
+		"name": "Free Time"
+	},
+	{
+		"id": 7,
+		"name": "Weather"
+	},
+	{
+		"id": 8,
+		"name": "Work"
+	},
+	{
+		"id": 9,
+		"name": "Health"
+	},
+	{
+		"id": 10,
+		"name": "Quinn's Food"
+	}
+]

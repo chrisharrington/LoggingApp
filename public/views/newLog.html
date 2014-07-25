@@ -5,9 +5,11 @@
 
 <div class="new-log-container">
 	<div class="info tile">
-		<dropdown placeholder="Collection..." options="collections.list" empty-allowed name="collection" ng-model="collection"></dropdown>
-		<input type="text" placeholder="Name..." name="name" ng-model="name" />
-		<checkbox checked="location" info="We can keep track of where you are when you enter information for this log in the future. If you check this box, we'll have the location logging enabled by default.<br/><br />You can modify your location logging when creating an entry for this log. We just put this here in case you always or never want to have this functionality.<br /><br />If you leave location logging enabled, we'll provide you with information that might be useful to you in the future.">Log location by default?</checkbox>
+		<form name="form">
+			<autocomplete tabindex="1" placeholder="Collection..." get="getCollections" name="collection" ng-model="collection"></autocomplete>
+			<input tabindex="2" type="text" placeholder="Name..." name="name" ng-model="name" />
+			<checkbox checked="location" info="We can keep track of where you are when you enter information for this log in the future. If you check this box, we'll have the location logging enabled by default.<br/><br />You can modify your location logging when creating an entry for this log. We just put this here in case you always or never want to have this functionality.<br /><br />If you leave location logging enabled, we'll provide you with information that might be useful to you in the future.">Log location by default?</checkbox>
+		</form>
 	</div>
 
 	<button ng-click="saveAndAdd()">Save Log and Add Entry</button>
