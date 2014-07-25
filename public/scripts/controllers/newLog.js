@@ -28,6 +28,7 @@ Logger.app.factory("newLog", ["$rootScope", "once", "feedback", function($rootSc
 		load: function(scope) {
 			scope.name = "";
 			scope.collection = "";
+			scope.location = true;
 
 			scope.collections = {
 				list: _collections
