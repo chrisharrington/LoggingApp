@@ -1,7 +1,6 @@
-button { height:@button-height; line-height:@button-height; padding:0; text-align:center; .condensed-font; text-transform:uppercase; color:white; background:@header-background; border:none; font-size:0.875em; .border-radius; cursor:pointer; margin:0; -webkit-appearance:none; outline:none; }
-button:active { background:lighten(@header-background, 20%); }
-button.link { background:#F0F0F0; color:@primary-font-colour; font-size:0.875em; }
-button.link:active { background:#E0E0E0; }
+button { .transition(all @animation-speed-quick); height:@button-height; .wide-shadow; line-height:@button-height; padding:0; text-align:center; .condensed-font; text-transform:uppercase; color:white; background:@header-background; border:none; font-size:0.875em; .border-radius; cursor:pointer; margin:0; -webkit-appearance:none; outline:none; }
+button:active { background:lighten(@header-background, 5%); .shadow; }
+button.link { background:transparent; color:@primary-font-colour; font-size:0.875em; box-shadow:none; }
 button.loading { font-size:0; background:#909090; cursor:default; }
 button.loading::before { margin:auto; margin-top:10px; .spinner; }
 button[disabled] { background:#909090; }
