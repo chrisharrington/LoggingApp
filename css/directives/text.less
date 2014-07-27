@@ -5,12 +5,12 @@ div.text-container { float:left; width:100%;
 	>input { float:left; width:100%; -webkit-appearance:none; border:none; padding:@spacing; font-size:0.875em; .regular-font; background:white; .transition(all ease @animation-speed); outline:none; .border-box; }
 	>div.border, >div.focus { float:left; width:100%; height:1px; background:@input-border-colour; }
 	>div.focus { float:left; width:100%; margin-top:-1px; position:relative;
-		>div { position:absolute; z-index:2; width:100%; transform:scale(0, 1); height:3px; margin-top:-1px; background:@header-background; .border-radius; .transition(transform ease 500ms 250ms); }
+		>div { position:absolute; z-index:2; width:0; height:3px; margin-top:-1px; background:@header-background; .border-radius; .transition(width ease @animation-speed); }
 	}
 }
 
 text.focus {
-	div.focus>div { transform:scale(1, 1); }
+	div.focus>div { width:100%; }
 	input { border-color:@header-background; background:@input-focus-background; }
 }
 

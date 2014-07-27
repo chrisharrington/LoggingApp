@@ -12,7 +12,7 @@ Logger.app.directive("autocomplete", function() {
 		},
 		link: function(scope, element, attributes) {
 			if (first) {
-				var input = $(element).find("input");
+				var input = element.find("input");
 				input.on("keyup", function () {
 					if (input.val() == "") {
 						scope.$apply(function() {
@@ -27,7 +27,7 @@ Logger.app.directive("autocomplete", function() {
 					}
 				});
 
-				$(window).on("resize", function() {
+				window.addEventListener("resize", function() {
 					scope.$apply(function() {
 						scope.containerWidth = $(element).width();
 					});
