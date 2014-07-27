@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html ng-app="logger">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="{{{styleLocation}}}" type="text/css" />
+</head>
+	<body ng-class="{ reverse: isBack }">
+		<section class="content-container slide" ng-view></section>
+
+		<section class="menu">
+			<a href="#/new-log">
+				<i class="fa fa-plus"></i>
+				<span>New Log</span>
+			</a>
+		</section>
+
+		<feedback></feedback>
+
+		<script type="text/javascript" src="//code.angularjs.org/1.2.20/angular.min.js"></script>
+		<script type="text/javascript" src="//code.angularjs.org/1.2.20/angular-route.min.js"></script>
+		<script type="text/javascript" src="//code.angularjs.org/1.2.20/angular-animate.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/path.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/highcharts.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/json2.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/md5.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/nanobar.js"></script>
+		<script type="text/javascript" src="/scripts/thirdParty/jquery.timeago.min.js"></script>
+		<script type="text/javascript">
+			window.Logger = {
+				app: angular.module("logger", ["ngRoute", "ngAnimate"]),
+				virtualDirectory: "/"
+			};
+		</script>
+
+		{{{renderedScripts}}}
+	</body>
+</html>

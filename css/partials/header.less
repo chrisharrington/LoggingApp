@@ -1,0 +1,13 @@
+﻿@import "../variables.less";
+@import "../mixins.less";
+
+header { float:left; width:100%; height:@header-height; .shadow; background:@header-background; color:@header-font-colour;
+  	* { color:inherit; }
+  	>* { .vertical-centre(@header-height) !important; }
+	a { font-size:1.375em; padding:0 @spacing; cursor:pointer; width:19px; text-align:center; text-decoration:none; }
+
+  	.fa-bars { float:left; }
+  	.fa-plus, .fa-tasks { float:right; }
+
+  	h3 { float:left; }
+}

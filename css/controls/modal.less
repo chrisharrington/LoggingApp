@@ -1,0 +1,11 @@
+﻿@import "../variables.less";
+@import "../mixins.less";
+
+.modal { position:absolute; .tile; padding:0; width:@dialog-width; z-index:@dialog-z-index+1; left:50%; margin-left:@dialog-width/-2; top:((@header-height)-10); transform:scale(0, 0); .transition(all ease @animation-speed);
+	>h2 { float:left; padding:@spacing 0 0 @spacing; }
+	>i { float:right; padding:@spacing; color:@primary-font-colour-light; cursor:pointer; }
+	>div { float:left; width:100%; padding:@spacing; .border-box; }
+}
+.modal.shown { transform:scale(1, 1); }
+.modal-overlay { .transition(all @animation-speed-slow); position:fixed; background:black; z-index:@dialog-z-index; opacity:0; }
+.modal-overlay.shown { opacity:0.4; width:100%; top:0; right:0; bottom:0; left:0; }

@@ -1,0 +1,16 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+.new-log-container {
+	>* { float:left; width:100%; margin-top:@spacing; }
+
+	>div.info { margin-top:0;
+		>form { float:left; width:100%;
+			>* { float:left; width:100%; .border-box; }
+			>text, >button, >checkbox { margin-top:@spacing; }
+		}
+	}
+
+	>button { float:left; width:28%; margin-top:@spacing; }
+	>button#save-and-add { float:right; width:68%; }
+}

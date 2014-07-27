@@ -1,0 +1,29 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+.add-entry-container {
+	@entry-colour:rgb(248, 235, 174);
+
+	>div.entries {
+		>* { float:left; width:100%; }
+		>span.empty { font-style:italic; color:@primary-font-colour-light; text-align:center; font-size:0.875em; padding:0 @spacing @spacing @spacing; padding-bottom:0; .border-box; }
+		>button { margin-top:@spacing; }
+	}
+
+	>div.measurements {
+		>div { float:left; width:100%; margin-top:2px; background:@entry-colour; padding:@small-spacing; .border-box; cursor:pointer; font-size:0.875em;
+			>span.name { float:left; }
+			>span.value { float:right; }
+		}
+		>div:hover { background:darken(@entry-colour, 10%); }
+	}
+
+	>div.tags {
+		>div { float:left; width:100%;
+			>span { float:left; font-size:0.875em; background:@entry-colour; margin-right:2px; margin-bottom:2px; padding:@small-spacing; }
+		}
+		>button.tagsPresent { margin-top:((@spacing)-2px); }
+	}
+
+	>button { float:left; width:100%; margin-top:@spacing; }
+}

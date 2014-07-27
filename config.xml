@@ -3,6 +3,5 @@
     <description>
         Hello, world!
     </description>
-    <content src="public/views/root.html" />
     <access origin="*" />
 </widget>

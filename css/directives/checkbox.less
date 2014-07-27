@@ -1,0 +1,21 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+@icon-container-width:20px;
+@checkbox-size:16px;
+
+div.checkbox-container { float:left; width:100%; border-bottom:solid 1px @input-border-colour; padding:@spacing 0 @spacing @spacing; .border-box; cursor:pointer; height:@input-height;
+	>div.square { float:left; width:@checkbox-size; height:@checkbox-size; border:solid 1px @input-border-colour; .border-radius(1px); .border-box; .transition(border-width @animation-speed, border-color @animation-speed); }
+	>div.check { float:left; width:@checkbox-size; height:@checkbox-size; margin-left:@checkbox-size*-1;
+		>i { float:left; width:100%; .vertical-centre(@checkbox-size); text-align:center; font-size:14px; color:white; }
+	}
+	>div.transclude { float:left; width:100%; padding-left:@icon-container-width+@spacing; margin-left:@icon-container-width*-1; .border-box; padding-right:@icon-container-width+@spacing;
+		>span { float:left; width:100%; color:@placeholder-colour; font-size:0.875em; .transition(color @animation-speed); }
+	}
+	>i { float:left; width:@icon-container-width; margin-left:(@icon-container-width+@spacing*2)*-1; color:@primary-font-colour-lightest; padding:0 @spacing; text-align:right; }
+}
+
+div.checkbox-container.checked {
+	>div.square { border-width:@checkbox-size/2; border-style:solid; border-color:@header-background; }
+	>div.transclude>span { color:@primary-font-colour; }
+}

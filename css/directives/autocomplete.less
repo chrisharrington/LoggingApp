@@ -1,0 +1,16 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+autocomplete { outline:none; }
+
+div.autocomplete { float:left; width:100%;
+	>input { float:left; width:100%; .border-box; }
+	>div { float:left; width:100%; position:relative;
+		>div { position:absolute; z-index:2; width:100%; display:none; overflow:hidden; height:0; .shadow; max-height:200px; overflow-y:scroll;
+			>div { width:100%; height:@input-height; padding:@spacing; cursor:pointer; border-bottom:solid 1px @border-colour; background:white; .border-box; font-size:0.875em; }
+			>div:hover { background:@hover-colour; }
+		}
+		>div.visible { display:block; height:auto; }
+	}
+}
+div.autocomplete.focus { border-color:@header-background; background:@input-focus-background; }
