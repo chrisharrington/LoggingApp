@@ -13,7 +13,7 @@ Logger.app.directive("checkbox", function($sce) {
 
 			scope.toggle = function(event) {
 				var target = $(event.target);
-				if (target.hasClass("fa") || target.parents("modal").length > 0)
+				if (target.hasClass("fa-question") || target.parents("modal").length > 0)
 					return;
 
 				scope.checked = !scope.checked;
