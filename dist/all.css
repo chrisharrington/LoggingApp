@@ -794,6 +794,10 @@ div.info-input.focus {
   margin-left: -150px;
   top: 40px;
   transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -webkit-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
   -webkit-transition: all ease 250ms;
   -moz-transition: all ease 250ms;
   -ms-transition: all ease 250ms;
@@ -819,6 +823,10 @@ div.info-input.focus {
 }
 .modal.shown {
   transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
 }
 .modal-overlay {
   position: fixed;
@@ -1704,6 +1712,10 @@ div.checkbox-container > div.inner-container > div.check {
   -o-transition: transform ease 250ms;
   transition: transform ease 250ms;
   transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -webkit-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
 }
 div.checkbox-container > div.inner-container > div.check > i {
   float: left;
@@ -1749,6 +1761,10 @@ div.checkbox-container modal {
 }
 div.checkbox-container.checked div.check {
   transform: scale(1, 1) !important;
+  -ms-transform: scale(1, 1) !important;
+  -webkit-transform: scale(1, 1) !important;
+  -o-transform: scale(1, 1) !important;
+  -moz-transform: scale(1, 1) !important;
 }
 div.checkbox-container.checked > div.transclude > span {
   color: #444444;
@@ -2116,6 +2132,10 @@ div.feedback {
   position: fixed;
   bottom: -45px;
   transform: translateY(0);
+  -ms-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -o-transform: translateY(0);
+  -moz-transform: translateY(0);
   background: #404040;
   box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
   font-size: 0.875em;
@@ -2153,6 +2173,10 @@ div.feedback > i {
 }
 div.feedback.visible {
   transform: translateY(-57px);
+  -ms-transform: translateY(-57px);
+  -webkit-transform: translateY(-57px);
+  -o-transform: translateY(-57px);
+  -moz-transform: translateY(-57px);
   opacity: 1;
 }
 
@@ -2476,6 +2500,10 @@ div.text-container > div.focus > div {
   z-index: 2;
   width: 100%;
   transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  -webkit-transform: scale(0, 1);
+  -o-transform: scale(0, 1);
+  -moz-transform: scale(0, 1);
   height: 3px;
   margin-top: -1px;
   background: #2196f3;
@@ -2488,6 +2516,10 @@ div.text-container > div.focus > div {
 }
 text.focus div.focus > div {
   transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
 }
 text.focus input {
   border-color: #2196f3;
@@ -3208,27 +3240,59 @@ section.menu > a > span {
 }
 .slide.ng-enter {
   transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
 }
 .slide.ng-enter-active {
   transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
 .slide.ng-leave {
   transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
 .slide.ng-leave-active {
   transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
 }
 body.reverse .slide.ng-enter {
   transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
 }
 body.reverse .slide.ng-enter-active {
   transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
 body.reverse .slide.ng-leave {
   transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
 body.reverse .slide.ng-leave-active {
   transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
 }
 
 @-webkit-keyframes spin-clockwise {

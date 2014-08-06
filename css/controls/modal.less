@@ -1,11 +1,11 @@
 ﻿@import "../variables.less";
 @import "../mixins.less";
 
-.modal { position:absolute; .tile; padding:0; width:@dialog-width; z-index:@dialog-z-index+1; left:50%; margin-left:@dialog-width/-2; top:((@header-height)-10); transform:scale(0, 0); .transition(all ease @animation-speed);
+.modal { position:absolute; .tile; padding:0; width:@dialog-width; z-index:@dialog-z-index+1; left:50%; margin-left:@dialog-width/-2; top:((@header-height)-10); .transform(scale(0, 0)); .transition(all ease @animation-speed);
 	>h2 { float:left; padding:@spacing 0 0 @spacing; }
 	>i { float:right; padding:@spacing; color:@primary-font-colour-light; cursor:pointer; }
 	>div { float:left; width:100%; padding:@spacing; .border-box; }
 }
-.modal.shown { transform:scale(1, 1); }
+.modal.shown { .transform(scale(1, 1)); }
 .modal-overlay { position:fixed; .transition(opacity ease @animation-speed-slow); background:black; z-index:@dialog-z-index; opacity:0; left:0; top:0; width:100%; height:100%; visibility:hidden; }
 .modal-overlay.shown { opacity:0.4 !important; visibility:visible; }
