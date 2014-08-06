@@ -5,5 +5,5 @@
     </description>
     <access origin="*" />
 
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
 </widget>
