@@ -4,4 +4,6 @@
         Hello, world!
     </description>
     <access origin="*" />
+
+    <preference name="android-minSdkVersion" value="16" />
 </widget>
