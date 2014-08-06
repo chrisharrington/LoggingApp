@@ -402,11 +402,6 @@ div.attached-files.existing > a:hover {
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
 }
 button {
-  -webkit-transition: all 166.66666666666666ms;
-  -moz-transition: all 166.66666666666666ms;
-  -ms-transition: all 166.66666666666666ms;
-  -o-transition: all 166.66666666666666ms;
-  transition: all 166.66666666666666ms;
   height: 40px;
   box-shadow: 0px 4px 10px 0 rgba(0, 0, 0, 0.2), 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
   line-height: 40px;
@@ -826,23 +821,24 @@ div.info-input.focus {
   transform: scale(1, 1);
 }
 .modal-overlay {
-  -webkit-transition: all 375ms;
-  -moz-transition: all 375ms;
-  -ms-transition: all 375ms;
-  -o-transition: all 375ms;
-  transition: all 375ms;
   position: fixed;
+  -webkit-transition: opacity ease 375ms;
+  -moz-transition: opacity ease 375ms;
+  -ms-transition: opacity ease 375ms;
+  -o-transition: opacity ease 375ms;
+  transition: opacity ease 375ms;
   background: black;
   z-index: 3;
   opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
 }
 .modal-overlay.shown {
-  opacity: 0.4;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  opacity: 0.4 !important;
+  visibility: visible;
 }
 
 @-webkit-keyframes spin-clockwise {

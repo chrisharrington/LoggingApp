@@ -376,6 +376,12 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 		},
 		link: function(scope, element, attributes) {
 			scope.titleVisible = scope.title !== undefined && scope.title !== "";
+
+			scope.$watch("show", function() {
+				var overlay = $(element).find(".modal-overlay");
+				overlay.width($(window).width());
+				overlay.height($(window).height());
+			});
 		}
 	}
 });;Logger.app.directive("ngSlideshow", function ($compile) {

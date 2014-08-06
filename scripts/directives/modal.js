@@ -11,6 +11,12 @@ Logger.app.directive("modal", function() {
 		},
 		link: function(scope, element, attributes) {
 			scope.titleVisible = scope.title !== undefined && scope.title !== "";
+
+			scope.$watch("show", function() {
+				var overlay = $(element).find(".modal-overlay");
+				overlay.width($(window).width());
+				overlay.height($(window).height());
+			});
 		}
 	}
 });
