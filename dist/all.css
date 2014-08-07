@@ -605,11 +605,11 @@ div.info-input {
   -ms-transition: all ease 375ms;
   -o-transition: all ease 375ms;
   transition: all ease 375ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
 }
 div.info-input > div {
   float: left;
@@ -808,11 +808,11 @@ div.info-input.focus {
   -ms-transition: all ease 250ms;
   -o-transition: all ease 250ms;
   transition: all ease 250ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
 }
 .modal > h2 {
   float: left;
@@ -845,11 +845,11 @@ div.info-input.focus {
   -ms-transition: opacity ease 375ms;
   -o-transition: opacity ease 375ms;
   transition: opacity ease 375ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
   background: black;
   z-index: 3;
   opacity: 0;
@@ -1695,19 +1695,26 @@ div.checkbox-container {
   float: left;
   width: 100%;
   border-bottom: solid 1px #c0c0c0;
-  padding: 12px 0 12px 12px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   cursor: pointer;
   height: 40px;
 }
-div.checkbox-container > div.inner-container {
+div.checkbox-container > div.padded-wrapper {
+  float: left;
+  width: 100%;
+  padding: 12px 32px 12px 12px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+div.checkbox-container > div.padded-wrapper > div.inner-checkbox-container {
   float: left;
   width: 16px;
   height: 16px;
   position: relative;
+  padding: 12px 0 12px 12px;
 }
-div.checkbox-container > div.inner-container > div {
+div.checkbox-container > div.padded-wrapper > div.inner-checkbox-container > div {
   position: absolute;
   top: 0;
   left: 0;
@@ -1716,28 +1723,28 @@ div.checkbox-container > div.inner-container > div {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-div.checkbox-container > div.inner-container > div.square {
+div.checkbox-container > div.padded-wrapper > div.inner-checkbox-container > div.square {
   border: solid 1px #c0c0c0;
 }
-div.checkbox-container > div.inner-container > div.check {
+div.checkbox-container > div.padded-wrapper > div.inner-checkbox-container > div.check {
   background: #2196f3;
   -webkit-transition: all ease 250ms;
   -moz-transition: all ease 250ms;
   -ms-transition: all ease 250ms;
   -o-transition: all ease 250ms;
   transition: all ease 250ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
   transform: scale(0, 0);
   -ms-transform: scale(0, 0);
   -webkit-transform: scale(0, 0);
   -o-transform: scale(0, 0);
   -moz-transform: scale(0, 0);
 }
-div.checkbox-container > div.inner-container > div.check > i {
+div.checkbox-container > div.padded-wrapper > div.inner-checkbox-container > div.check > i {
   float: left;
   width: 100%;
   height: 16px !important;
@@ -1748,16 +1755,16 @@ div.checkbox-container > div.inner-container > div.check > i {
   font-size: 14px;
   color: white;
 }
-div.checkbox-container > div.transclude {
+div.checkbox-container > div.padded-wrapper > div.transclude {
   float: left;
   width: 100%;
-  padding-left: 32px;
-  margin-left: -20px;
+  position: relative;
+  padding-left: 28px;
+  margin-left: -28px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  padding-right: 32px;
 }
-div.checkbox-container > div.transclude > span {
+div.checkbox-container > div.padded-wrapper > div.transclude > span {
   float: left;
   width: 100%;
   color: #a0a0a0;
@@ -1767,18 +1774,18 @@ div.checkbox-container > div.transclude > span {
   -ms-transition: color 250ms;
   -o-transition: color 250ms;
   transition: color 250ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
 }
 div.checkbox-container > i {
   float: left;
   width: 20px;
   margin-left: -44px;
   color: #aaaaaa;
-  padding: 0 12px;
+  padding: 12px;
   text-align: right;
 }
 div.checkbox-container modal {
@@ -1791,8 +1798,8 @@ div.checkbox-container.checked div.check {
   -o-transform: scale(1, 1) !important;
   -moz-transform: scale(1, 1) !important;
 }
-div.checkbox-container.checked > div.transclude > span {
-  color: #444444;
+div.checkbox-container.checked div.transclude > span {
+  color: #444444 !important;
 }
 
 @-webkit-keyframes spin-clockwise {
@@ -1939,11 +1946,11 @@ div.dropdown {
   -ms-transition: all ease 375ms;
   -o-transition: all ease 375ms;
   transition: all ease 375ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
   border-bottom: solid 1px #c0c0c0;
 }
 div.dropdown > * {
@@ -1991,11 +1998,11 @@ div.dropdown > div > div {
   -ms-transition: opacity ease 250ms;
   -o-transition: opacity ease 250ms;
   transition: opacity ease 250ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
   opacity: 0;
   overflow: hidden;
   height: 0;
@@ -2164,11 +2171,11 @@ div.feedback {
   -ms-transition: all ease 375ms;
   -o-transition: all ease 375ms;
   transition: all ease 375ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
   position: fixed;
   bottom: -45px;
   transform: translateY(0);
@@ -2513,16 +2520,6 @@ div.text-container > input {
   font-size: 0.875em;
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
   background: white;
-  -webkit-transition: all ease 250ms;
-  -moz-transition: all ease 250ms;
-  -ms-transition: all ease 250ms;
-  -o-transition: all ease 250ms;
-  transition: all ease 250ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
   outline: none;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2558,11 +2555,11 @@ div.text-container > div.focus > div {
   -ms-transition: all ease 250ms;
   -o-transition: all ease 250ms;
   transition: all ease 250ms;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
 }
 text.focus div.focus > div {
   transform: scale(1, 1);
@@ -2775,6 +2772,7 @@ body {
   font-size: 16px;
   background: #F0F0F0;
   overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 h1,
 h2,
@@ -3287,11 +3285,11 @@ section.menu > a > span {
   -ms-transition: all 500ms 250ms ease;
   -o-transition: all 500ms 250ms ease;
   transition: all 500ms 250ms ease;
-  -webkit-transition-delay: 150ms;
-  -moz-transition-delay: 150ms;
-  -ms-transition-delay: 150ms;
-  -o-transition-delay: 150ms;
-  transition-delay: 150ms;
+  -webkit-transition-delay: 120ms;
+  -moz-transition-delay: 120ms;
+  -ms-transition-delay: 120ms;
+  -o-transition-delay: 120ms;
+  transition-delay: 120ms;
 }
 .slide.ng-enter {
   transform: translate3d(100%, 0, 0);
