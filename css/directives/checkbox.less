@@ -8,7 +8,7 @@ div.checkbox-container { float:left; width:100%; border-bottom:solid 1px @input-
 	>div.inner-container { float:left; width:@checkbox-size; height:@checkbox-size; position:relative;
 		>div { position:absolute; top:0; left:0; width:@checkbox-size; height:@checkbox-size; .border-box; }
 		>div.square { border:solid 1px @input-border-colour; }
-		>div.check { background:@header-background; .transition(transform ease @animation-speed); .transform(scale(0, 0));
+		>div.check { background:@header-background; .transition(all ease @animation-speed); .transform(scale(0, 0));
 			>i { float:left; width:100%; .vertical-centre(@checkbox-size); text-align:center; font-size:14px; color:white; }
 		}
 	}
