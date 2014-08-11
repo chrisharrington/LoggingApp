@@ -1,5 +1,6 @@
 Logger.app.directive("autocomplete", function() {
-	var first = true;
+	var _first = true;
+	var _selected = true;
 
 	return {
 		restrict: "E",
@@ -8,25 +9,11 @@ Logger.app.directive("autocomplete", function() {
 			placeholder: "@",
 			get: "=",
 			value: "=",
-			tabindex: "@tab"
+			tabindex: "@tab",
+			ngModel: "="
 		},
-		link: function(scope, element, attributes) {
-			if (first) {
-				var input = element.find("input");
-				input.on("keyup", function () {
-					if (input.val() == "") {
-						scope.$apply(function() {
-							scope.visible = false;
-							scope.results = [];
-						});
-					} else {
-						scope.get(input.val()).then(function (results) {
-							scope.visible = results.length > 0;
-							scope.results = results;
-						});
-					}
-				});
-
+		link: function(scope, element) {
+			if (_first) {
 				window.addEventListener("resize", function() {
 					scope.$apply(function() {
 						scope.containerWidth = $(element).width();
@@ -34,15 +21,32 @@ Logger.app.directive("autocomplete", function() {
 				});
 			}
 
-			first = false;
+			_first = false;
 			scope.visible = true;
 			scope.containerWidth = $(element).width();
 
 			scope.select = function(result) {
+				scope.ngModel = scope.text = result.name;
 				scope.visible = false;
-				scope.ngModel.id = result.id;
-				scope.ngModel.name = result.name;
-			}
+				_selected = true;
+			};
+
+			scope.$watch("text", function(value) {
+				var localSelected = _selected;
+				_selected = false;
+				if (localSelected)
+					return;
+
+				if (value == "") {
+					scope.visible = false;
+					scope.results = [];
+				} else {
+					scope.get(value).then(function (results) {
+						scope.visible = results.length > 0;
+						scope.results = results;
+					});
+				}
+			});
 		}
 	}
 });

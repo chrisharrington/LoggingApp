@@ -11,6 +11,9 @@ Logger.app.factory("collections", function($http) {
 				});
 
 				var collections = [];
+				if (!string || string == "")
+					return collections;
+
 				string = string.toLowerCase();
 				for (var i = 0; i < result.data.length; i++)
 					if (result.data[i].name.toLowerCase().indexOf(string) > -1)

@@ -22,33 +22,21 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 
 		load: function(scope) {
 			scope.name = "";
-			scope.collection = {};
+			scope.collection = "";
 			scope.location = true;
 			scope.nameError = false;
 
 			scope.getCollections = collections.contains;
-
-			scope.measurements = {
-				list: _measurements,
-				add: function() {
-					window.requestAnimationFrame(function() {
-						window.location.hash = "/new-log/measurement";
-					});
-				}
-			};
-
-			scope.tags = {
-				list: _tags,
-				add: function() {
-					window.location.hash = "/new-log/tag";
-				}
-			};
 
 			scope.save = function() {
 				if (!_validate())
 					return;
 
 				feedback.message("boogity");
+			};
+
+			scope.saveAndAdd = function() {
+				scope.save();
 			};
 
 			scope.$on("onNameError", function(event, message) {

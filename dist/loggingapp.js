@@ -57,33 +57,21 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 
 		load: function(scope) {
 			scope.name = "";
-			scope.collection = {};
+			scope.collection = "";
 			scope.location = true;
 			scope.nameError = false;
 
 			scope.getCollections = collections.contains;
-
-			scope.measurements = {
-				list: _measurements,
-				add: function() {
-					window.requestAnimationFrame(function() {
-						window.location.hash = "/new-log/measurement";
-					});
-				}
-			};
-
-			scope.tags = {
-				list: _tags,
-				add: function() {
-					window.location.hash = "/new-log/tag";
-				}
-			};
 
 			scope.save = function() {
 				if (!_validate())
 					return;
 
 				feedback.message("boogity");
+			};
+
+			scope.saveAndAdd = function() {
+				scope.save();
 			};
 
 			scope.$on("onNameError", function(event, message) {
@@ -175,7 +163,8 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 		}
 	}
 });;Logger.app.directive("autocomplete", function() {
-	var first = true;
+	var _first = true;
+	var _selected = true;
 
 	return {
 		restrict: "E",
@@ -184,25 +173,11 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			placeholder: "@",
 			get: "=",
 			value: "=",
-			tabindex: "@tab"
+			tabindex: "@tab",
+			ngModel: "="
 		},
-		link: function(scope, element, attributes) {
-			if (first) {
-				var input = element.find("input");
-				input.on("keyup", function () {
-					if (input.val() == "") {
-						scope.$apply(function() {
-							scope.visible = false;
-							scope.results = [];
-						});
-					} else {
-						scope.get(input.val()).then(function (results) {
-							scope.visible = results.length > 0;
-							scope.results = results;
-						});
-					}
-				});
-
+		link: function(scope, element) {
+			if (_first) {
 				window.addEventListener("resize", function() {
 					scope.$apply(function() {
 						scope.containerWidth = $(element).width();
@@ -210,15 +185,32 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 				});
 			}
 
-			first = false;
+			_first = false;
 			scope.visible = true;
 			scope.containerWidth = $(element).width();
 
 			scope.select = function(result) {
+				scope.ngModel = scope.text = result.name;
 				scope.visible = false;
-				scope.ngModel.id = result.id;
-				scope.ngModel.name = result.name;
-			}
+				_selected = true;
+			};
+
+			scope.$watch("text", function(value) {
+				var localSelected = _selected;
+				_selected = false;
+				if (localSelected)
+					return;
+
+				if (value == "") {
+					scope.visible = false;
+					scope.results = [];
+				} else {
+					scope.get(value).then(function (results) {
+						scope.visible = results.length > 0;
+						scope.results = results;
+					});
+				}
+			});
 		}
 	}
 });;Logger.app.directive("checkbox", function($sce) {
@@ -407,7 +399,8 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			name: "@",
 			tab: "@tabindex",
 			focus: "@",
-			value: "&"
+			value: "&",
+			ngModel: "="
 		},
 		compile: function(element) {
 			$(element).on("focus", "input", function() {
@@ -652,6 +645,9 @@ Logger.app.run(function($rootScope) {
 				});
 
 				var collections = [];
+				if (!string || string == "")
+					return collections;
+
 				string = string.toLowerCase();
 				for (var i = 0; i < result.data.length; i++)
 					if (result.data[i].name.toLowerCase().indexOf(string) > -1)

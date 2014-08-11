@@ -8,7 +8,8 @@ Logger.app.directive("text", function() {
 			name: "@",
 			tab: "@tabindex",
 			focus: "@",
-			value: "&"
+			value: "&",
+			ngModel: "="
 		},
 		compile: function(element) {
 			$(element).on("focus", "input", function() {
