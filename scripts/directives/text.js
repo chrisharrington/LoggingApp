@@ -9,7 +9,8 @@ Logger.app.directive("text", function() {
 			tab: "@tabindex",
 			focus: "@",
 			value: "&",
-			ngModel: "="
+			ngModel: "=",
+			ngKeyup: "="
 		},
 		compile: function(element) {
 			$(element).on("focus", "input", function() {

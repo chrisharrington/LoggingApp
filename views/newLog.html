@@ -7,7 +7,7 @@
 	<div class="info tile">
 		<form name="form">
 			<autocomplete tab="1" placeholder="Collection..." get="getCollections" ng-model="collection"></autocomplete>
-			<text tab="2" type="text" focus="onNameError" value="name" placeholder="Name..." ng-class="{ error: nameError }" ng-model="name"></text>
+			<text tab="2" type="text" focus="onNameError" value="name" placeholder="Name..." ng-class="{ error: nameError }" ng-model="name" ng-keyup="clearFeedback()"></text>
 			<checkbox checked="location" ng-model="location" info="We can keep track of where you are when you enter information for this log in the future. If you check this box, we'll have the location logging enabled by default.<br/><br />You can modify your location logging when creating an entry for this log. We just put this here in case you always or never want to have this functionality.<br /><br />If you leave location logging enabled, we'll provide you with information that might be useful to you in the future.">Log location by default?</checkbox>
 		</form>
 	</div>

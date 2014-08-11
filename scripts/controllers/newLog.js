@@ -6,6 +6,7 @@ Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collections) {
 	var _measurements = [];
 	var _tags = [];
+	var _validating = false;
 
 	return {
 		init: function() {
@@ -39,12 +40,20 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 				scope.save();
 			};
 
+			scope.clearFeedback = function() {
+				if (!_validating)
+					feedback.hide();
+
+				_validating = false;
+			};
+
 			scope.$on("onNameError", function(event, message) {
 				feedback.message(message);
 				scope.nameError = true;
 			});
 
 			function _validate() {
+				_validating = true;
 				if (!scope.name || scope.name == "")
 					return !scope.$broadcast("onNameError", "The name is required.");
 			}
