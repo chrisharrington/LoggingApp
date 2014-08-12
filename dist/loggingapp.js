@@ -38,7 +38,7 @@ Logger.app.controller("header", function($scope) {
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collections) {
+Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository) {
 	var _measurements = [];
 	var _tags = [];
 	var _validating = false;
@@ -62,7 +62,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			scope.location = true;
 			scope.nameError = false;
 
-			scope.getCollections = collections.contains;
+			scope.getCollections = collectionRepository.contains;
 
 			scope.save = function() {
 				if (!_validate())
@@ -364,7 +364,18 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			}
 		}
 	}
-}]);;Logger.app.directive("modal", function() {
+}]);;Logger.app.directive("menuItem", function() {
+	return {
+		restrict: "E",
+		templateUrl: "templates/menuItem.html",
+		transclude: true,
+		scope: {
+			icon: "@",
+			url: "@",
+			destination: "@"
+		}
+	};
+});;Logger.app.directive("modal", function() {
 	return {
 		restrict: "E",
 		templateUrl: "templates/modal.html",
@@ -593,14 +604,7 @@ String.prototype.padLeft = function (paddingValue) {
 	var scope = angular.element($(selector)[0]).scope();
 	console.log(scope);
 	return scope;
-}
-
-window.onerror = function(msg, url, line, col, error) {
-	var extra = !col ? '' : '\ncolumn: ' + col;
-	extra += !error ? '' : '\nerror: ' + error;
-
-	alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
-};;Logger.ANIMATION_SPEED = 250;
+};Logger.ANIMATION_SPEED = 250;
 
 Logger.app.config(["$interpolateProvider", function($interpolateProvider) {
 	$interpolateProvider.startSymbol("[[");
@@ -616,12 +620,48 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.otherwise({ redirectTo: "/new-log" });
 }]);
 
-Logger.app.run(function($rootScope) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q) {
 	var history = [];
+
+	$rootScope.menuVisible = false;
+
+	$rootScope.showMenu = function() {
+		$rootScope.menuVisible = true;
+	};
+
+	$rootScope.hideMenu = function() {
+		$rootScope.menuVisible = false;
+	};
 
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
 		_handleBack();
 	});
+
+	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
+		var collections = result[0], logs = result[1];
+		for (var i = 0; i < collections.length; i++) {
+			for (var j = 0; j < logs.length; j++) {
+				if (collections[i].id == logs[j].collectionId) {
+					if (!collections[i].logs)
+						collections[i].logs = [];
+					collections[i].logs.push(logs[j]);
+				}
+			}
+		}
+
+		$rootScope.collections = collections;
+	});
+
+	function _loadCollections() {
+		return collectionRepository.all();
+	}
+
+	function _loadLogs() {
+		return logRepository.all().then(function(logs) {
+			$rootScope.logs = logs;
+			return logs;
+		});
+	}
 
 	function _handleBack() {
 		if (history.length > 25)
@@ -642,11 +682,13 @@ Logger.app.run(function($rootScope) {
 		}
 		return isBack;
 	}
-});;Logger.app.factory("collections", function($http) {
+});
+
+;Logger.app.factory("collectionRepository", function($http) {
 	return {
-		contains: function(string) {
+		all: function() {
 			return $http.get("scripts/fixtures/collections.json").then(function(result) {
-				result.data.sort(function(first, second) {
+				result.data.sort(function (first, second) {
 					if (first.name < second.name)
 						return -1;
 					if (first.name == second.name)
@@ -654,28 +696,43 @@ Logger.app.run(function($rootScope) {
 					return 1;
 				});
 
+				return result.data;
+			});
+		},
+
+		contains: function(string) {
+			return all().then(function(all) {
 				var collections = [];
 				if (!string || string == "")
 					return collections;
 
 				string = string.toLowerCase();
-				for (var i = 0; i < result.data.length; i++)
-					if (result.data[i].name.toLowerCase().indexOf(string) > -1)
-						collections.push(result.data[i]);
+				for (var i = 0; i < all.length; i++)
+					if (all[i].name.toLowerCase().indexOf(string) > -1)
+						collections.push(all[i]);
 				return collections;
 			});
 		}
 	}
 });
-;Logger.app.factory("measurementRepository", ["$http", function($http) {
+;Logger.app.factory("logRepository", function($http) {
 	return {
-		log: function(logId) {
-			return $http.get("scripts/fixtures/measurements.json").then(function(result) {
+		all: function() {
+			return $http.get("scripts/fixtures/logs.json").then(function(result) {
+				result.data.sort(function (first, second) {
+					if (first.name < second.name)
+						return -1;
+					if (first.name == second.name)
+						return 0;
+					return 1;
+				});
+
 				return result.data;
 			});
 		}
 	}
-}]);;Logger.app.factory("feedback", function($rootScope, $timeout) {
+});
+;Logger.app.factory("feedback", function($rootScope, $timeout) {
 	return {
 		message: function(message) {
 			if (!message)

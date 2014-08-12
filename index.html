@@ -9,14 +9,16 @@
 	<body ng-class="{ reverse: isBack }">
 		<section class="content-container slide" ng-view></section>
 
-		<section class="menu">
-			<a href="#/new-log">
-				<i class="fa fa-plus"></i>
-				<span>New Log</span>
-			</a>
-		</section>
-
 		<feedback></feedback>
+
+		<section class="menu" ng-class="{ visible: menuVisible }">
+			<div class="header">
+				<menu-item icon="fa-home" destination="#/all">All Logs</menu-item>
+				<menu-item icon="fa-user" destination="#">Logged In User</menu-item>
+				<menu-item icon="fa-plus" destination="#/new-log">New Log</menu-item>
+				<menu-item icon="fa-tasks" destination="#/collections">Collections</menu-item>
+			</div>
+		</section>
 
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="scripts/thirdParty/angular.min.js"></script>

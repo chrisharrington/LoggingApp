@@ -1,8 +1,8 @@
-Logger.app.factory("collections", function($http) {
+Logger.app.factory("collectionRepository", function($http) {
 	return {
-		contains: function(string) {
+		all: function() {
 			return $http.get("scripts/fixtures/collections.json").then(function(result) {
-				result.data.sort(function(first, second) {
+				result.data.sort(function (first, second) {
 					if (first.name < second.name)
 						return -1;
 					if (first.name == second.name)
@@ -10,14 +10,20 @@ Logger.app.factory("collections", function($http) {
 					return 1;
 				});
 
+				return result.data;
+			});
+		},
+
+		contains: function(string) {
+			return all().then(function(all) {
 				var collections = [];
 				if (!string || string == "")
 					return collections;
 
 				string = string.toLowerCase();
-				for (var i = 0; i < result.data.length; i++)
-					if (result.data[i].name.toLowerCase().indexOf(string) > -1)
-						collections.push(result.data[i]);
+				for (var i = 0; i < all.length; i++)
+					if (all[i].name.toLowerCase().indexOf(string) > -1)
+						collections.push(all[i]);
 				return collections;
 			});
 		}

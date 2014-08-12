@@ -3,7 +3,7 @@ Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collections) {
+Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository) {
 	var _measurements = [];
 	var _tags = [];
 	var _validating = false;
@@ -27,7 +27,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			scope.location = true;
 			scope.nameError = false;
 
-			scope.getCollections = collections.contains;
+			scope.getCollections = collectionRepository.contains;
 
 			scope.save = function() {
 				if (!_validate())

@@ -1,9 +1,35 @@
-@header-height:50px;
-@header-background:rgb(33, 150, 243);
-@header-font-colour:white;
+// Backgrounds
+
+@base-background:#E0E0E0;
+@primary-background:white;
+@secondary-background:rgb(33, 150, 243);
+@tertiary-background:#404040;
+@tertiary-hover:lighten(@tertiary-background, 3%);
+@primary-hover:darken(@primary-background, 3%);
+@input-focus-background:#F8F8F8;
+
+// Borders
+
+@primary-border-colour:@base-background;
+@tertiary-border-colour:lighten(@tertiary-background, 15%);
+@input-border-colour:#C0C0C0;
+
+// Fonts
+
+@primary-font-colour:#444444;
+@primary-font-colour-light:#888888;
+@primary-font-colour-lightest:#AAAAAA;
+
+@secondary-font-colour:white;
+
+@tertiary-font-colour:#DDDDDD;
+
+@icon-font-colour:@secondary-background;
 
 @placeholder-colour:#A0A0A0;
 @webkit-active-colour:rgba(0, 0, 0, 0.1);
+
+// Spacing and sizes
 
 @input-height:40px;
 @button-height:@input-height;
@@ -20,9 +46,11 @@
 @spinner-width:2px;
 
 @dialog-width:300px;
+@header-height:50px;
+
 @dialog-z-index:3;
 
-@hover-colour:darken(@tile-background-colour, 3%);
+// Animation
 
 @animation-speed-slow:@animation-speed*1.5;
 @animation-speed:250ms;
@@ -33,67 +61,15 @@
 
 
 
-@overlay-z-index:8;
-@header-z-index:7;
-@feedback-z-index:@dialog-z-index;
-@slide-menu-z-index:6;
 
 
-@button-size:@input-height;
-@button-size-small:28px;
 
 
-@dialog-spacing:@spacing;
 
-@logo-colour:#67CF53;
 
-@dark-gradient-top-colour:#222222;
-@dark-gradient-bottom-colour:#444444;
-@dialog-background:white;
-@dialog-hover-background:darken(@dialog-background, 5%);
 
-@base-background-colour:#E0E0E0;
-@border-colour:@base-background-colour;
-@border-colour-light:#F0F0F0;
-@border-colour-dark:#707070;
 
-@input-border-colour:#C0C0C0;
-@input-focus-background:#F8F8F8;
 
-@low-priority:#0F7AD1;
-@medium-priority:#03AD1D;
-@high-priority:#E8E34F;
-@critical-priority:#BF0000;
 
-@low-priority-background:#5295a5;
-@medium-priority-background:#eeb838;
-@high-priority-background:#f27b56;
-@critical-priority-background:#CF3A3C;
 
-@primary-font-colour:#444444;
-@primary-font-colour-light:#888888;
-@primary-font-colour-lightest:#AAAAAA;
-@primary-font-colour-dark:#444444;
-@primary-font-colour-dark-background:#DDDDDD;
-@icon-font-colour:@header-background;
 
-@secondary-font-colour-light:#67CF53;//6AAEEB
-@secondary-font-colour:darken(@secondary-font-colour-light, 15%);
-@secondary-font-colour-dark-background:darken(@secondary-font-colour-light, 5%);
-@secondary-background-colour-top:lighten(@secondary-font-colour, 5%);
-@secondary-background-colour-bottom:darken(@secondary-background-colour-top, 15%);
-
-@positive-colour:@secondary-background-colour-top;
-@positive-colour-dark:@secondary-background-colour-bottom;
-@negative-colour:#D44E4E;
-@negative-colour-dark:#8C2626;
-
-@error-gradient-light-colour:#A61212;
-@error-gradient-dark-colour:#C23232;
-
-@tile-background-colour:white;
-
-@active-highlight:lighten(@secondary-font-colour, 28%);
-
-@scrollbar-background:@border-colour;
-@scrollbar-foreground:@secondary-font-colour;

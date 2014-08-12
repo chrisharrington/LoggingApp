@@ -14,12 +14,48 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.otherwise({ redirectTo: "/new-log" });
 }]);
 
-Logger.app.run(function($rootScope) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q) {
 	var history = [];
+
+	$rootScope.menuVisible = false;
+
+	$rootScope.showMenu = function() {
+		$rootScope.menuVisible = true;
+	};
+
+	$rootScope.hideMenu = function() {
+		$rootScope.menuVisible = false;
+	};
 
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
 		_handleBack();
 	});
+
+	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
+		var collections = result[0], logs = result[1];
+		for (var i = 0; i < collections.length; i++) {
+			for (var j = 0; j < logs.length; j++) {
+				if (collections[i].id == logs[j].collectionId) {
+					if (!collections[i].logs)
+						collections[i].logs = [];
+					collections[i].logs.push(logs[j]);
+				}
+			}
+		}
+
+		$rootScope.collections = collections;
+	});
+
+	function _loadCollections() {
+		return collectionRepository.all();
+	}
+
+	function _loadLogs() {
+		return logRepository.all().then(function(logs) {
+			$rootScope.logs = logs;
+			return logs;
+		});
+	}
 
 	function _handleBack() {
 		if (history.length > 25)
@@ -41,3 +77,4 @@ Logger.app.run(function($rootScope) {
 		return isBack;
 	}
 });
+
