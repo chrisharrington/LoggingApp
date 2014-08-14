@@ -2487,6 +2487,7 @@ section.content-container > div {
 }
 section.menu {
   width: 250px;
+  height: 100%;
   position: absolute;
   z-index: 3;
   background: #0960a5;
@@ -2515,6 +2516,7 @@ section.menu a {
   color: inherit !important;
   cursor: pointer;
   text-decoration: none;
+  border-bottom: solid 1px #0a6ebd;
 }
 section.menu a > * {
   float: left;
@@ -2533,9 +2535,6 @@ section.menu a > i.icon {
   font-size: 1.25em;
   width: 18px;
   text-align: center;
-}
-section.menu a:first-child {
-  border-top: none;
 }
 section.menu a:hover {
   background: #0a6ebd;

@@ -620,18 +620,10 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.otherwise({ redirectTo: "/new-log" });
 }]);
 
-Logger.app.run(function($rootScope, collectionRepository, logRepository, $q) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
+	menu.init();
+
 	var history = [];
-
-	$rootScope.menuVisible = false;
-
-	$rootScope.showMenu = function() {
-		$rootScope.menuVisible = true;
-	};
-
-	$rootScope.hideMenu = function() {
-		$rootScope.menuVisible = false;
-	};
 
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
 		_handleBack();
@@ -684,7 +676,31 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q) {
 	}
 });
 
-;Logger.app.factory("collectionRepository", function($http) {
+;Logger.app.factory("menu", function($rootScope, once) {
+	return {
+		init: function() {
+			once("menu-init", function() {
+				$(window).on("click", function(e) {
+					var target = $(e.target);
+					if (target.attr("menu-trigger") !== "" && target.attr("menu") !== "" && (target.parents("[menu]").length === 0 || target.parents("menu-item").length !== 0))
+						$rootScope.$apply(function() {
+							$rootScope.hideMenu();
+						});
+				});
+			});
+
+			$rootScope.menuVisible = false;
+
+			$rootScope.showMenu = function() {
+				$rootScope.menuVisible = true;
+			};
+
+			$rootScope.hideMenu = function() {
+				$rootScope.menuVisible = false;
+			};
+		}
+	}
+});;Logger.app.factory("collectionRepository", function($http) {
 	return {
 		all: function() {
 			return $http.get("scripts/fixtures/collections.json").then(function(result) {

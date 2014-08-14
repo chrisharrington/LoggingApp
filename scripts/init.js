@@ -14,18 +14,10 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.otherwise({ redirectTo: "/new-log" });
 }]);
 
-Logger.app.run(function($rootScope, collectionRepository, logRepository, $q) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
+	menu.init();
+
 	var history = [];
-
-	$rootScope.menuVisible = false;
-
-	$rootScope.showMenu = function() {
-		$rootScope.menuVisible = true;
-	};
-
-	$rootScope.hideMenu = function() {
-		$rootScope.menuVisible = false;
-	};
 
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
 		_handleBack();
