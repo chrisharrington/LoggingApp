@@ -29,10 +29,6 @@ Logger.app.controller("header", function($scope) {
 			}
 		}
 	];
-
-	function _getImageSize() {
-
-	}
 }]);;Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.init($scope);
 	newLog.load($scope);
@@ -364,7 +360,15 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			}
 		}
 	}
-}]);;Logger.app.directive("menuItem", function() {
+}]);;Logger.app.directive("logTile", function() {
+	return {
+		restrict: "E",
+		templateUrl: "templates/logTile.html",
+		scope: {
+			log: "="
+		}
+	};
+});;Logger.app.directive("menuItem", function() {
 	return {
 		restrict: "E",
 		templateUrl: "templates/menuItem.html",
@@ -396,18 +400,40 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			});
 		}
 	}
-});;Logger.app.directive("ngSlideshow", function ($compile) {
+});;Logger.app.directive("slideshow", function ($timeout) {
 	return {
-		restrict: "A",
+		restrict: "E",
 		templateUrl: "templates/slideshow.html",
 		scope: {
-			pictures: "=ngSlideshow"
+			urls: "="
 		},
-		link: {
-			post: function(scope, element, attributes) {
-				var length = $(element).find("img").length;
+		link: function(scope, element) {
+			scope.loading = true;
+
+			$timeout(function() {
+				imagesLoaded($(element).find("img"), function() {
+					scope.$apply(function() {
+						scope.loading = false;
+
+						showImage(0);
+						setInterval(function () {
+							var index = parseInt($(element).find("div.image-container.visible").attr("index"));
+							showImage(index = (index == scope.urls.length - 1) ? 0 : (index + 1));
+						}, 5000);
+					});
+				});
+			});
+
+			function showImage(index) {
+				$(element).find("div.image-container.visible").removeClass("visible");
+				$($(element).find("div.image-container")[index]).addClass("visible");
 			}
 		}
+	};
+});;Logger.app.directive("spinner", function() {
+	return {
+		restrict: "E",
+		templateUrl: "templates/spinner.html"
 	};
 });;Logger.app.directive("text", function() {
 	return {
@@ -617,7 +643,7 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
 		.when("/new-log/measurement", { templateUrl: "views/newMeasurement.html", controller: "new-measurement" })
 		.when("/new-log/tag", { templateUrl: "views/newTag.html", controller: "new-tag" })
-		.otherwise({ redirectTo: "/new-log" });
+		.otherwise({ redirectTo: "/logs" });
 }]);
 
 Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {

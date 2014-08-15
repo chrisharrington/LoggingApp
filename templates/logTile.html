@@ -1,0 +1,21 @@
+<div class="tile">
+	<h2>[[log.name]]</h2>
+	<div class="icons">
+		<i class="fa fa-map-marker"></i>
+		<i class="fa fa-camera"></i>
+	</div>
+	<slideshow ng-show="[[log.pictures.length > 0]]" urls="log.pictures"></slideshow>
+	<div class="pictures" ng-show="[[log.pictures.length > 0]]"></div>
+	<div class="map" ng-show="[[log.location]]">
+		<img ng-src="[[log.location.url]]" alt="location" />
+	</div>
+	<div class="recordings">
+		<div ng-repeat="measurement in log.measurements">
+			<span class="name">[[measurement.name]]</span>
+			<span class="value">[[measurement.value]]</span>
+		</div>
+		<div ng-repeat="tag in log.tags">
+			<span class="name">[[tag.name]]</span>
+		</div>
+	</div>
+</div>

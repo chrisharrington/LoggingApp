@@ -27,8 +27,4 @@ Logger.app.controller("logs", ["$scope", function($scope) {
 			}
 		}
 	];
-
-	function _getImageSize() {
-
-	}
 }]);

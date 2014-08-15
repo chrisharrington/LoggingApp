@@ -1,0 +1,17 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+slideshow {
+	@picture-height:200px;
+	>div.slideshow { float:left; width:100%; height:@picture-height; padding:0; position:relative;
+		>div.spinner-container { display:none !important; width:100%; text-align:center; .vertical-centre(@picture-height); }
+		>div.image-container { position:absolute; z-index:1; width:100%; background:black; height:100%; overflow:hidden; .transition(opacity ease 2s); opacity:0;
+			>img { float:left; width:100%; height:100%; }
+			&.visible { opacity:1; }
+		}
+	}
+	>div.slideshow.loading {
+		>div.spinner-container { display:inline-block !important; }
+		>div.image-container { display:none; }
+	}
+}

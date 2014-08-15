@@ -11,7 +11,7 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
 		.when("/new-log/measurement", { templateUrl: "views/newMeasurement.html", controller: "new-measurement" })
 		.when("/new-log/tag", { templateUrl: "views/newTag.html", controller: "new-tag" })
-		.otherwise({ redirectTo: "/new-log" });
+		.otherwise({ redirectTo: "/logs" });
 }]);
 
 Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {

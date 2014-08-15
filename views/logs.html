@@ -1,22 +1,8 @@
+<header>
+	<a class="fa fa-bars" ng-click="showMenu()" menu-trigger></a>
+	<h3 class="title">All Logs</h3>
+</header>
+
 <div class="logs-container">
-	<div class="tile" ng-repeat="log in logs">
-		<h2>[[log.name]]</h2>
-		<div class="icons">
-			<i class="fa fa-map-marker"></i>
-			<i class="fa fa-camera"></i>
-		</div>
-		<div class="pictures" ng-show="[[log.pictures.length > 0]]" ng-slideshow="log.pictures"></div>
-		<div class="map" ng-show="[[log.location]]">
-			<img src="[[log.location.url]]" alt="location" />
-		</div>
-		<div class="recordings">
-			<div ng-repeat="measurement in log.measurements">
-				<span class="name">[[measurement.name]]</span>
-				<span class="value">[[measurement.value]]</span>
-			</div>
-			<div ng-repeat="tag in log.tags">
-				<span class="name">[[tag.name]]</span>
-			</div>
-		</div>
-	</div>
+	<log-tile ng-repeat="log in logs" log="log"></log-tile>
 </div>

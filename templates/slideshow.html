@@ -1,3 +1,8 @@
-<div class="spinner">
-	<img src="[[picture]]" ng-repeat="picture in pictures" alt="" />
+<div class="slideshow" ng-class="{ loading: loading }">
+	<div class="spinner-container">
+		<spinner></spinner>
+	</div>
+	<div class="image-container" ng-repeat="url in urls" index="[[$index]]">
+		<img class="blah" ng-src="[[url]]" alt="" />
+	</div>
 </div>
