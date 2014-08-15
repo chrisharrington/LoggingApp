@@ -2086,6 +2086,18 @@ div.logs-container > log-tile {
 div.logs-container > log-tile:first-child {
   margin-top: 0;
 }
+div.logs-container > div.spinner-container {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+div.logs-container.loading > log-tile {
+  display: none;
+}
+div.logs-container.loading > div.spinner-container {
+  display: block;
+}
 
 .dark-shadow {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);

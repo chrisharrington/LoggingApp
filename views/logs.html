@@ -3,6 +3,9 @@
 	<h3 class="title">All Logs</h3>
 </header>
 
-<div class="logs-container">
+<div class="logs-container" ng-class="{ loading: loading }">
+	<div class="spinner-container">
+		<spinner colour="red"></spinner>
+	</div>
 	<log-tile ng-repeat="log in logs" log="log"></log-tile>
 </div>
