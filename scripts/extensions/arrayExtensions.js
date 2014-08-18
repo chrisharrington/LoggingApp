@@ -16,3 +16,8 @@ Array.prototype.where = function(func) {
 Array.prototype.first = function(func) {
 	return this.where(func)[0];
 };
+
+Array.prototype.pushAll = function(array) {
+	for (var i = 0; i < array.length; i++)
+		this.push(array[i]);
+};

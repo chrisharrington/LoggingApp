@@ -28,9 +28,10 @@
 			{ "name": "Laps", "value": "10" }
 		],
 		"tags": [],
-		"location": {
-			"url": "//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x200&scale=2&markers=Cardel Place, Calgary"
-		},
+		"pictures": [
+			"http://postmediaprovince.files.wordpress.com/2012/08/canadian-synchro-duet.jpg",
+			"//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x200&scale=2&markers=Cardel Place, Calgary"
+		],
 		"created": 1408134113244
 	}
 ]

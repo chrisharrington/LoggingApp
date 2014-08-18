@@ -1,6 +1,11 @@
-Logger.app.controller("logs", ["$scope", function($scope, logRepository) {
+Logger.app.controller("logs", function($scope, logRepository) {
 	$scope.logs = [];
 	$scope.loading = true;
+
+	logRepository.latest().then(function(logs) {
+		$scope.loading = false;
+		$scope.logs.pushAll(logs);
+	});
 //
 //		{
 //			name: "Running",
@@ -29,4 +34,4 @@ Logger.app.controller("logs", ["$scope", function($scope, logRepository) {
 //			}
 //		}
 //	];
-}]);
+});

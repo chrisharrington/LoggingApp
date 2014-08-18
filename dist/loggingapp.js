@@ -1,8 +1,13 @@
 Logger.app.controller("header", function($scope) {
 
-});;Logger.app.controller("logs", ["$scope", function($scope, logRepository) {
+});;Logger.app.controller("logs", function($scope, logRepository) {
 	$scope.logs = [];
 	$scope.loading = true;
+
+	logRepository.latest().then(function(logs) {
+		$scope.loading = false;
+		$scope.logs.pushAll(logs);
+	});
 //
 //		{
 //			name: "Running",
@@ -31,7 +36,7 @@ Logger.app.controller("header", function($scope) {
 //			}
 //		}
 //	];
-}]);;Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
+});;Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.init($scope);
 	newLog.load($scope);
 }]);
@@ -413,17 +418,14 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			scope.loading = true;
 
 			$timeout(function() {
-				imagesLoaded($(element).find("img"), function() {
-					scope.$apply(function() {
-						scope.loading = false;
+				scope.loading = false;
 
-						showImage(0);
-						setInterval(function () {
-							var index = parseInt($(element).find("div.image-container.visible").attr("index"));
-							showImage(index = (index == scope.urls.length - 1) ? 0 : (index + 1));
-						}, 5000);
-					});
-				});
+				var count = $(element).find("div.image-container").length;
+				showImage(0);
+				setInterval(function () {
+					var index = parseInt($(element).find("div.image-container.visible").attr("index"));
+					showImage(index = (index == count - 1) ? 0 : (index + 1));
+				}, 5000);
 			});
 
 			function showImage(index) {
@@ -439,12 +441,8 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 		scope: {
 			colour: "@",
 			borderWidth: "@",
-			size: "@"
-		},
-		link: function(scope) {
-			scope.colour = scope.colour || "#2196F3";
-			scope.borderWidth = scope.borderWidth || "2px";
-			scope.size = scope.size || "32px";
+			size: "@",
+			backgroundColour: "@"
 		}
 	};
 });;Logger.app.directive("text", function() {
@@ -494,6 +492,11 @@ Array.prototype.where = function(func) {
 
 Array.prototype.first = function(func) {
 	return this.where(func)[0];
+};
+
+Array.prototype.pushAll = function(array) {
+	for (var i = 0; i < array.length; i++)
+		this.push(array[i]);
 };;
 Date.prototype.toApplicationString = function() {
 	return this.getFullYear() + "-" + (this.getMonth() + 1).toString().padLeft("00") + "-" + this.getDate().toString().padLeft("00") + " " + this.getHours().toString().padLeft("00") + ":" + this.getMinutes().toString().padLeft("00") + ":" + this.getSeconds().toString().padLeft("00");
@@ -786,10 +789,12 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 		},
 
 		latest: function() {
-			return this.all().then(function(logs) {
-				logs.sort(function(first, second) {
+			return $http.get("scripts/fixtures/latestLogs.json").then(function(result) {
+				result.data.sort(function (first, second) {
 					return first.created < second.created ? -1 : first.created == second.created ? 0 : 1;
-				})
+				});
+
+				return result.data;
 			});
 		}
 	}

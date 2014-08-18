@@ -9,17 +9,14 @@ Logger.app.directive("slideshow", function ($timeout) {
 			scope.loading = true;
 
 			$timeout(function() {
-				imagesLoaded($(element).find("img"), function() {
-					scope.$apply(function() {
-						scope.loading = false;
+				scope.loading = false;
 
-						showImage(0);
-						setInterval(function () {
-							var index = parseInt($(element).find("div.image-container.visible").attr("index"));
-							showImage(index = (index == scope.urls.length - 1) ? 0 : (index + 1));
-						}, 5000);
-					});
-				});
+				var count = $(element).find("div.image-container").length;
+				showImage(0);
+				setInterval(function () {
+					var index = parseInt($(element).find("div.image-container.visible").attr("index"));
+					showImage(index = (index == count - 1) ? 0 : (index + 1));
+				}, 5000);
 			});
 
 			function showImage(index) {

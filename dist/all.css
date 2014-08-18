@@ -1130,6 +1130,8 @@ slideshow > div.slideshow > div.image-container {
   -o-transition-delay: 100ms;
   transition-delay: 100ms;
   opacity: 0;
+  background-position: center;
+  background-size: cover;
 }
 slideshow > div.slideshow > div.image-container > img {
   float: left;
@@ -2081,10 +2083,10 @@ div.logs-container {
 div.logs-container > log-tile {
   float: left;
   width: 100%;
-  margin-top: 12px;
+  margin-bottom: 12px;
 }
-div.logs-container > log-tile:first-child {
-  margin-top: 0;
+div.logs-container > log-tile:last-child {
+  margin-bottom: 0;
 }
 div.logs-container > div.spinner-container {
   display: none;
