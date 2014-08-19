@@ -9,8 +9,6 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider
 		.when("/logs", { templateUrl: "views/logs.html", controller: "logs" })
 		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
-		.when("/new-log/measurement", { templateUrl: "views/newMeasurement.html", controller: "new-measurement" })
-		.when("/new-log/tag", { templateUrl: "views/newTag.html", controller: "new-tag" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
