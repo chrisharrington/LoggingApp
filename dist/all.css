@@ -1786,6 +1786,50 @@ body.reverse .slide.ng-leave-active {
   -o-transform: translate3d(100%, 0, 0);
   -moz-transform: translate3d(100%, 0, 0);
 }
+.zoom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+}
+.zoom.ng-enter,
+.zoom.ng-leave {
+  -webkit-transition: all 500ms 250ms ease;
+  -moz-transition: all 500ms 250ms ease;
+  -ms-transition: all 500ms 250ms ease;
+  -o-transition: all 500ms 250ms ease;
+  transition: all 500ms 250ms ease;
+  -webkit-transition-delay: 100ms;
+  -moz-transition-delay: 100ms;
+  -ms-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+.zoom.ng-enter {
+  transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -webkit-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
+}
+.zoom.ng-enter-active {
+  transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+}
+.zoom.ng-leave {
+  opacity: 1;
+}
+.zoom.ng-leave-active {
+  opacity: 0;
+}
 
 .dark-shadow {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
