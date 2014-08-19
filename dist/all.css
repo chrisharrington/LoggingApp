@@ -1472,7 +1472,7 @@ body {
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
   font-size: 16px;
   background: #F0F0F0;
-  overflow-x: :hidden;
+  overflow-x: hidden;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 h1,
@@ -1528,6 +1528,7 @@ i.icon-button {
 section.content-container {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+  margin-top: 50px;
 }
 section.content-container > div {
   float: left;
@@ -1577,9 +1578,9 @@ section.content-container > div {
 section.menu {
   width: 250px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 3;
-  background: #0960a5;
+  background: #404040;
   color: #ffffff;
   top: 50px;
   left: -250px;
@@ -1605,7 +1606,7 @@ section.menu a {
   color: inherit !important;
   cursor: pointer;
   text-decoration: none;
-  border-bottom: solid 1px #0a6ebd;
+  border-bottom: solid 1px #666666;
 }
 section.menu a > * {
   float: left;
@@ -1712,9 +1713,7 @@ section.menu.visible {
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
 }
 .slide {
-  position: absolute;
-  left: 0;
-  top: 0;
+  float: left;
   width: 100%;
 }
 .slide.ng-enter,
@@ -1952,7 +1951,8 @@ div.description-form > div > span {
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
 }
 header {
-  float: left;
+  position: fixed;
+  z-index: 2;
   width: 100%;
   height: 50px;
   box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);

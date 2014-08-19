@@ -1,13 +1,15 @@
 Logger.app.controller("header", function($scope) {
 
-});;Logger.app.controller("logs", function($scope, logRepository) {
+});;Logger.app.controller("logs", function($rootScope, $scope, logRepository) {
+	$rootScope.title = "Logs";
+
 	$scope.logs = [];
 	$scope.loading = true;
 
 	logRepository.latest().then(function(logs) {
 		$scope.loading = false;
 		$scope.logs.pushAll(logs);
-	});
+	})
 //
 //		{
 //			name: "Running",
@@ -60,6 +62,8 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 		},
 
 		load: function(scope) {
+			$rootScope.title = "New Log";
+
 			scope.name = "";
 			scope.collection = "";
 			scope.location = true;
@@ -662,13 +666,8 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 }]);
 
 Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
+	$rootScope.title = "";
 	menu.init();
-
-	var history = [];
-
-	$rootScope.$on("$routeChangeStart", function (event, next, current) {
-		_handleBack();
-	});
 
 	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
 		var collections = result[0], logs = result[1];
@@ -694,26 +693,6 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 			$rootScope.logs = logs;
 			return logs;
 		});
-	}
-
-	function _handleBack() {
-		if (history.length > 25)
-			history.shift();
-		history.push(window.location.hash);
-
-		$rootScope.isBack = _isBack();
-	}
-
-	function _isBack() {
-		if (!history || history.length < 3)
-			return false;
-
-		var isBack = history[history.length-1] === history[history.length-3];
-		if (isBack) {
-			history.pop();
-			history.pop();
-		}
-		return isBack;
 	}
 });
 

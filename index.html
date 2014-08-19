@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="dist/all.css" type="text/css" />
 </head>
 	<body ng-class="{ reverse: isBack }">
+		<header>
+			<a class="fa fa-bars" ng-click="showMenu()" menu-trigger></a>
+			<h3 class="title">[[title]]</h3>
+		</header>
+
 		<section class="content-container zoom" ng-view></section>
 
 		<feedback></feedback>

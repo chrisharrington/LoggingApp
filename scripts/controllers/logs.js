@@ -1,11 +1,13 @@
-Logger.app.controller("logs", function($scope, logRepository) {
+Logger.app.controller("logs", function($rootScope, $scope, logRepository) {
+	$rootScope.title = "Logs";
+
 	$scope.logs = [];
 	$scope.loading = true;
 
 	logRepository.latest().then(function(logs) {
 		$scope.loading = false;
 		$scope.logs.pushAll(logs);
-	});
+	})
 //
 //		{
 //			name: "Running",

@@ -22,6 +22,8 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 		},
 
 		load: function(scope) {
+			$rootScope.title = "New Log";
+
 			scope.name = "";
 			scope.collection = "";
 			scope.location = true;
