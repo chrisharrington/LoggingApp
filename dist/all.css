@@ -1102,6 +1102,7 @@ slideshow > div.slideshow {
   height: 200px;
   padding: 0;
   position: relative;
+  overflow-x: hidden;
 }
 slideshow > div.slideshow > div.spinner-container {
   display: none !important;
@@ -1119,27 +1120,39 @@ slideshow > div.slideshow > div.image-container {
   background: black;
   height: 100%;
   overflow: hidden;
-  -webkit-transition: opacity ease 2s;
-  -moz-transition: opacity ease 2s;
-  -ms-transition: opacity ease 2s;
-  -o-transition: opacity ease 2s;
-  transition: opacity ease 2s;
+  background-position: center;
+  background-size: cover;
+}
+slideshow > div.slideshow > div.image-container.next {
+  transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+}
+slideshow > div.slideshow > div.image-container.sliding {
+  transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -webkit-transition: all ease 1s;
+  -moz-transition: all ease 1s;
+  -ms-transition: all ease 1s;
+  -o-transition: all ease 1s;
+  transition: all ease 1s;
   -webkit-transition-delay: 100ms;
   -moz-transition-delay: 100ms;
   -ms-transition-delay: 100ms;
   -o-transition-delay: 100ms;
   transition-delay: 100ms;
-  opacity: 0;
-  background-position: center;
-  background-size: cover;
 }
-slideshow > div.slideshow > div.image-container > img {
-  float: left;
-  width: 100%;
-  height: 100%;
-}
-slideshow > div.slideshow > div.image-container.visible {
-  opacity: 1;
+slideshow > div.slideshow > div.image-container.next.sliding {
+  transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 }
 slideshow > div.slideshow.loading > div.spinner-container {
   display: inline-block !important;

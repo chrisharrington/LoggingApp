@@ -423,7 +423,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			});
 		}
 	}
-});;Logger.app.directive("slideshow", function ($timeout) {
+});;Logger.app.directive("slideshow", function ($timeout, imageLoader) {
 	return {
 		restrict: "E",
 		templateUrl: "templates/slideshow.html",
@@ -431,26 +431,63 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			urls: "="
 		},
 		link: function(scope, element) {
-			scope.loading = true;
-
-			$timeout(function() {
-				scope.loading = false;
-
-				var count = $(element).find("div.image-container").length;
-				showImage(0);
-				setInterval(function () {
-					var index = parseInt($(element).find("div.image-container.visible").attr("index"));
-					showImage(index = (index == count - 1) ? 0 : (index + 1));
-				}, 5000);
+			$("h3").click(function() {
+				scope.$apply(function() {
+					slideImages(index++, element);
+					if (index > urls.length-1)
+						index = 0;
+				});
 			});
 
-			function showImage(index) {
-				$(element).find("div.image-container.visible").removeClass("visible");
-				$($(element).find("div.image-container")[index]).addClass("visible");
+			$(element).find("div.image-container.current").on(whichTransitionEvent(), function() {
+				scope.$apply(function() {
+					scope.sliding = false;
+					scope.swap = !scope.swap;
+
+//							var current = $(element).find("div.image-container.current"), next = $(element).find("div.image-container.next");
+//							current.removeClass("current").addClass("next");
+//							next.removeClass("next").addClass("current");
+				});
+			});
+
+			scope.loading = true;
+			scope.current = "";
+			scope.sliding = false;
+			scope.swap = true;
+
+			var index = 0, urls = scope.urls;
+
+			imageLoader.load(urls).then(function() {
+				scope.loading = false;
+
+			});
+
+			function slideImages(index, element) {
+				scope.sliding = true;
+				$(element).find("div.image-container.current").css("background-image", "url('" + urls[index++] + "')");
+				$(element).find("div.image-container.next").css("background-image", "url('" + urls[index] + "')");
 			}
 		}
 	};
-});;Logger.app.directive("spinner", function() {
+});
+
+function whichTransitionEvent(){
+	var t;
+	var el = document.createElement('fakeelement');
+	var transitions = {
+		'transition':'transitionend',
+		'OTransition':'oTransitionEnd',
+		'MozTransition':'transitionend',
+		'WebkitTransition':'webkitTransitionEnd'
+	}
+
+	for(t in transitions){
+		if( el.style[t] !== undefined ){
+			return transitions[t];
+		}
+	}
+}
+;Logger.app.directive("spinner", function() {
 	return {
 		restrict: "E",
 		templateUrl: "templates/spinner.html",
@@ -833,6 +870,20 @@ Logger.app.directive("feedback", function($rootScope) {
 			});
 		}
 	};
+});;Logger.app.service("imageLoader", function($q) {
+	return {
+		load: function(urls) {
+			var deferred = $q.defer();
+			var count = urls.length;
+			for (var i = 0; i < urls.length; i++)
+				$("body").append($("<img />", { style: "display: none !important", src: urls[i] }).on("load", function () {
+					count--;
+					if (count == 0)
+						deferred.resolve();
+				}));
+			return deferred.promise;
+		}
+	}
 });;Logger.app.factory("once", function() {
 	var keys = {};
 

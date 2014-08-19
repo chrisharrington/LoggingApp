@@ -2,5 +2,7 @@
 	<div class="spinner-container">
 		<spinner></spinner>
 	</div>
-	<div class="image-container" ng-repeat="url in urls" index="[[$index]]" style="background-image:url('[[url]]')"></div>
+	<img ng-src="[[url]]" ng-repeat="url in urls" alt="" class="hidden" />
+	<div class="image-container" ng-class="{ sliding: sliding, current: swap, next: !swap }"></div>
+	<div class="image-container" ng-class="{ sliding: sliding, current: !swap, next: swap }"></div>
 </div>
