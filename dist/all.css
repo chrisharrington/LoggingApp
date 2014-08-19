@@ -1586,6 +1586,16 @@ section.menu {
   left: -250px;
   font-size: 0.875em;
   box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
+  -webkit-transition: all ease 250ms;
+  -moz-transition: all ease 250ms;
+  -ms-transition: all ease 250ms;
+  -o-transition: all ease 250ms;
+  transition: all ease 250ms;
+  -webkit-transition-delay: 100ms;
+  -moz-transition-delay: 100ms;
+  -ms-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
 }
 section.menu menu-item a {
   float: left;
