@@ -1597,7 +1597,7 @@ section.menu {
   -o-transition-delay: 100ms;
   transition-delay: 100ms;
 }
-section.menu a {
+section.menu menu-item a {
   float: left;
   width: 100%;
   padding: 0 12px;
@@ -1608,23 +1608,60 @@ section.menu a {
   text-decoration: none;
   border-bottom: solid 1px #666666;
 }
-section.menu a > * {
+section.menu menu-item a > * {
   float: left;
   height: 40px !important;
   line-height: 40px;
   display: inline-block;
   vertical-align: middle;
 }
-section.menu a > span {
+section.menu menu-item a > span {
   margin-left: 12px;
 }
-section.menu a > i.fa-angle-right {
+section.menu menu-item a > i.fa-angle-right {
   float: right;
 }
-section.menu a > i.icon {
+section.menu menu-item a > i.icon {
   font-size: 1.25em;
   width: 18px;
   text-align: center;
+}
+section.menu a.user {
+  float: left;
+  width: 100%;
+  padding: 12px;
+  border-bottom: solid 1px #666666;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+section.menu a.user > gravatar {
+  float: left;
+  width: 35px;
+}
+section.menu a.user > gravatar img {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+section.menu a.user > div {
+  float: left;
+  width: 100%;
+  padding-left: 47px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin-top: -35px;
+}
+section.menu a.user > div > span {
+  float: left;
+  width: 100%;
+}
+section.menu a.user > div > span.name {
+  color: white;
+}
+section.menu a.user > div > span.email {
+  color: #B0B0B0;
+  margin-top: 4px;
+  font-size: 0.75em;
 }
 section.menu a:hover {
   background: #0a6ebd;

@@ -16,6 +16,10 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 
 Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
 	$rootScope.title = "";
+	$rootScope.user = {
+		email: "chrisharrington99@gmail.com"
+	};
+
 	menu.init();
 
 	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
