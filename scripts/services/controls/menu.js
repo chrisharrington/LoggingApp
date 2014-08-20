@@ -15,6 +15,7 @@ Logger.app.factory("menu", function($rootScope, once) {
 
 			$rootScope.showMenu = function() {
 				$rootScope.menuVisible = true;
+				$("section.menu").hide().show(0);
 			};
 
 			$rootScope.hideMenu = function() {

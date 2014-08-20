@@ -739,6 +739,7 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 
 			$rootScope.showMenu = function() {
 				$rootScope.menuVisible = true;
+				$("section.menu").hide().show(0);
 			};
 
 			$rootScope.hideMenu = function() {
