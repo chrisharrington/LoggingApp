@@ -1482,6 +1482,7 @@ text.error div.focus > div {
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
   font-size: 16px;
   background: #F0F0F0;
@@ -1539,11 +1540,21 @@ i.icon-button {
   vertical-align: middle;
 }
 section.content-container {
+  float: left;
+  width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  margin-top: 50px;
+  height: 100%;
+  padding-top: 50px;
 }
-section.content-container > div {
+section.content-container > div.inner {
+  float: left;
+  width: 100%;
+  overflow-y: scroll;
+  height: 100%;
+  overflow-x: hidden;
+}
+section.content-container > div.inner > div {
   float: left;
   width: 100%;
   padding: 12px;
@@ -1591,7 +1602,7 @@ section.content-container > div {
 section.menu {
   width: 250px;
   height: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 3;
   background: #404040;
   color: #ffffff;
@@ -2006,13 +2017,14 @@ div.description-form > div > span {
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
 }
 header {
-  position: fixed;
-  z-index: 2;
+  float: left;
   width: 100%;
   height: 50px;
   box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
   background: #2196f3;
   color: #ffffff;
+  position: relative;
+  z-index: 2;
 }
 header * {
   color: inherit;
