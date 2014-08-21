@@ -1,7 +1,7 @@
 @import "variables.less";
 @import "mixins.less";
 
-body { margin:0; padding:0; overflow:hidden; .regular-font; font-size:16px; background:#F0F0F0; overflow-x:hidden; -webkit-tap-highlight-color:@webkit-active-colour; }
+body { margin:0; padding:0; overflow-x:hidden; .regular-font; font-size:16px; background:#F0F0F0; -webkit-tap-highlight-color:@webkit-active-colour; }
 
 h1, h2, h3, h4, h5 { padding:0; margin:0; font-weight:normal; }
 h1, h2 { .condensed-font; }
@@ -19,7 +19,5 @@ a { color:@secondary-background; }
 i.icon-button { text-align:center; background:@secondary-background; color:@secondary-font-colour; cursor:pointer; .border-radius; padding:0 @spacing; .vertical-centre(40px); }
 
 section.content-container { float:left; width:100%; .border-box; height:100%; padding-top:@header-height;
-	>div.inner { float:left; width:100%; overflow-y:scroll; height:100%; overflow-x:hidden;
-		>div { float:left; width:100%; padding:@spacing; .border-box; }
-	}
+	>div { float:left; width:100%; padding:@spacing; .border-box; }
 }
