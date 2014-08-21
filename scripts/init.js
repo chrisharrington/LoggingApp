@@ -9,6 +9,7 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider
 		.when("/logs", { templateUrl: "views/logs.html", controller: "logs" })
 		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
+		.when("/sign-in", { templateUrl: "views/signIn.html", controller: "sign-in" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
