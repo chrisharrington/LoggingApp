@@ -1652,6 +1652,7 @@ section.menu a.user > gravatar {
   width: 35px;
 }
 section.menu a.user > gravatar img {
+  float: left;
   width: 35px;
   height: 35px;
   border-radius: 100%;
@@ -1670,11 +1671,15 @@ section.menu a.user > div > span {
 }
 section.menu a.user > div > span.name {
   color: white;
+  line-height: 15px;
+  margin-top: 3px;
 }
 section.menu a.user > div > span.email {
   color: #B0B0B0;
   margin-top: 4px;
   font-size: 0.75em;
+  line-height: 13px;
+  margin-top: 2px;
 }
 section.menu a:hover {
   background: #0a6ebd;

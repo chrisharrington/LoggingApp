@@ -17,12 +17,12 @@ section.menu { width:250px; height:100%; position:fixed; z-index:@dialog-z-index
 	a.user { float:left; width:100%; padding:@spacing; border-bottom:solid 1px @tertiary-border-colour; .border-box;
 		@icon-size:35px;
 		>gravatar { float:left; width:@icon-size;
-			img { width:35px; height:@icon-size; border-radius:100%; }
+			img { float:left; width:@icon-size; height:@icon-size; border-radius:100%; }
 		}
 		>div { float:left; width:100%; padding-left:@icon-size+@spacing; .border-box; margin-top:@icon-size*-1;
 			>span { float:left; width:100%; }
-			>span.name { color:white; }
-			>span.email { color:#B0B0B0; margin-top:@tiny-spacing; font-size:0.75em; }
+			>span.name { color:white; line-height:15px; margin-top:3px; }
+			>span.email { color:#B0B0B0; margin-top:@tiny-spacing; font-size:0.75em; line-height:13px; margin-top:2px; }
 		}
 	}
 
