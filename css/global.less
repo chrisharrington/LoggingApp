@@ -19,8 +19,8 @@ a { color:@secondary-background; }
 
 i.icon-button { text-align:center; background:@secondary-background; color:@secondary-font-colour; cursor:pointer; .border-radius; padding:0 @spacing; .vertical-centre(40px); }
 
-section.content-container { position:absolute; left:0; top:0; width:100%; .border-box; height:100%; overflow:hidden; padding-top:@header-height;
-	>div.inner { float:left; width:100%; overflow-y:scroll; height:100%;
+section.content-container { float:left; width:100%; .border-box; height:100%;
+	>div.inner { float:left; width:100%; overflow-y:scroll; height:100%; overflow-x:hidden;
 		>div { float:left; width:100%; padding:@spacing; .border-box; }
 	}
 }

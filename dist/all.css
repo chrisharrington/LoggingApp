@@ -1544,21 +1544,18 @@ i.icon-button {
   vertical-align: middle;
 }
 section.content-container {
-  position: absolute;
-  left: 0;
-  top: 0;
+  float: left;
   width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   height: 100%;
-  overflow: hidden;
-  padding-top: 50px;
 }
 section.content-container > div.inner {
   float: left;
   width: 100%;
   overflow-y: scroll;
   height: 100%;
+  overflow-x: hidden;
 }
 section.content-container > div.inner > div {
   float: left;
