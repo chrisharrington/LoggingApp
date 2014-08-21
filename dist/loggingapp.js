@@ -739,7 +739,6 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 
 			$rootScope.showMenu = function() {
 				$rootScope.menuVisible = true;
-				$("section.menu").hide().show(0);
 			};
 
 			$rootScope.hideMenu = function() {
@@ -754,7 +753,8 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 		}
 	}
 });;Logger.app.factory("collectionRepository", function($http) {
-	return {
+	var that;
+	return that = {
 		all: function() {
 			return $http.get("scripts/fixtures/collections.json").then(function(result) {
 				result.data.sort(function (first, second) {
@@ -770,7 +770,7 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 		},
 
 		contains: function(string) {
-			return all().then(function(all) {
+			return that.all().then(function(all) {
 				var collections = [];
 				if (!string || string == "")
 					return collections;
