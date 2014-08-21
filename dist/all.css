@@ -1544,22 +1544,21 @@ i.icon-button {
   vertical-align: middle;
 }
 section.content-container {
-  float: left;
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   height: 100%;
-  position: relative;
-  margin-top: -50px;
+  overflow: hidden;
+  padding-top: 50px;
 }
 section.content-container > div.inner {
+  float: left;
   width: 100%;
   overflow-y: scroll;
   height: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding-top: 50px;
 }
 section.content-container > div.inner > div {
   float: left;
@@ -1859,10 +1858,6 @@ body.reverse .slide.ng-leave-active {
   -moz-transform: translate3d(100%, 0, 0);
 }
 .zoom {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
   transform: scale(1, 1);
   -ms-transform: scale(1, 1);
   -webkit-transform: scale(1, 1);
