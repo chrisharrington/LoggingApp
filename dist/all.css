@@ -1544,11 +1544,13 @@ i.icon-button {
   vertical-align: middle;
 }
 section.content-container {
-  float: left;
+  position: absolute;
+  padding-top: 50px;
+  left: 0;
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  height: 100%;
 }
 section.content-container > div.inner {
   float: left;
@@ -1605,7 +1607,7 @@ section.content-container > div.inner > div {
 section.menu {
   width: 250px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 3;
   background: #404040;
   color: #ffffff;
@@ -2022,7 +2024,7 @@ header {
   box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
   background: #2196f3;
   color: #ffffff;
-  position: relative;
+  position: fixed;
   z-index: 2;
 }
 header * {
