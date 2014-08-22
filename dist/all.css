@@ -1479,18 +1479,14 @@ text.error div.focus > div {
 .regular-font {
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
 }
-html {
-  height: 100%;
-}
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
   font-size: 16px;
   background: #F0F0F0;
-  overflow-x: hidden;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 h1,
@@ -1555,9 +1551,8 @@ section.content-container {
 section.content-container > div.inner {
   float: left;
   width: 100%;
-  overflow-y: scroll;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 section.content-container > div.inner > div {
   float: left;
@@ -2149,6 +2144,80 @@ header h3 {
   float: left;
   width: 100%;
   margin-top: 12px;
+}
+
+.dark-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.dark-background {
+  background: url(../images/body-background.png);
+}
+.border-box {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hidden {
+  display: none !important;
+}
+.tile {
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
+  border-radius: 2px;
+  background: #ffffff;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: #444444;
+}
+.deleted {
+  opacity: 0.6;
+}
+.condensed-font {
+  font-family: 'RobotoDraft' !important;
+  font-weight: normal;
+}
+.regular-font {
+  font-family: 'Open Sans', 'Arial', 'sans-serif' !important;
+}
+div.collections-container {
+  float: left;
+  width: 100%;
+}
+div.collections-container > div.spinner-container {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+}
+div.collections-container > div.inner-container {
+  float: left;
+  width: 100%;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
+  border-radius: 2px;
+  background: #ffffff;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: #444444;
+}
+div.collections-container > div.inner-container > a {
+  float: left;
+  width: 100%;
+  border-top: solid 1px #e0e0e0;
+  padding: 12px;
+}
+div.collections-container > div.inner-container > a:first-child {
+  border-top: none;
+}
+div.collections-container.loading > div.spinner-container {
+  display: block;
+}
+div.collections-container.loading > a {
+  display: none;
 }
 
 .dark-shadow {

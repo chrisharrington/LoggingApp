@@ -1,0 +1,8 @@
+<div class="collections-container" ng-class="{ loading: loading }">
+	<div class="spinner-container">
+		<spinner></spinner>
+	</div>
+	<div class="inner-container">
+		<a ng-repeat="collection in collections">[[collection.name]]</a>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+div.collections-container { float:left; width:100%;
+	>div.spinner-container { display:none; width:100%; text-align:center; margin-top:100px; }
+	>div.inner-container { float:left; width:100%; .tile;
+		>a { float:left; width:100%; border-top:solid 1px @primary-border-colour; padding:@spacing;
+			&:first-child { border-top:none; }
+		}
+	}
+}
+
+div.collections-container.loading {
+	>div.spinner-container { display:block; }
+	>a { display:none; }
+}

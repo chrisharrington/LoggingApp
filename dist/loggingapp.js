@@ -1,4 +1,29 @@
-Logger.app.controller("header", function($scope) {
+Logger.app.controller("collections", function($scope, once, collections) {
+	once("collections-page", function() {
+		collections.init($scope);
+	});
+	collections.load($scope);
+});
+
+Logger.app.factory("collections", function($rootScope, collectionRepository) {
+	return {
+		init: function() {
+
+		},
+
+		load: function(scope) {
+			$rootScope.title = "Collections";
+
+			scope.collections = [];
+			scope.loading = true;
+
+			collectionRepository.all().then(function(collections) {
+				scope.collections = collections;
+				scope.loading = false;
+			});
+		}
+	};
+});;Logger.app.controller("header", function($scope) {
 
 });;Logger.app.controller("logs", function($rootScope, $scope, logRepository) {
 	$rootScope.title = "Logs";
@@ -684,6 +709,7 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider
 		.when("/logs", { templateUrl: "views/logs.html", controller: "logs" })
 		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
+		.when("/collections", { templateUrl: "views/collections.html", controller: "collections" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
