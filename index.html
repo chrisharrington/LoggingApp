@@ -8,6 +8,20 @@
 </head>
 	<body ng-class="{ reverse: isBack }">
 		<header>
+			<div class="menu" ng-class="{ visible: menuVisible }" menu>
+				<div class="header">
+					<a class="user" href="#/profile" menu-item>
+						<gravatar email="chrisharrington99@gmail.com"></gravatar>
+						<div>
+							<span class="name">Chris Harrington</span>
+							<span class="email">chrisharrington99@gmail.com</span>
+						</div>
+					</a>
+					<menu-item icon="fa-home" destination="#/logs">Popular Logs</menu-item>
+					<menu-item icon="fa-plus" destination="#/new-log">New Log</menu-item>
+					<menu-item icon="fa-tasks" destination="#/collections">Collections</menu-item>
+				</div>
+			</div>
 			<a class="fa fa-bars" ng-click="showMenu()" menu-trigger></a>
 			<h3 class="title">[[title]]</h3>
 		</header>
@@ -17,21 +31,6 @@
 		</section>
 
 		<feedback></feedback>
-
-		<section class="menu" ng-class="{ visible: menuVisible }" menu>
-			<div class="header">
-				<a class="user" href="#/profile" menu-item>
-					<gravatar email="chrisharrington99@gmail.com"></gravatar>
-					<div>
-						<span class="name">Chris Harrington</span>
-						<span class="email">chrisharrington99@gmail.com</span>
-					</div>
-				</a>
-				<menu-item icon="fa-home" destination="#/logs">Popular Logs</menu-item>
-				<menu-item icon="fa-plus" destination="#/new-log">New Log</menu-item>
-				<menu-item icon="fa-tasks" destination="#/collections">Collections</menu-item>
-			</div>
-		</section>
 
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="scripts/thirdParty/jquery-2.1.1.min.js"></script>
