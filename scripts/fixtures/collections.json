@@ -38,5 +38,17 @@
 	{
 		"id": 10,
 		"name": "Exercise"
+	},
+	{
+		"id": 11,
+		"name": "Movies"
+	},
+	{
+		"id": 12,
+		"name": "Lawn Care"
+	},
+	{
+		"id": 13,
+		"name": "Code"
 	}
 ]
