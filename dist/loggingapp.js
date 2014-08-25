@@ -754,7 +754,7 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 			once("menu-init", function() {
 				$(window).on("click", function(e) {
 					var target = $(e.target);
-					if (target.attr("menu-trigger") !== "" && target.attr("menu") !== "" && (target.parents("[menu]").length === 0 || target.parents("menu-item").length !== 0))
+					if (target.attr("menu-trigger") !== "" && target.attr("menu") !== "" && (target.parents("[menu]").length === 0 || target.parents("menu-item").length !== 0 || target.parents("[menu-item]").length !== 0))
 						$rootScope.$apply(function() {
 							$rootScope.hideMenu();
 						});
