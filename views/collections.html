@@ -4,7 +4,10 @@
 	</div>
 	<div class="inner-container">
 		<a ng-repeat="collection in collections" href="#/collections/[[collection.name]]">
-			<span>[[collection.name]]</span>
+			<div>
+				<span class="name">[[collection.name]]</span>
+				<span class="details">[[collection.logCount]] log[[collection.logCount == 1 ? "" : "s"]]</span>
+			</div>
 			<i class="fa fa-angle-right"></i>
 		</a>
 	</div>

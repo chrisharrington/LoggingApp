@@ -1687,7 +1687,6 @@ section.menu a.user > div > span.name {
 }
 section.menu a.user > div > span.email {
   color: #B0B0B0;
-  margin-top: 4px;
   font-size: 0.75em;
   line-height: 13px;
   margin-top: 2px;
@@ -2215,18 +2214,27 @@ div.collections-container > div.inner-container > a {
   -moz-box-sizing: border-box;
   cursor: pointer;
 }
-div.collections-container > div.inner-container > a > * {
-  height: 56px !important;
-  line-height: 56px;
-  display: inline-block;
-  vertical-align: middle;
-}
-div.collections-container > div.inner-container > a > span {
+div.collections-container > div.inner-container > a > div {
   float: left;
   width: 100%;
   padding-right: 20px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+  margin-top: 11px;
+}
+div.collections-container > div.inner-container > a > div > span {
+  float: left;
+  width: 100%;
+}
+div.collections-container > div.inner-container > a > div > span.name {
+  font-weight: bold;
+  color: #444444;
+}
+div.collections-container > div.inner-container > a > div > span.details {
+  font-style: italic;
+  color: #888888;
+  font-size: 0.75em;
+  margin-top: 2px;
 }
 div.collections-container > div.inner-container > a > i {
   float: left;
@@ -2236,6 +2244,10 @@ div.collections-container > div.inner-container > a > i {
   font-weight: bold;
   font-size: 1.25em;
   color: #444444;
+  height: 56px !important;
+  line-height: 56px;
+  display: inline-block;
+  vertical-align: middle;
 }
 div.collections-container > div.inner-container > a:first-child {
   border-top: none;

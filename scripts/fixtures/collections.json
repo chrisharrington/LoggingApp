@@ -1,54 +1,67 @@
 [
 	{
 		"id": 1,
-		"name": "Maintenance"
+		"name": "Maintenance",
+		"logCount": 3
 	},
 	{
 		"id": 2,
-		"name": "Chores"
+		"name": "Chores",
+		"logCount": 31
 	},
 	{
 		"id": 3,
-		"name": "Milestones"
+		"name": "Milestones",
+		"logCount": 13
 	},
 	{
 		"id": 4,
-		"name": "Hanging Out"
+		"name": "Hanging Out",
+		"logCount": 32
 	},
 	{
 		"id": 5,
-		"name": "Monthly Expenditures"
+		"name": "Monthly Expenditures",
+		"logCount": 53
 	},
 	{
 		"id": 6,
-		"name": "Free Time"
+		"name": "Free Time",
+		"logCount": 33
 	},
 	{
 		"id": 7,
-		"name": "Weather"
+		"name": "Weather",
+		"logCount": 73
 	},
 	{
 		"id": 8,
-		"name": "Work"
+		"name": "Work",
+		"logCount": 37
 	},
 	{
 		"id": 9,
-		"name": "Health"
+		"name": "Health",
+		"logCount": 36
 	},
 	{
 		"id": 10,
-		"name": "Exercise"
+		"name": "Exercise",
+		"logCount": 33
 	},
 	{
 		"id": 11,
-		"name": "Movies"
+		"name": "Movies",
+		"logCount": 8
 	},
 	{
 		"id": 12,
-		"name": "Lawn Care"
+		"name": "Lawn Care",
+		"logCount": 4
 	},
 	{
 		"id": 13,
-		"name": "Code"
+		"name": "Code",
+		"logCount": 9
 	}
 ]
