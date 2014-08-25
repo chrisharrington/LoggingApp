@@ -2186,6 +2186,7 @@ header h3 {
 div.collections-container {
   float: left;
   width: 100%;
+  padding: 0 !important;
 }
 div.collections-container > div.spinner-container {
   display: none;
@@ -2215,8 +2216,8 @@ div.collections-container > div.inner-container > a {
   cursor: pointer;
 }
 div.collections-container > div.inner-container > a > * {
-  height: 42px !important;
-  line-height: 42px;
+  height: 56px !important;
+  line-height: 56px;
   display: inline-block;
   vertical-align: middle;
 }
