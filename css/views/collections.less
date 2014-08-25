@@ -3,10 +3,16 @@
 
 div.collections-container { float:left; width:100%;
 	>div.spinner-container { display:none; width:100%; text-align:center; margin-top:100px; }
-	>div.inner-container { float:left; width:100%; .tile;
-		>a { float:left; width:100%; border-top:solid 1px @primary-border-colour; padding:@spacing;
+	>div.inner-container { float:left; width:100%; .tile; padding:0;
+		@link-height:42px;
+		>a { float:left; width:100%; border-top:solid 1px @primary-border-colour; padding:0 @spacing; .border-box; cursor:pointer;
+			@icon-width:20px;
+			>* { .vertical-centre(@link-height); }
+			>span { float:left; width:100%; padding-right:@icon-width; .border-box; }
+			>i { float:left; margin-left:@icon-width*-1; width:@icon-width; text-align:right; font-weight:bold; font-size:1.25em; color:@primary-font-colour; }
 			&:first-child { border-top:none; }
 		}
+		>a:active { background:@primary-hover; }
 	}
 }
 
