@@ -246,7 +246,7 @@ div.info-input.focus {
 .modal > i {
   float: right;
   padding: 12px;
-  color: #888888;
+  color: #aaaaaa;
   cursor: pointer;
 }
 .modal > div {
@@ -946,7 +946,7 @@ div.feedback.visible {
 modal .transcluded > span {
   float: left;
   width: 100%;
-  color: #888888;
+  color: #aaaaaa;
   font-size: 0.875em;
 }
 modal .transcluded > button {
@@ -1048,7 +1048,7 @@ log-tile > div > div.recordings > div {
 }
 log-tile > div > div.recordings > div > span.name {
   float: left;
-  color: #888888;
+  color: #aaaaaa;
   text-transform: lowercase;
 }
 log-tile > div > div.recordings > div > span.value {
@@ -1941,7 +1941,7 @@ div.form > span {
   margin-top: 8px;
 }
 div.form > span {
-  color: #888888;
+  color: #aaaaaa;
 }
 div.form > *:first-child {
   margin-top: 0;
@@ -1971,7 +1971,7 @@ div.description-form > div > input {
 }
 div.description-form > div > span {
   font-size: 0.875em;
-  color: #888888;
+  color: #aaaaaa;
 }
 
 .dark-shadow {
@@ -2093,7 +2093,7 @@ header h3 {
 }
 .add-entry-container > div.entries > span.empty {
   font-style: italic;
-  color: #888888;
+  color: #aaaaaa;
   text-align: center;
   font-size: 0.875em;
   padding: 0 12px 12px 12px;
