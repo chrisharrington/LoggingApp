@@ -3,7 +3,7 @@ Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository) {
+Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository, logRepository, $q) {
 	var _measurements = [];
 	var _tags = [];
 	var _validating = false;
@@ -32,14 +32,15 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			scope.getCollections = collectionRepository.contains;
 
 			scope.save = function() {
-				if (!_validate())
-					return;
-
-				feedback.message("boogity");
+				_save().then(function() {
+					window.location.hash = "logs";
+				});
 			};
 
 			scope.saveAndAdd = function() {
-				scope.save();
+				_save().then(function() {
+					alert("add entry");
+				})
 			};
 
 			scope.clearFeedback = function() {
@@ -58,6 +59,22 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 				_validating = true;
 				if (!scope.name || scope.name == "")
 					return !scope.$broadcast("onNameError", "The name is required.");
+				return true;
+			}
+
+			function _save() {
+				var deferred = $q.defer();
+
+				if (_validate()) {
+					scope.$broadcast("onLogAdded", {
+						name: scope.name,
+						collection: scope.collection
+						location: scope.location
+					});
+					deferred.resolve();
+				}
+
+				return deferred.promise;
 			}
 		}
 	};

@@ -25,7 +25,8 @@ Logger.app.factory("collections", function($rootScope, collectionRepository) {
 	};
 });;Logger.app.controller("header", function($scope) {
 
-});;Logger.app.controller("logs", function($rootScope, $scope, logRepository) {
+});;Logger.app.controller("logs", function(once, $rootScope, $scope, logRepository) {
+
 	$rootScope.title = "Logs";
 
 	$scope.logs = [];
@@ -34,41 +35,25 @@ Logger.app.factory("collections", function($rootScope, collectionRepository) {
 	logRepository.latest().then(function(logs) {
 		$scope.loading = false;
 		$scope.logs.pushAll(logs);
-	})
-//
-//		{
-//			name: "Running",
-//			measurements: [
-//				{ name: "Duration", value: "20 minutes" },
-//				{ name: "Distance", value: "2 km" }
-//			],
-//			tags: [
-//				{ name: "Sunny" },
-//				{ name: "With friends" }
-//			],
-//			pictures: [
-//				"http://blog.zensorium.com/wp-content/uploads/2014/04/running-21.jpg",
-//				"http://cdn.business2community.com/wp-content/uploads/2014/04/running1.jpg"
-//			]
-//		},
-//		{
-//			name: "Swimming",
-//			measurements: [
-//				{ name: "Duration", value: "40 minutes" },
-//				{ name: "Laps", value: "10" }
-//			],
-//			tags: [],
-//			location: {
-//				url: "//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x200&scale=2&markers=Cardel Place, Calgary"
-//			}
-//		}
-//	];
+	});
+});
+
+Logger.app.factory("logs", function() {
+	return {
+		init: function() {
+
+		},
+
+		load: function() {
+			
+		}
+	}
 });;Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
 	newLog.init($scope);
 	newLog.load($scope);
 }]);
 
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository) {
+Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository, logRepository, $q) {
 	var _measurements = [];
 	var _tags = [];
 	var _validating = false;
@@ -97,14 +82,15 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			scope.getCollections = collectionRepository.contains;
 
 			scope.save = function() {
-				if (!_validate())
-					return;
-
-				feedback.message("boogity");
+				_save().then(function() {
+					window.location.hash = "logs";
+				});
 			};
 
 			scope.saveAndAdd = function() {
-				scope.save();
+				_save().then(function() {
+					alert("add entry");
+				})
 			};
 
 			scope.clearFeedback = function() {
@@ -123,6 +109,22 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 				_validating = true;
 				if (!scope.name || scope.name == "")
 					return !scope.$broadcast("onNameError", "The name is required.");
+				return true;
+			}
+
+			function _save() {
+				var deferred = $q.defer();
+
+				if (_validate()) {
+					scope.$broadcast("onLogAdded", {
+						name: scope.name,
+						collection: scope.collection
+						location: scope.location
+					});
+					deferred.resolve();
+				}
+
+				return deferred.promise;
 			}
 		}
 	};

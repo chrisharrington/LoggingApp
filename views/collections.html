@@ -3,6 +3,13 @@
 		<spinner></spinner>
 	</div>
 	<div class="inner-container">
+		<a href="#/collections/empty">
+			<div>
+				<span class="name">(no collection)</span>
+				<span class="details">4</span>
+			</div>
+			<i class="fa fa-angle-right"></i>
+		</a>
 		<a ng-repeat="collection in collections" href="#/collections/[[collection.name]]">
 			<div>
 				<span class="name">[[collection.name]]</span>
