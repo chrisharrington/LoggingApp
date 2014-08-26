@@ -721,6 +721,10 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 
 	menu.init();
 
+	$("h3").on("click", function() {
+		alert(window.location.href);
+	});
+
 	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
 		var collections = result[0], logs = result[1];
 		for (var i = 0; i < collections.length; i++) {
@@ -759,6 +763,13 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 							$rootScope.hideMenu();
 						});
 				});
+
+				$(window).on("resize", _setMenuHeight);
+				$(_setMenuHeight);
+
+				function _setMenuHeight() {
+					$("[menu]").height($(window).height() - 50);
+				}
 			});
 
 			$rootScope.menuVisible = false;

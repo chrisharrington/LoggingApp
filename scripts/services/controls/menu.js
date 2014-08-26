@@ -9,6 +9,13 @@ Logger.app.factory("menu", function($rootScope, once) {
 							$rootScope.hideMenu();
 						});
 				});
+
+				$(window).on("resize", _setMenuHeight);
+				$(_setMenuHeight);
+
+				function _setMenuHeight() {
+					$("[menu]").height($(window).height() - 50);
+				}
 			});
 
 			$rootScope.menuVisible = false;
