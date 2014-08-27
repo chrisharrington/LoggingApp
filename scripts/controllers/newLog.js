@@ -68,7 +68,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 				if (_validate()) {
 					scope.$broadcast("onLogAdded", {
 						name: scope.name,
-						collection: scope.collection
+						collection: scope.collection,
 						location: scope.location
 					});
 					deferred.resolve();

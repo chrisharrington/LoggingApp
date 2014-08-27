@@ -18,7 +18,7 @@ Logger.app.factory("logs", function() {
 		},
 
 		load: function() {
-			
+
 		}
 	}
 });
