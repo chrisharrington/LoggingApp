@@ -7,6 +7,6 @@
 		</form>
 	</div>
 
-	<button tabindex="3" id="save-and-add" ng-click="saveAndAdd()">Save Log and Add Entry</button>
-	<button tabindex="4" id="save" ng-click="save()">Save Log</button>
+	<button tabindex="3" id="save-and-add" ng-click="saveAndAdd()" ng-class="{ loading: saving }">Save Log and Add Entry</button>
+	<button tabindex="4" id="save" ng-click="save()" ng-class="{ loading: saving }">Save Log</button>
 </div>

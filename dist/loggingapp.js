@@ -1,16 +1,9 @@
 Logger.app.controller("collections", function($scope, once, collections) {
-	once("collections-page", function() {
-		collections.init($scope);
-	});
 	collections.load($scope);
 });
 
 Logger.app.factory("collections", function($rootScope, collectionRepository) {
 	return {
-		init: function() {
-
-		},
-
 		load: function(scope) {
 			$rootScope.title = "Collections";
 
@@ -25,109 +18,100 @@ Logger.app.factory("collections", function($rootScope, collectionRepository) {
 	};
 });;Logger.app.controller("header", function($scope) {
 
-});;Logger.app.controller("logs", function(once, $rootScope, $scope, logRepository) {
-
-	$rootScope.title = "Logs";
-
-	$scope.logs = [];
-	$scope.loading = true;
-
-	logRepository.latest().then(function(logs) {
-		$scope.loading = false;
-		$scope.logs.pushAll(logs);
-	});
+});;Logger.app.controller("logs", function($scope, once, logs) {
+	logs.load($scope);
 });
 
-Logger.app.factory("logs", function() {
+Logger.app.factory("logs", function($rootScope, logRepository) {
+	var _logs = [];
+
+	$rootScope.$on("onLogAdded", _getLogs);
+
+	_getLogs();
+
+	function _getLogs() {
+		scope.loading = true;
+		logRepository.latest().then(function (logs) {
+			scope.loading = false;
+			_logs = [];
+			_logs.pushAll(logs);
+		});
+	}
+
 	return {
-		init: function() {
-
-		},
-
-		load: function() {
-
+		load: function(scope) {
+			scope.logs = _logs;
+			$rootScope.title = "Logs";
 		}
 	}
-});;Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
-	newLog.init($scope);
-	newLog.load($scope);
-}]);
+});;Logger.app.controller("newLog", function($scope, once, newLog) {
+	newLog($scope);
+});
 
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository, logRepository, $q) {
-	var _measurements = [];
-	var _tags = [];
+Logger.app.factory("newLog", function($rootScope, $timeout, feedback, collectionRepository, logRepository, $q) {
 	var _validating = false;
 
-	return {
-		init: function() {
-			once("new-log-page", function() {
-				$rootScope.$on("measurementAdded", function(event, args) {
-					_measurements.push({ name: args.name, value: args.quantity + (args.units ? " " + args.units : "") });
-				});
+	return function(scope) {
+		$rootScope.title = "New Log";
 
-				$rootScope.$on("tagAdded", function(event, args) {
-					_tags.push({ name: args.name });
-				});
+		scope.name = "";
+		scope.collection = "";
+		scope.location = true;
+		scope.nameError = false;
+
+		scope.getCollections = collectionRepository.contains;
+
+		scope.save = function() {
+			_save().then(function() {
+				window.location.hash = "logs";
 			});
-		},
+		};
 
-		load: function(scope) {
-			$rootScope.title = "New Log";
+		scope.saveAndAdd = function() {
+			_save().then(function() {
+				alert("add entry");
+			})
+		};
 
-			scope.name = "";
-			scope.collection = "";
-			scope.location = true;
-			scope.nameError = false;
+		scope.clearFeedback = function() {
+			if (!_validating)
+				feedback.hide();
 
-			scope.getCollections = collectionRepository.contains;
+			_validating = false;
+		};
 
-			scope.save = function() {
-				_save().then(function() {
-					window.location.hash = "logs";
-				});
-			};
+		scope.$on("onNameError", function(event, message) {
+			feedback.message(message);
+			scope.nameError = true;
+		});
 
-			scope.saveAndAdd = function() {
-				_save().then(function() {
-					alert("add entry");
-				})
-			};
-
-			scope.clearFeedback = function() {
-				if (!_validating)
-					feedback.hide();
-
-				_validating = false;
-			};
-
-			scope.$on("onNameError", function(event, message) {
-				feedback.message(message);
-				scope.nameError = true;
-			});
-
-			function _validate() {
-				_validating = true;
-				if (!scope.name || scope.name == "")
-					return !scope.$broadcast("onNameError", "The name is required.");
-				return true;
-			}
-
-			function _save() {
-				var deferred = $q.defer();
-
-				if (_validate()) {
-					scope.$broadcast("onLogAdded", {
-						name: scope.name,
-						collection: scope.collection,
-						location: scope.location
-					});
-					deferred.resolve();
-				}
-
-				return deferred.promise;
-			}
+		function _validate() {
+			_validating = true;
+			if (!scope.name || scope.name == "")
+				return !scope.$broadcast("onNameError", "The name is required.");
+			return true;
 		}
-	};
+
+		function _save() {
+			var deferred = $q.defer();
+			if (_validate()) {
+				scope.saving = true;
+				logRepository.insert({
+					name: scope.name,
+					collectionName: scope.collection,
+					location: scope.location
+				}).then(function(log) {
+					deferred.resolve(log);
+					$rootScope.$broadcast("onLogAdded", log);
+				}).catch(function() {
+					feedback.message("An error occurred while adding your log. Please try again later.");
+				}).finally(function() {
+					scope.saving = false;
+				});
+			}
+			return deferred.promise;
+		}
+	}
 });;Logger.app.controller("new-measurement", function($scope, $rootScope, $timeout, feedback) {
 	$scope.name = "";
 	$scope.quantity = "";
@@ -493,11 +477,9 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 	return {
 		restrict: "E",
 		templateUrl: "templates/spinner.html",
-		scope: {
-			colour: "@",
-			borderWidth: "@",
-			size: "@",
-			backgroundColour: "@"
+		link: function(scope, element, attributes) {
+			if (attributes.big !== undefined)
+				scope.big = true;
 		}
 	};
 });;Logger.app.directive("text", function() {
@@ -710,22 +692,19 @@ Logger.app.config(["$interpolateProvider", function($interpolateProvider) {
 Logger.app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider
 		.when("/logs", { templateUrl: "views/logs.html", controller: "logs" })
-		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
+		.when("/new-log", { templateUrl: "views/newLog.html", controller: "newLog" })
 		.when("/collections", { templateUrl: "views/collections.html", controller: "collections" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
-Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu, $injector) {
 	$rootScope.title = "";
 	$rootScope.user = {
 		email: "chrisharrington99@gmail.com"
 	};
 
 	menu.init();
-
-	$("h3").on("click", function() {
-		alert(window.location.href);
-	});
+	_initializeDependencies();
 
 	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
 		var collections = result[0], logs = result[1];
@@ -741,6 +720,12 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 
 		$rootScope.collections = collections;
 	});
+
+	function _initializeDependencies() {
+		$injector.get("logs");
+		$injector.get("collections");
+		$injector.get("newLog");
+	}
 
 	function _loadCollections() {
 		return collectionRepository.all();
@@ -823,8 +808,26 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 		}
 	}
 });
-;Logger.app.factory("logRepository", function($http) {
-	return {
+;Logger.app.factory("logRepository", function($http, $q, $timeout) {
+	var that;
+	return that = {
+		insert: function(log) {
+			var deferred = $q.defer();
+
+			var max = 0;
+			log.id = that.all().then(function(logs) {
+				for (var i = 0; i < logs.length; i++)
+					max = Math.max(max, logs[i].id);
+			});
+
+			log.id = max+1;
+			log.collectionId = 0;
+			$timeout(function() {
+				deferred.resolve(log);
+			}, 500);
+			return deferred.promise;
+		},
+
 		all: function() {
 			return $http.get("scripts/fixtures/logs.json").then(function(result) {
 				result.data.sort(function (first, second) {

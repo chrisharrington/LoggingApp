@@ -23,3 +23,9 @@ section.content-container { position:absolute; padding-top:@header-height; left:
 		>div { float:left; width:100%; padding:@spacing; .border-box; }
 	}
 }
+
+div.loader { position:fixed; top:0; right:0; bottom:0; left:0; z-index:@dialog-z-index; background:rgba(255, 255, 255, 0.85); text-align:center;
+	>spinner { position:absolute; top:50%; .transform(translate3D(-50%, -50%, 0)); }
+}
+
+body.loading div.loader { display:block; }

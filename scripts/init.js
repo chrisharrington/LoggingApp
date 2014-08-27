@@ -8,22 +8,19 @@ Logger.app.config(["$interpolateProvider", function($interpolateProvider) {
 Logger.app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider
 		.when("/logs", { templateUrl: "views/logs.html", controller: "logs" })
-		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
+		.when("/new-log", { templateUrl: "views/newLog.html", controller: "newLog" })
 		.when("/collections", { templateUrl: "views/collections.html", controller: "collections" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
-Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu, $injector) {
 	$rootScope.title = "";
 	$rootScope.user = {
 		email: "chrisharrington99@gmail.com"
 	};
 
 	menu.init();
-
-	$("h3").on("click", function() {
-		alert(window.location.href);
-	});
+	_initializeDependencies();
 
 	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
 		var collections = result[0], logs = result[1];
@@ -39,6 +36,12 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 
 		$rootScope.collections = collections;
 	});
+
+	function _initializeDependencies() {
+		$injector.get("logs");
+		$injector.get("collections");
+		$injector.get("newLog");
+	}
 
 	function _loadCollections() {
 		return collectionRepository.all();

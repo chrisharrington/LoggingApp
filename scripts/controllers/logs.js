@@ -1,24 +1,27 @@
-Logger.app.controller("logs", function(once, $rootScope, $scope, logRepository) {
-
-	$rootScope.title = "Logs";
-
-	$scope.logs = [];
-	$scope.loading = true;
-
-	logRepository.latest().then(function(logs) {
-		$scope.loading = false;
-		$scope.logs.pushAll(logs);
-	});
+Logger.app.controller("logs", function($scope, once, logs) {
+	logs.load($scope);
 });
 
-Logger.app.factory("logs", function() {
+Logger.app.factory("logs", function($rootScope, logRepository) {
+	var _logs = [];
+
+	$rootScope.$on("onLogAdded", _getLogs);
+
+	_getLogs();
+
+	function _getLogs() {
+		scope.loading = true;
+		logRepository.latest().then(function (logs) {
+			scope.loading = false;
+			_logs = [];
+			_logs.pushAll(logs);
+		});
+	}
+
 	return {
-		init: function() {
-
-		},
-
-		load: function() {
-
+		load: function(scope) {
+			scope.logs = _logs;
+			$rootScope.title = "Logs";
 		}
 	}
 });
