@@ -95,7 +95,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, feedback, collection
 		function _save() {
 			var deferred = $q.defer();
 			if (_validate()) {
-				scope.saving = true;
+				$rootScope.loading = true;
 				logRepository.insert({
 					name: scope.name,
 					collectionName: scope.collection,
@@ -106,7 +106,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, feedback, collection
 				}).catch(function() {
 					feedback.message("An error occurred while adding your log. Please try again later.");
 				}).finally(function() {
-					scope.saving = false;
+					$rootScope.loading = false;
 				});
 			}
 			return deferred.promise;
