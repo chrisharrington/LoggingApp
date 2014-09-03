@@ -1570,6 +1570,7 @@ section.content-container > div.inner > div {
   -moz-box-sizing: border-box;
 }
 div.loader {
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
