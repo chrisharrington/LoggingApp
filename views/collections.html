@@ -1,0 +1,21 @@
+<div class="collections-container" ng-class="{ loading: loading }">
+	<div class="spinner-container">
+		<spinner></spinner>
+	</div>
+	<div class="inner-container">
+		<a href="#/collections/empty">
+			<div>
+				<span class="name">(no collection)</span>
+				<span class="details">4</span>
+			</div>
+			<i class="fa fa-angle-right"></i>
+		</a>
+		<a ng-repeat="collection in collections" href="#/collections/[[collection.name]]">
+			<div>
+				<span class="name">[[collection.name]]</span>
+				<span class="details">[[collection.logCount]] log[[collection.logCount == 1 ? "" : "s"]]</span>
+			</div>
+			<i class="fa fa-angle-right"></i>
+		</a>
+	</div>
+</div>

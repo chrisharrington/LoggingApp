@@ -1,106 +1,118 @@
-Logger.app.controller("header", function($scope) {
+Logger.app.controller("collections", function($scope, once, collections) {
+	collections.load($scope);
+});
 
-});;Logger.app.controller("logs", function($rootScope, $scope, logRepository) {
-	$rootScope.title = "Logs";
-
-	$scope.logs = [];
-	$scope.loading = true;
-
-	logRepository.latest().then(function(logs) {
-		$scope.loading = false;
-		$scope.logs.pushAll(logs);
-	})
-//
-//		{
-//			name: "Running",
-//			measurements: [
-//				{ name: "Duration", value: "20 minutes" },
-//				{ name: "Distance", value: "2 km" }
-//			],
-//			tags: [
-//				{ name: "Sunny" },
-//				{ name: "With friends" }
-//			],
-//			pictures: [
-//				"http://blog.zensorium.com/wp-content/uploads/2014/04/running-21.jpg",
-//				"http://cdn.business2community.com/wp-content/uploads/2014/04/running1.jpg"
-//			]
-//		},
-//		{
-//			name: "Swimming",
-//			measurements: [
-//				{ name: "Duration", value: "40 minutes" },
-//				{ name: "Laps", value: "10" }
-//			],
-//			tags: [],
-//			location: {
-//				url: "//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x200&scale=2&markers=Cardel Place, Calgary"
-//			}
-//		}
-//	];
-});;Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
-	newLog.init($scope);
-	newLog.load($scope);
-}]);
-
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository) {
-	var _measurements = [];
-	var _tags = [];
-	var _validating = false;
-
+Logger.app.factory("collections", function($rootScope, collectionRepository) {
 	return {
-		init: function() {
-			once("new-log-page", function() {
-				$rootScope.$on("measurementAdded", function(event, args) {
-					_measurements.push({ name: args.name, value: args.quantity + (args.units ? " " + args.units : "") });
-				});
-
-				$rootScope.$on("tagAdded", function(event, args) {
-					_tags.push({ name: args.name });
-				});
-			});
-		},
-
 		load: function(scope) {
-			$rootScope.title = "New Log";
+			$rootScope.title = "Collections";
 
-			scope.name = "";
-			scope.collection = "";
-			scope.location = true;
-			scope.nameError = false;
+			scope.collections = [];
+			scope.loading = true;
 
-			scope.getCollections = collectionRepository.contains;
-
-			scope.save = function() {
-				if (!_validate())
-					return;
-
-				feedback.message("boogity");
-			};
-
-			scope.saveAndAdd = function() {
-				scope.save();
-			};
-
-			scope.clearFeedback = function() {
-				if (!_validating)
-					feedback.hide();
-
-				_validating = false;
-			};
-
-			scope.$on("onNameError", function(event, message) {
-				feedback.message(message);
-				scope.nameError = true;
+			collectionRepository.all().then(function(collections) {
+				scope.collections = collections;
+				scope.loading = false;
 			});
-
-			function _validate() {
-				_validating = true;
-				if (!scope.name || scope.name == "")
-					return !scope.$broadcast("onNameError", "The name is required.");
-			}
 		}
 	};
+});;Logger.app.controller("header", function($scope) {
+
+});;Logger.app.controller("logs", function($scope, authentication, once, logs) {
+	authentication.check();
+	logs.load($scope);
+});
+
+Logger.app.factory("logs", function($rootScope, logRepository) {
+	var _logs = [];
+
+	$rootScope.$on("onLogAdded", _getLogs);
+
+	_getLogs();
+
+	function _getLogs() {
+		scope.loading = true;
+		logRepository.latest().then(function (logs) {
+			scope.loading = false;
+			_logs = [];
+			_logs.pushAll(logs);
+		});
+	}
+
+	return {
+		load: function(scope) {
+			scope.logs = _logs;
+			$rootScope.title = "Logs";
+		}
+	}
+});;Logger.app.controller("newLog", function($scope, once, newLog) {
+	newLog($scope);
+});
+
+Logger.app.factory("newLog", function($rootScope, $timeout, feedback, collectionRepository, logRepository, $q) {
+	var _validating = false;
+
+	return function(scope) {
+		$rootScope.title = "New Log";
+
+		scope.name = "";
+		scope.collection = "";
+		scope.location = true;
+		scope.nameError = false;
+
+		scope.getCollections = collectionRepository.contains;
+
+		scope.save = function() {
+			_save().then(function() {
+				window.location.hash = "logs";
+			});
+		};
+
+		scope.saveAndAdd = function() {
+			_save().then(function() {
+				alert("add entry");
+			})
+		};
+
+		scope.clearFeedback = function() {
+			if (!_validating)
+				feedback.hide();
+
+			_validating = false;
+		};
+
+		scope.$on("onNameError", function(event, message) {
+			feedback.message(message);
+			scope.nameError = true;
+		});
+
+		function _validate() {
+			_validating = true;
+			if (!scope.name || scope.name == "")
+				return !scope.$broadcast("onNameError", "The name is required.");
+			return true;
+		}
+
+		function _save() {
+			var deferred = $q.defer();
+			if (_validate()) {
+				$rootScope.loading = true;
+				logRepository.insert({
+					name: scope.name,
+					collectionName: scope.collection,
+					location: scope.location
+				}).then(function(log) {
+					deferred.resolve(log);
+					$rootScope.$broadcast("onLogAdded", log);
+				}).catch(function() {
+					feedback.message("An error occurred while adding your log. Please try again later.");
+				}).finally(function() {
+					$rootScope.loading = false;
+				});
+			}
+			return deferred.promise;
+		}
+	}
 });;Logger.app.controller("new-measurement", function($scope, $rootScope, $timeout, feedback) {
 	$scope.name = "";
 	$scope.quantity = "";
@@ -177,6 +189,61 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			feedback.hide();
 			return true;
 		}
+	}
+});;Logger.app.controller("sign-in", function($scope, once, signIn) {
+	once("sign-in", function() {
+		signIn.init($scope);
+	});
+	signIn.load($scope);
+});
+
+Logger.app.factory("signIn", function($rootScope, authentication, feedback) {
+	var _scope;
+
+	return {
+		init: function(scope) {
+			_scope = scope;
+			scope.emailAddress = "";
+			scope.password = "";
+			scope.loading = false;
+
+			scope.signIn = _signIn;
+		},
+
+		load: function(scope) {
+			if ($rootScope.user)
+				window.location.hash = "logs";
+		}
+	};
+
+	function _signIn() {
+		if (_validate()) {
+			feedback.hide();
+			$rootScope.loading = true;
+			authentication.signIn(_scope.emailAddress, _scope.password).then(function (authenticated) {
+				if (authenticated)
+					window.location.hash = "logs";
+				else
+					feedback.message("Invalid credentials.");
+			}).catch(function () {
+				feedback.message("An error has occurred while signing you in. Please try again later.");
+			}).finally(function() {
+				$rootScope.loading = false;
+			});
+		}
+	}
+
+	function _validate() {
+		var error;
+
+		if (!_scope.emailAddress || _scope.emailAddress === "")
+			error = "The email address is required.";
+		else if (!_scope.password || _scope.password === "")
+			error = "The password is required.";
+
+		if (error !== undefined)
+			feedback.message(error);
+		return error === undefined;
 	}
 });;Logger.app.directive("autocomplete", function() {
 	var _first = true;
@@ -466,11 +533,9 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 	return {
 		restrict: "E",
 		templateUrl: "templates/spinner.html",
-		scope: {
-			colour: "@",
-			borderWidth: "@",
-			size: "@",
-			backgroundColour: "@"
+		link: function(scope, element, attributes) {
+			if (attributes.big !== undefined)
+				scope.big = true;
 		}
 	};
 });;Logger.app.directive("text", function() {
@@ -484,8 +549,7 @@ Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, coll
 			tab: "@tabindex",
 			focus: "@",
 			value: "&",
-			ngModel: "=",
-			ngKeyup: "="
+			ngModel: "="
 		},
 		compile: function(element) {
 			$(element).on("focus", "input", function() {
@@ -683,17 +747,20 @@ Logger.app.config(["$interpolateProvider", function($interpolateProvider) {
 Logger.app.config(["$routeProvider", function($routeProvider) {
 	$routeProvider
 		.when("/logs", { templateUrl: "views/logs.html", controller: "logs" })
-		.when("/new-log", { templateUrl: "views/newLog.html", controller: "new-log" })
+		.when("/new-log", { templateUrl: "views/newLog.html", controller: "newLog" })
+		.when("/sign-in", { templateUrl: "views/signIn.html", controller: "sign-in" })
+		.when("/collections", { templateUrl: "views/collections.html", controller: "collections" })
 		.otherwise({ redirectTo: "/logs" });
 }]);
 
-Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu) {
+Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu, $injector) {
 	$rootScope.title = "";
-	$rootScope.user = {
-		email: "chrisharrington99@gmail.com"
-	};
+//	$rootScope.user = {
+//		email: "chrisharrington99@gmail.com"
+//	};
 
 	menu.init();
+	_initializeDependencies();
 
 	$q.all([_loadCollections(), _loadLogs()]).then(function(result) {
 		var collections = result[0], logs = result[1];
@@ -710,6 +777,12 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 		$rootScope.collections = collections;
 	});
 
+	function _initializeDependencies() {
+		$injector.get("logs");
+		$injector.get("collections");
+		$injector.get("newLog");
+	}
+
 	function _loadCollections() {
 		return collectionRepository.all();
 	}
@@ -722,17 +795,47 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 	}
 });
 
-;Logger.app.factory("menu", function($rootScope, once) {
+;Logger.app.factory("authentication", function($rootScope, $q) {
+	var that;
+	return that = {
+		isSignedIn: function() {
+			return $rootScope.user !== undefined;
+		},
+
+		check: function() {
+			if (!that.isSignedIn())
+				window.location.hash = "sign-in";
+		},
+
+		signIn: function(emailAddress, password) {
+			var deferred = $q.defer();
+			setTimeout(function() {
+				$rootScope.user = {
+					email: "chrisharrington99@gmail.com"
+				};
+				deferred.resolve(true);
+			}, 1000);
+			return deferred.promise;
+		}
+	}
+});;Logger.app.factory("menu", function($rootScope, once) {
 	return {
 		init: function() {
 			once("menu-init", function() {
 				$(window).on("click", function(e) {
 					var target = $(e.target);
-					if (target.attr("menu-trigger") !== "" && target.attr("menu") !== "" && (target.parents("[menu]").length === 0 || target.parents("menu-item").length !== 0))
+					if (target.attr("menu-trigger") !== "" && target.attr("menu") !== "" && (target.parents("[menu]").length === 0 || target.parents("menu-item").length !== 0 || target.parents("[menu-item]").length !== 0))
 						$rootScope.$apply(function() {
 							$rootScope.hideMenu();
 						});
 				});
+
+				$(window).on("resize", _setMenuHeight);
+				$(_setMenuHeight);
+
+				function _setMenuHeight() {
+					$("[menu]").height($(window).height() - 50);
+				}
 			});
 
 			$rootScope.menuVisible = false;
@@ -784,8 +887,26 @@ Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, men
 		}
 	}
 });
-;Logger.app.factory("logRepository", function($http) {
-	return {
+;Logger.app.factory("logRepository", function($http, $q, $timeout) {
+	var that;
+	return that = {
+		insert: function(log) {
+			var deferred = $q.defer();
+
+			var max = 0;
+			log.id = that.all().then(function(logs) {
+				for (var i = 0; i < logs.length; i++)
+					max = Math.max(max, logs[i].id);
+			});
+
+			log.id = max+1;
+			log.collectionId = 0;
+			$timeout(function() {
+				deferred.resolve(log);
+			}, 500);
+			return deferred.promise;
+		},
+
 		all: function() {
 			return $http.get("scripts/fixtures/logs.json").then(function(result) {
 				result.data.sort(function (first, second) {

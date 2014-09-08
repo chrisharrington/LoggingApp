@@ -1,64 +1,69 @@
-Logger.app.controller("new-log", ["$scope", "newLog", function($scope, newLog) {
-	newLog.init($scope);
-	newLog.load($scope);
-}]);
+Logger.app.controller("newLog", function($scope, once, newLog) {
+	newLog($scope);
+});
 
-Logger.app.factory("newLog", function($rootScope, $timeout, once, feedback, collectionRepository) {
-	var _measurements = [];
-	var _tags = [];
+Logger.app.factory("newLog", function($rootScope, $timeout, feedback, collectionRepository, logRepository, $q) {
 	var _validating = false;
 
-	return {
-		init: function() {
-			once("new-log-page", function() {
-				$rootScope.$on("measurementAdded", function(event, args) {
-					_measurements.push({ name: args.name, value: args.quantity + (args.units ? " " + args.units : "") });
-				});
+	return function(scope) {
+		$rootScope.title = "New Log";
 
-				$rootScope.$on("tagAdded", function(event, args) {
-					_tags.push({ name: args.name });
-				});
+		scope.name = "";
+		scope.collection = "";
+		scope.location = true;
+		scope.nameError = false;
+
+		scope.getCollections = collectionRepository.contains;
+
+		scope.save = function() {
+			_save().then(function() {
+				window.location.hash = "logs";
 			});
-		},
+		};
 
-		load: function(scope) {
-			$rootScope.title = "New Log";
+		scope.saveAndAdd = function() {
+			_save().then(function() {
+				alert("add entry");
+			})
+		};
 
-			scope.name = "";
-			scope.collection = "";
-			scope.location = true;
-			scope.nameError = false;
+		scope.clearFeedback = function() {
+			if (!_validating)
+				feedback.hide();
 
-			scope.getCollections = collectionRepository.contains;
+			_validating = false;
+		};
 
-			scope.save = function() {
-				if (!_validate())
-					return;
+		scope.$on("onNameError", function(event, message) {
+			feedback.message(message);
+			scope.nameError = true;
+		});
 
-				feedback.message("boogity");
-			};
-
-			scope.saveAndAdd = function() {
-				scope.save();
-			};
-
-			scope.clearFeedback = function() {
-				if (!_validating)
-					feedback.hide();
-
-				_validating = false;
-			};
-
-			scope.$on("onNameError", function(event, message) {
-				feedback.message(message);
-				scope.nameError = true;
-			});
-
-			function _validate() {
-				_validating = true;
-				if (!scope.name || scope.name == "")
-					return !scope.$broadcast("onNameError", "The name is required.");
-			}
+		function _validate() {
+			_validating = true;
+			if (!scope.name || scope.name == "")
+				return !scope.$broadcast("onNameError", "The name is required.");
+			return true;
 		}
-	};
+
+		function _save() {
+			var deferred = $q.defer();
+			if (_validate()) {
+				$rootScope.loading = true;
+				logRepository.insert({
+					name: scope.name,
+					collectionName: scope.collection,
+					location: scope.location
+				}).then(function(log) {
+					deferred.resolve(log);
+					$rootScope.$broadcast("onLogAdded", log);
+				}).catch(function() {
+					feedback.message("An error occurred while adding your log. Please try again later.");
+				}).finally(function() {
+					$rootScope.loading = false;
+				});
+			}
+			return deferred.promise;
+		}
+	}
 });

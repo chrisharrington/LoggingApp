@@ -15,7 +15,7 @@ body.reverse {
 	.slide.ng-leave-active { .transform(translate3d(100%, 0, 0)); }
 }
 
-.zoom { position:absolute; left:0; top:0; width:100%; .transform(scale(1, 1)); }
+.zoom { .transform(scale(1, 1)); }
 .zoom.ng-enter, .zoom.ng-leave { .transition(all 500ms 250ms ease); }
 .zoom.ng-enter { .transform(scale(0, 0)); }
 .zoom.ng-enter-active { .transform(scale(1, 1)); }

@@ -3,7 +3,7 @@
 
 @menu-width:250px;
 
-section.menu { width:250px; height:100%; position:absolute; z-index:@dialog-z-index; background:@tertiary-background; color:@secondary-font-colour; top:@header-height; left:@menu-width*-1; font-size:0.875em; .shadow; .transition(all ease @animation-speed);
+div.menu { position:absolute; width:250px; top:@header-height; background:@tertiary-background; color:@secondary-font-colour; top:@header-height; left:@menu-width*-1; font-size:0.875em; .shadow; .transition(all ease @animation-speed);
 	menu-item {
 		@link-height:40px;
 		a { float:left; width:100%; padding:0 @spacing; .border-box; color:inherit !important; cursor:pointer; text-decoration:none; border-bottom:solid 1px @tertiary-border-colour;
@@ -22,10 +22,10 @@ section.menu { width:250px; height:100%; position:absolute; z-index:@dialog-z-in
 		>div { float:left; width:100%; padding-left:@icon-size+@spacing; .border-box; margin-top:@icon-size*-1;
 			>span { float:left; width:100%; }
 			>span.name { color:white; line-height:15px; margin-top:3px; }
-			>span.email { color:#B0B0B0; margin-top:@tiny-spacing; font-size:0.75em; line-height:13px; margin-top:2px; }
+			>span.email { color:#B0B0B0; font-size:0.75em; line-height:13px; margin-top:2px; }
 		}
 	}
 
 	a:hover { background:darken(@secondary-background, 15%); }
 }
-section.menu.visible { .transform(translate3d(@menu-width, 0, 0)); }
+div.menu.visible { .transform(translate3d(@menu-width, 0, 0)); }

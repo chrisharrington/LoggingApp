@@ -8,6 +8,9 @@
 @spinner-highlight-colour:@secondary-background;
 @spinner-width:2px;
 
+@big-spinner-width:3px;
+@big-spinner-size:40px;
+
 .spinner {
 	.spin-clockwise;
 	margin:auto;
@@ -21,6 +24,15 @@
 	border-bottom:@spinner-width solid @spinner-colour;
 	border-top:@spinner-width solid @spinner-highlight-colour;
 	border-radius:100%;
+}
+
+.spinner.big {
+	width:((@big-spinner-size)-@spinner-spacing*2);
+	height:((@big-spinner-size)-@spinner-spacing*2);
+	border-left:@big-spinner-width solid @spinner-highlight-colour;
+	border-right:@big-spinner-width solid @spinner-colour;
+	border-bottom:@big-spinner-width solid @spinner-colour;
+	border-top:@big-spinner-width solid @spinner-highlight-colour;
 }
 
 .spin-clockwise (@duration: 600ms) { -webkit-animation: spin-clockwise @duration infinite linear; -moz-animation: spin-clockwise @duration infinite linear; -o-animation: spin-clockwise @duration infinite linear; animation: spin-clockwise @duration infinite linear; }

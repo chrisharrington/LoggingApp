@@ -1,7 +1,7 @@
 @import "../variables.less";
 @import "../mixins.less";
 
-.new-log-container {
+.new-log-container { background:@primary-background; height:100%;
 	>* { float:left; width:100%; margin-top:@spacing; }
 
 	>div.info { margin-top:0;
@@ -11,6 +11,6 @@
 		}
 	}
 
-	>button { float:left; width:28%; margin-top:@spacing; }
-	>button#save-and-add { float:right; width:68%; }
+	>button { float:left; width:100%; margin-top:@spacing; }
+	>button#save-and-add { margin-top:@spacing*2; }
 }

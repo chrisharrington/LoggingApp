@@ -1,0 +1,19 @@
+@import "../variables.less";
+@import "../mixins.less";
+
+.sign-in-container { float:none; position:absolute; background:-webkit-radial-gradient(lighten(@secondary-background, 40%), lighten(@secondary-background, 15%)); top:0; right:0; bottom:0; left:0; padding:@spacing;
+	>div { float:left; width:100%; padding-top:15%; }
+
+	>div.logo {
+		>div { margin:auto; height:100px; width:100px; border:solid 1px @secondary-border-colour; }
+	}
+
+	>div.input {
+		>div { margin:auto; width:80%;
+			>* { float:left; margin-top:@spacing; width:100%; }
+			>*:first-child { margin-top:0; }
+			>button, >a { text-align:center; }
+			>a { font-size:0.75em; padding:@spacing; }
+		}
+	}
+}

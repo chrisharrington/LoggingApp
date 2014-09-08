@@ -1,5 +1,5 @@
 <div class="new-log-container">
-	<div class="info tile">
+	<div class="info">
 		<form name="form">
 			<autocomplete tab="1" placeholder="Collection..." get="getCollections" ng-model="collection"></autocomplete>
 			<text tab="2" type="text" focus="onNameError" value="name" placeholder="Name..." ng-class="{ error: nameError }" ng-model="name" ng-keyup="clearFeedback()"></text>
@@ -7,6 +7,6 @@
 		</form>
 	</div>
 
-	<button tabindex="3" id="save-and-add" ng-click="saveAndAdd()">Save Log and Add Entry</button>
-	<button tabindex="4" id="save" ng-click="save()">Save Log</button>
+	<button tabindex="3" id="save-and-add" ng-click="saveAndAdd()" ng-class="{ loading: saving }">Save Log and Add Entry</button>
+	<button tabindex="4" id="save" ng-click="save()" ng-class="{ loading: saving }">Save Log</button>
 </div>
