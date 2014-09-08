@@ -1,4 +1,5 @@
-Logger.app.controller("newLog", function($scope, once, newLog) {
+Logger.app.controller("newLog", function($scope, once, authentication, newLog) {
+	authentication.check();
 	newLog($scope);
 });
 

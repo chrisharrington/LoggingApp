@@ -1,4 +1,5 @@
-Logger.app.controller("collections", function($scope, once, collections) {
+Logger.app.controller("collections", function($scope, once, authentication, collections) {
+	authentication.check();
 	collections.load($scope);
 });
 
@@ -45,7 +46,8 @@ Logger.app.factory("logs", function($rootScope, logRepository) {
 			$rootScope.title = "Logs";
 		}
 	}
-});;Logger.app.controller("newLog", function($scope, once, newLog) {
+});;Logger.app.controller("newLog", function($scope, once, authentication, newLog) {
+	authentication.check();
 	newLog($scope);
 });
 

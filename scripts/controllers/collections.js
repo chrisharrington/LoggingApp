@@ -1,4 +1,5 @@
-Logger.app.controller("collections", function($scope, once, collections) {
+Logger.app.controller("collections", function($scope, once, authentication, collections) {
+	authentication.check();
 	collections.load($scope);
 });
 

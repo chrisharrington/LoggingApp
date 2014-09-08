@@ -2230,7 +2230,6 @@ body.signedIn header {
 div.collections-container {
   float: left;
   width: 100%;
-  padding: 0 !important;
 }
 div.collections-container > div.spinner-container {
   display: none;
@@ -2241,23 +2240,21 @@ div.collections-container > div.spinner-container {
 div.collections-container > div.inner-container {
   float: left;
   width: 100%;
-  padding: 12px;
-  box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
-  border-radius: 2px;
-  background: #ffffff;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  color: #444444;
-  padding: 0;
 }
 div.collections-container > div.inner-container > a {
   float: left;
   width: 100%;
   border-top: solid 1px #e0e0e0;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(100, 100, 100, 0.4);
+  border-radius: 2px;
+  background: #ffffff;
+  color: #444444;
   padding: 0 12px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   cursor: pointer;
+  margin-top: 8px;
 }
 div.collections-container > div.inner-container > a > div {
   float: left;
@@ -2296,6 +2293,9 @@ div.collections-container > div.inner-container > a > i {
 }
 div.collections-container > div.inner-container > a:first-child {
   border-top: none;
+}
+div.collections-container > div.inner-container > a:first-child {
+  margin-top: 0;
 }
 div.collections-container > div.inner-container > a:active {
   background: #f7f7f7;
