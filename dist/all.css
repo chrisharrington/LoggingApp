@@ -998,66 +998,66 @@ log-tile > div {
   width: 100%;
   padding: 12px 0;
 }
-log-tile > div > h2 {
-  float: left;
-}
-log-tile > div > div.icons {
-  float: right;
-  width: auto;
-  margin-top: 0;
-}
-log-tile > div > div.icons > i {
-  float: left;
-  height: 29px !important;
-  line-height: 29px;
-  display: inline-block;
-  vertical-align: middle;
-  color: #2196f3;
-  margin-left: 12px;
-}
-log-tile > div > div.icons > i:first-child {
-  margin-left: 0;
-}
-log-tile > div > slideshow {
+log-tile > div > div.info {
   float: left;
   width: 100%;
-  margin-top: 12px;
-}
-log-tile > div > div.map {
-  float: left;
-  width: 100%;
-  padding: 0;
-  margin-top: 12px;
-}
-log-tile > div > div.map > img {
-  float: left;
-  width: 100%;
-}
-log-tile > div > div.recordings {
-  float: left;
-  width: 100%;
-  margin-top: 12px;
-  font-size: 0.875em;
-}
-log-tile > div > div.recordings > div {
-  float: left;
-  width: 100%;
-  border-top: solid 1px #e0e0e0;
-  padding: 8px;
+  position: relative;
+  padding-right: 112px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-log-tile > div > div.recordings > div > span.name {
+log-tile > div > div.info > h2 {
   float: left;
+  width: 100%;
+}
+log-tile > div > div.info > span,
+log-tile > div > div.info > date {
+  float: left;
+  font-size: 0.75em;
   color: #aaaaaa;
-  text-transform: lowercase;
+  margin-top: 4px;
 }
-log-tile > div > div.recordings > div > span.value {
-  float: right;
+log-tile > div > div.info > span {
+  text-transform: uppercase;
   font-weight: bold;
+  color: #2196f3;
+  margin-right: 12px;
 }
-log-tile > div > div.recordings > div:first-child {
-  border-top: none;
+log-tile > div > div.details {
+  float: left;
+  width: 100px;
+  margin-top: 0;
+  margin-left: -100px;
+  position: relative;
+}
+log-tile > div > div.details > date {
+  float: left;
+  width: 100%;
+  text-align: right;
+  font-size: 0.75em;
+  color: #aaaaaa;
+}
+log-tile > div > div.details > div.icons {
+  float: left;
+  width: 100%;
+}
+log-tile > div > div.details > div.icons > i {
+  float: left;
+  color: #2196f3;
+  margin-left: 12px;
+}
+log-tile > div > div.details > div.icons > i:first-child {
+  margin-left: 0;
+}
+log-tile > div > i {
+  float: right;
+  height: 42px !important;
+  line-height: 42px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.25em;
+  color: #2196f3;
+  font-weight: bold;
 }
 
 .dark-shadow {

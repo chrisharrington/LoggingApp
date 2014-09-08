@@ -16,9 +16,9 @@ Logger.app.config(["$routeProvider", function($routeProvider) {
 
 Logger.app.run(function($rootScope, collectionRepository, logRepository, $q, menu, $injector) {
 	$rootScope.title = "";
-//	$rootScope.user = {
-//		email: "chrisharrington99@gmail.com"
-//	};
+	$rootScope.user = {
+		email: "chrisharrington99@gmail.com"
+	};
 
 	menu.init();
 	_initializeDependencies();

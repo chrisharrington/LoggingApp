@@ -3,22 +3,20 @@
 
 log-tile {
 	>div { float:left; width:100%; padding:@spacing 0;
-		@log-header-height:29px;
-		>h2 { float:left; }
-		>div.icons { float:right; width:auto; margin-top:0;
-			>i { float:left; .vertical-centre(@log-header-height); color:@icon-font-colour; margin-left:@spacing; }
-			>i:first-child { margin-left:0; }
+		@log-height:42px;
+		@details-container-width:100px;
+		>div.info { float:left; width:100%; position:relative; padding-right:@spacing+@details-container-width; .border-box;
+			>h2 { float:left; width:100%; }
+			>span, >date { float:left; font-size:0.75em; color:@primary-font-colour-light; margin-top:@tiny-spacing; }
+			>span { text-transform:uppercase; font-weight:bold; color:@secondary-background; margin-right:@spacing; }
 		}
-		>slideshow { float:left; width:100%; margin-top:@spacing; }
-		>div.map { float:left; width:100%; padding:0; margin-top:@spacing;
-			>img { float:left; width:100%; }
-		}
-		>div.recordings { float:left; width:100%; margin-top:@spacing; font-size:0.875em;
-			>div { float:left; width:100%; border-top:solid 1px @primary-border-colour; padding:@small-spacing; .border-box;
-				>span.name { float:left; color:@primary-font-colour-light; text-transform:lowercase; }
-				>span.value { float:right; font-weight:bold; }
+		>div.details { float:left; width:@details-container-width; margin-top:0; margin-left:@details-container-width*-1; position:relative;
+			>date { float:left; width:100%; text-align:right; font-size:0.75em; color:@primary-font-colour-light; }
+			>div.icons { float:left; width:100%;
+				>i { float:left; color:@icon-font-colour; margin-left:@spacing; }
+				>i:first-child { margin-left:0; }
 			}
-			>div:first-child { border-top:none; }
 		}
+		>i { float:right; .vertical-centre(@log-height); font-size:1.25em; color:@secondary-background; font-weight:bold; }
 	}
 }

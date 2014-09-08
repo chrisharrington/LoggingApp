@@ -4,18 +4,9 @@
 		"collectionId": 10,
 		"collectionName": "Exercise",
 		"name": "Running",
-		"measurements": [
-			{ "name": "Duration", "value": "20 minutes" },
-			{ "name": "Distance", "value": "2 km" }
-		],
-		"tags": [
-			{ "name": "Sunny" },
-			{ "name": "With friends" }
-		],
-		"pictures": [
-			"http://blog.zensorium.com/wp-content/uploads/2014/04/running-21.jpg",
-			"http://cdn.business2community.com/wp-content/uploads/2014/04/running1.jpg"
-		],
+		"hasPictures": true,
+		"hasVideos": false,
+		"hasLocation": true,
 		"created": 1408134218214
 	},
 	{
@@ -23,15 +14,9 @@
 		"collectionId": 10,
 		"collectionName": "Exercise",
 		"name": "Swimming",
-		"measurements": [
-			{ "name": "Duration", "value": "40 minutes" },
-			{ "name": "Laps", "value": "10" }
-		],
-		"tags": [],
-		"pictures": [
-			"http://postmediaprovince.files.wordpress.com/2012/08/canadian-synchro-duet.jpg",
-			"//maps.googleapis.com/maps/api/staticmap?key=AIzaSyAiDv6aOjWSHij6SFkpptsIYef6OEnb-xM&zoom=14&size=376x200&scale=2&markers=Cardel Place, Calgary"
-		],
+		"hasPictures": false,
+		"hasVideos": true,
+		"hasLocation": true,
 		"created": 1408134113244
 	}
 ]
