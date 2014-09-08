@@ -2582,10 +2582,7 @@ div.logs-container.loading > div.spinner-container {
   float: none;
   position: absolute;
   background: -webkit-radial-gradient(#e3f2fd, #6ab8f7);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  height: 100%;
   padding: 12px;
 }
 .sign-in-container > div {
